@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,8 +9,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Simple Snack Bar App',
+      debugShowCheckedModeBanner: true,
+      title: 'Simple Toast App',
       home: const Home(),
     );
   }
@@ -24,7 +25,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Snack bar Title'),
+        title: const Text('Toast Title'),
       ),
 
       /// We use [Builder] here to use a [context] that is a descendant of [Scaffold]
@@ -32,7 +33,7 @@ class Home extends StatelessWidget {
       body: Builder(
         builder: (context) => Center(
               child: RaisedButton(
-                child: const Text('Show SnackBar'),
+                child: const Text('Show Toast'),
                 onPressed: () => _showToast(context),
               ),
             ),
@@ -41,13 +42,15 @@ class Home extends StatelessWidget {
   }
 
   void _showToast(BuildContext context) {
-    final scaffold = Scaffold.of(context);
-    scaffold.showSnackBar(
-      SnackBar(
-        content: const Text('SnackBar Showed!'),
-        action: SnackBarAction(
-            label: 'UNDO', onPressed: scaffold.hideCurrentSnackBar),
-      ),
+    Fluttertoast.showToast(
+        msg: "This is Center Short Toast",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIos: 3,
+        backgroundColor: Colors.white,
+        textColor: Colors.black,
+        fontSize: 16.0
     );
   }
+  
 }
