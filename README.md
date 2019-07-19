@@ -1,4 +1,4 @@
-# snack_bar
+# flutter_toast
 
 A new Flutter project.
 
