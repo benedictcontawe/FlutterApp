@@ -1,4 +1,4 @@
-# flutter_toast
+# flutter_navigation
 
 A new Flutter project.
 
