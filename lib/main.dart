@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:snack_bar/home_widget.dart';
+import 'package:bottom_navigation/home_widget.dart';
 
 void main() => runApp(App());
 

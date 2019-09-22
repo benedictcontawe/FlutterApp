@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:snack_bar/placeholder_widget.dart';
+import 'package:bottom_navigation/placeholder_widget.dart';
 
 class Home extends StatefulWidget {
  @override
