@@ -1,6 +1,6 @@
-import 'package:snack_bar/fragments/first_fragment.dart';
-import "package:snack_bar/fragments/second_fragment.dart";
-import "package:snack_bar/fragments/third_fragment.dart";
+import 'package:navigation_drawer/fragments/first_fragment.dart';
+import "package:navigation_drawer/fragments/second_fragment.dart";
+import "package:navigation_drawer/fragments/third_fragment.dart";
 import "package:flutter/material.dart";
 
 class DrawerItem {
