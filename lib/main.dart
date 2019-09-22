@@ -22,32 +22,32 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Snack bar Title'),
-      ),
-
-      /// We use [Builder] here to use a [context] that is a descendant of [Scaffold]
-      /// or else [Scaffold.of] will return null
-      body: Builder(
-        builder: (context) => Center(
-              child: RaisedButton(
-                child: const Text('Show SnackBar'),
-                onPressed: () => _showToast(context),
-              ),
-            ),
-      ),
+    Widget main = Scaffold(
+      appBar: AppBar(title: Text('Stack Banners')),
+      
     );
-  }
 
-  void _showToast(BuildContext context) {
-    final scaffold = Scaffold.of(context);
-    scaffold.showSnackBar(
-      SnackBar(
-        content: const Text('SnackBar Showed!'),
-        action: SnackBarAction(
-            label: 'UNDO', onPressed: scaffold.hideCurrentSnackBar),
-      ),
+  return Stack (
+      fit: StackFit.expand,
+      children: <Widget>[
+        main,
+        Banner(
+          message: "Top Start",
+          location: BannerLocation.topStart,
+        ),
+        Banner(
+          message: "Top End",
+          location: BannerLocation.topEnd,
+        ),
+        Banner(
+          message: "Bottom Start",
+          location: BannerLocation.bottomStart,
+        ),
+        Banner(
+          message: "Bottom End",
+          location: BannerLocation.bottomEnd,
+        ),
+      ],
     );
   }
 }
