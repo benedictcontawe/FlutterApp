@@ -30,6 +30,9 @@ class Home extends StatelessWidget {
   return Stack (
       fit: StackFit.expand,
       children: <Widget>[
+        Container(
+        color: Colors.green,
+        ),
         main,
         Banner(
           message: "Top Start",
