@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 
-
-
 //void main() => runApp(MyApp());
-/*
+
 void main()
-{
+{ 
+  //#region Constructor()
+  /*
   runApp(MaterialApp(
-    title:"Androidmonks",
+    title:"PageView",
     home: Scaffold(
       body: PageView(),
     ),
   ));
-}
-*/
-/*
-void main()
-{
+  */
+  //#endregion
+  //#region PageView.Builder Method
+  /*
   runApp(MaterialApp(
-    title:"Androidmonks",
+    title:"PageView",
     home: Scaffold(
       body: PageView.builder(
           itemBuilder: (context, position)
@@ -29,13 +28,12 @@ void main()
       ),
     ),
   ));
-}
-*/
-/*
-void main()
-{
+  */
+  //#endregion
+  //#region PageView.Custom
+  /*
   runApp(MaterialApp(
-    title:"Androidmonks",
+    title:"PageView",
     home: Scaffold(
         body: PageView.custom(
             childrenDelegate: SliverChildListDelegate([
@@ -43,13 +41,11 @@ void main()
             ])),
     ),
   ));
-}
-*/
-
-void main()
-{
+  */
+  //#endregion
+  PageController controller = PageController();
   runApp(MaterialApp(
-    title:"Androidmonks",
+    title:"PageView",
     home: Scaffold(
       body: PageView(
         children: <Widget>[
@@ -65,7 +61,16 @@ void main()
             child: Center(child:Text("Page 3")),
             color: Colors.amber,
           ),
+          Container(
+            child: Center(child:Text("Page 4")),
+            color: Colors.greenAccent,
+          )
         ],
+        controller: controller,
+        onPageChanged: (num){
+          //controller.jumpToPage(2);
+          print("Change: " + controller.position.toString());
+        },
         scrollDirection: Axis.horizontal, // scrollDirection: Axis.vertical,
         pageSnapping: true,
         physics: ClampingScrollPhysics(), //physics: BouncingScrollPhysics(),
@@ -74,4 +79,4 @@ void main()
   ));
 }
 
-//TODO: PageController ->  https://androidmonks.com/pageview-flutter/
+//Reference: https://androidmonks.com/pageview-flutter/
