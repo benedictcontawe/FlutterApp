@@ -24,7 +24,6 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget main = Scaffold(
       appBar: AppBar(title: Text('Stack Banners')),
-      
     );
 
   return Stack (
@@ -50,6 +49,32 @@ class Home extends StatelessWidget {
           message: "Bottom End",
           location: BannerLocation.bottomEnd,
         ),
+        Align(
+          alignment: Alignment.topCenter,
+          child: Container(
+          color: Colors.red,
+          height: 100,
+          width: 100,
+        )
+        ),
+        Align(
+          alignment: Alignment.topCenter,
+          child: Container(
+          color: Colors.green,
+          height: 70,
+          width: 70,
+        )
+        ),
+        Align(
+          alignment: Alignment.center,
+          child:Text(
+            'Hello Stack',
+            style: TextStyle(
+              fontSize: 25.0,
+              color: Colors.yellow,
+            ),
+          )
+        )
       ],
     );
   }
