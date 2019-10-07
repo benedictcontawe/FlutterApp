@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Simple Snack Bar App',
+      title: 'Stack Banners App',
       home: const Home(),
     );
   }
@@ -50,7 +50,7 @@ class Home extends StatelessWidget {
           location: BannerLocation.bottomEnd,
         ),
         Align(
-          alignment: Alignment.topCenter,
+          alignment: Alignment.bottomCenter,
           child: Container(
           color: Colors.red,
           height: 100,
@@ -58,7 +58,7 @@ class Home extends StatelessWidget {
         )
         ),
         Align(
-          alignment: Alignment.topCenter,
+          alignment: Alignment.bottomCenter,
           child: Container(
           color: Colors.green,
           height: 70,
