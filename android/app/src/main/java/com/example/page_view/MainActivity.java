@@ -1,4 +1,4 @@
-package com.example.snack_bar;
+package com.example.page_view;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

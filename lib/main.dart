@@ -45,6 +45,7 @@ void main()
   //#endregion
   PageController controller = PageController();
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: true,
     title:"PageView",
     home: Scaffold(
       body: PageView(
