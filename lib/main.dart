@@ -12,6 +12,7 @@ class MainApp extends StatelessWidget {
           appBar: AppBar(
             title: Text("AppBar with Tabs",textAlign: TextAlign.center,),
             bottom: TabBar(
+              isScrollable: true,
               tabs: <Widget>[
                 Text("First Tab"),
                 Tab(icon: Icon(Icons.android),),
@@ -21,7 +22,10 @@ class MainApp extends StatelessWidget {
           ),
           body: TabBarView(
             children: <Widget>[
-              Text("First Tab Selected"),
+              Container(
+                child: Center(child:Text("First Tab Selected")),
+                color: Colors.white,
+              ),
               AndroidAction(),
               Text("Third Tab Selected"),
             ],
@@ -59,5 +63,4 @@ class AndroidActionApp extends State<AndroidAction> {
       ],
     );
   }
-
 }
