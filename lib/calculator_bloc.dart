@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'counter_event.dart';
-
-class CounterBloc {
+import 'calculator_event.dart';
+//TODO: Modifiy this class
+class CalculatorBloc {
   int _counter = 0;
 
   final _counterStateController = StreamController<int>();
@@ -9,16 +9,16 @@ class CounterBloc {
   // For state, exposing only a stream which outputs data
   Stream<int> get counter => _counterStateController.stream;
 
-  final _counterEventController = StreamController<CounterEvent>();
+  final _CalculatorEventController = StreamController<CalculatorEvent>();
   // For events, exposing only a sink which is an input
-  Sink<CounterEvent> get counterEventSink => _counterEventController.sink;
+  Sink<CalculatorEvent> get CalculatorEventSink => _CalculatorEventController.sink;
 
   CounterBloc() {
     // Whenever there is a new event, we want to map it to a new state
-    _counterEventController.stream.listen(_mapEventToState);
+    _CalculatorEventController.stream.listen(_mapEventToState);
   }
 
-  void _mapEventToState(CounterEvent event) {
+  void _mapEventToState(CalculatorEvent event) {
     if(event is IncrementEvent) {
       _counter++;
     }
@@ -31,6 +31,6 @@ class CounterBloc {
 
   void dispose() {
     _counterStateController.close();
-    _counterEventController.close();
+    _CalculatorEventController.close();
   }
 }

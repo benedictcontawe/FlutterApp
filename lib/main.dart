@@ -1,100 +1,120 @@
 import 'package:flutter/material.dart';
-import 'counter_bloc.dart';
-import 'counter_event.dart';
+import 'calculator_bloc.dart';
 
 void main() => runApp(MainApp());
 
 class MainApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(     
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+    return  new MaterialApp(
+      title: 'Calculator',
+      home: new CalculatorFragment(),
+      );
+  }  
+}
+
+class CalculatorFragment extends StatefulWidget {
+CalculatorState createState() => CalculatorState();
+}
+
+class CalculatorState extends State<CalculatorFragment> {
+  final _bloc = CalculatorBloc();
+
+  Widget customRaisedButton(String text, Color backGroundColor, int flex, double aspectRatio) {
+      return Expanded(
+        child: AspectRatio(
+          aspectRatio: aspectRatio, //Dimens Ratio to make square or rectangle view
+          child: FractionallySizedBox ( //A widget that sizes its child to a fraction of the total available space
+            widthFactor: 0.85, //Will Acumulate percentage of the width for Parent Widget
+            heightFactor: 0.85, //Will Acumulate percentage of the height for Parent Widget
+            child: new RaisedButton (
+              child: FittedBox( // To auto size the child text widget.
+                fit: BoxFit.fitWidth,
+                child: Text (
+                  text,
+                  style: TextStyle (
+                    fontSize:  30,
+                    color: Colors.white //Text Color
+                  ),
+                ),
+              ),
+              onPressed: () {},
+              color: backGroundColor, //Text Background Color
+              shape: StadiumBorder(),//shape: CircleBorder(), //To make all widget corner curve
+            ),
+          )
+        ),
+        flex: flex, //Weight
+      );
+  }
+
+  Widget customCalculatorResult(String text) {
+    return Expanded( //To avoid overflowed pixels in your widget
+      child: FittedBox( //Auto Size feture
+        child: Text (
+                  text,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 60.0,
+                  ),
+                  textAlign: TextAlign.end,
+        )
+      )
     );
   }
-}
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  final _bloc = CounterBloc();
-
-  @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: StreamBuilder(
-          stream: _bloc.counter,
-          initialData: 0,
-          builder: (BuildContext context, AsyncSnapshot<int> snapShot) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  'You have pushed the button this many times:',
-                ),
-                Text(
-                  '${snapShot.data}',
-                  style: Theme.of(context).textTheme.display1,
-                ),
-              ],
-            );
-          },
-        ),
-      ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+    return new Scaffold(
+      appBar: null,
+      backgroundColor: Colors.black,
+      body: new Column (
+        mainAxisAlignment: MainAxisAlignment.end,//mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          FloatingActionButton(
-            onPressed: () => _bloc.counterEventSink.add(IncrementEvent()),
-            tooltip: 'Increment',
-            child: Icon(Icons.add),
+          Row(
+            children: <Widget>[
+            customCalculatorResult('1234567890'),
+            ],
           ),
-          SizedBox(width: 10,),
-          FloatingActionButton(
-            onPressed: () => _bloc.counterEventSink.add(DecrementEvent()),
-            tooltip: 'Decrement',
-            child: Icon(Icons.remove),
+          SizedBox(height: 10,), //Spacer
+          Row(
+            //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+            customRaisedButton('C', const Color(0xFFA5A5A5),1,1),
+            customRaisedButton('Del', const Color(0xFFA5A5A5),1,1),
+            customRaisedButton('%', const Color(0xFFA5A5A5),1,1),
+            customRaisedButton('/', Colors.orange,1,1),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+            customRaisedButton('7', const Color(0xFF333333),1,1),
+            customRaisedButton('8', const Color(0xFF333333),1,1),
+            customRaisedButton('9', const Color(0xFF333333),1,1),
+            customRaisedButton('X', Colors.orange,1,1),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+            customRaisedButton('4', const Color(0xFF333333),1,1),
+            customRaisedButton('5', const Color(0xFF333333),1,1),
+            customRaisedButton('6', const Color(0xFF333333),1,1),
+            customRaisedButton('-', Colors.orange,1,1),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+            customRaisedButton('1', const Color(0xFF333333),1,1),
+            customRaisedButton('2', const Color(0xFF333333),1,1),
+            customRaisedButton('3', const Color(0xFF333333),1,1),
+            customRaisedButton('+', Colors.orange,1,1),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+            customRaisedButton('0', const Color(0xFF333333),2,2),
+            customRaisedButton('.', const Color(0xFF333333),1,1),
+            customRaisedButton('=', Colors.orange,1,1),
+            ],
           ),
         ],
       ),
