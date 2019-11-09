@@ -48,7 +48,7 @@ class CalculatorState extends State<CalculatorFragment> {
       );
   }
 
-  Widget customCalculatorResult(String text) {
+  Widget customText(String text) {
     return Expanded( //To avoid overflowed pixels in your widget
       child: FittedBox( //Auto Size feture
         child: Text (
@@ -68,54 +68,66 @@ class CalculatorState extends State<CalculatorFragment> {
       appBar: null,
       backgroundColor: Colors.black,
       body: new Column (
-        mainAxisAlignment: MainAxisAlignment.end,//mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.end, //mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Row(
-            children: <Widget>[
-            customCalculatorResult('1234567890'),
-            ],
+          Expanded(
+            child: Row(
+              children: <Widget>[
+                customText('1234567890'),
+              ],
+            ),
           ),
-          SizedBox(height: 10,), //Spacer
-          Row(
-            //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-            customRaisedButton('C', const Color(0xFFA5A5A5),1,1),
-            customRaisedButton('Del', const Color(0xFFA5A5A5),1,1),
-            customRaisedButton('%', const Color(0xFFA5A5A5),1,1),
-            customRaisedButton('/', Colors.orange,1,1),
-            ],
+          //SizedBox(height: 1,), //Spacer
+          Expanded(
+            child: Row (
+              //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                customRaisedButton('C', const Color(0xFFA5A5A5),1,1),
+                customRaisedButton('Del', const Color(0xFFA5A5A5),1,1),
+                customRaisedButton('%', const Color(0xFFA5A5A5),1,1),
+                customRaisedButton('/', Colors.orange,1,1),
+              ],
+            ),
           ),
-          Row(
-            children: <Widget>[
-            customRaisedButton('7', const Color(0xFF333333),1,1),
-            customRaisedButton('8', const Color(0xFF333333),1,1),
-            customRaisedButton('9', const Color(0xFF333333),1,1),
-            customRaisedButton('X', Colors.orange,1,1),
-            ],
+          Expanded(
+            child: Row(
+              children: <Widget>[
+                customRaisedButton('7', const Color(0xFF333333),1,1),
+                customRaisedButton('8', const Color(0xFF333333),1,1),
+                customRaisedButton('9', const Color(0xFF333333),1,1),
+                customRaisedButton('X', Colors.orange,1,1),
+              ],
+            ),
           ),
-          Row(
-            children: <Widget>[
-            customRaisedButton('4', const Color(0xFF333333),1,1),
-            customRaisedButton('5', const Color(0xFF333333),1,1),
-            customRaisedButton('6', const Color(0xFF333333),1,1),
-            customRaisedButton('-', Colors.orange,1,1),
-            ],
+          Expanded(
+            child: Row(
+              children: <Widget>[
+                customRaisedButton('4', const Color(0xFF333333),1,1),
+                customRaisedButton('5', const Color(0xFF333333),1,1),
+                customRaisedButton('6', const Color(0xFF333333),1,1),
+                customRaisedButton('-', Colors.orange,1,1),
+              ],
+            ),
           ),
-          Row(
-            children: <Widget>[
-            customRaisedButton('1', const Color(0xFF333333),1,1),
-            customRaisedButton('2', const Color(0xFF333333),1,1),
-            customRaisedButton('3', const Color(0xFF333333),1,1),
-            customRaisedButton('+', Colors.orange,1,1),
-            ],
+          Expanded(
+            child: Row(
+              children: <Widget>[
+                customRaisedButton('1', const Color(0xFF333333),1,1),
+                customRaisedButton('2', const Color(0xFF333333),1,1),
+                customRaisedButton('3', const Color(0xFF333333),1,1),
+                customRaisedButton('+', Colors.orange,1,1),
+              ],
+            )
           ),
-          Row(
-            children: <Widget>[
-            customRaisedButton('0', const Color(0xFF333333),2,2),
-            customRaisedButton('.', const Color(0xFF333333),1,1),
-            customRaisedButton('=', Colors.orange,1,1),
-            ],
-          ),
+          Expanded(
+            child: Row(
+              children: <Widget>[
+                customRaisedButton('0', const Color(0xFF333333),2,2),
+                customRaisedButton('.', const Color(0xFF333333),1,1),
+                customRaisedButton('=', Colors.orange,1,1),
+              ],
+            ),
+          )
         ],
       ),
     );
