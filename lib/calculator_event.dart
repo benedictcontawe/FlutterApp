@@ -6,7 +6,7 @@ class DecrementEvent extends CalculatorEvent {}
 
 class MultiplyEvent extends CalculatorEvent {}
 
-class DevideEvent extends CalculatorEvent {}
+class DivideEvent extends CalculatorEvent {}
 
 class RemainderEvent extends CalculatorEvent {}
 
