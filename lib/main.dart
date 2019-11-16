@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: StreamBuilder(
           stream: _bloc.counter,
-          initialData: 0,
+          initialData: _bloc.get_counter,
           builder: (BuildContext context, AsyncSnapshot<int> snapShot) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
