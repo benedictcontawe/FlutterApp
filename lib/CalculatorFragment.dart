@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'CustomRaisedButton.dart';
 import 'calculator_bloc.dart';
+import 'calculator_event.dart';
 
 class CalculatorFragment extends StatefulWidget {
   CalculatorState createState() => CalculatorState();
@@ -8,34 +9,6 @@ class CalculatorFragment extends StatefulWidget {
 
 class CalculatorState extends State<CalculatorFragment> {
   final _bloc = CalculatorBloc();
-
-  Widget customRaisedButton(String text, Color backGroundColor, int flex, double aspectRatio) {
-      return Expanded(
-        child: AspectRatio(
-          aspectRatio: aspectRatio, //Dimens Ratio to make square or rectangle view
-          child: FractionallySizedBox ( //A widget that sizes its child to a fraction of the total available space
-            widthFactor: 0.85, //Will Acumulate percentage of the width for Parent Widget
-            heightFactor: 0.85, //Will Acumulate percentage of the height for Parent Widget
-            child: new RaisedButton (
-              child: FittedBox( // To auto size the child text widget.
-                fit: BoxFit.fitWidth,
-                child: Text (
-                  text,
-                  style: TextStyle (
-                    fontSize:  30,
-                    color: Colors.white //Text Color
-                  ),
-                ),
-              ),
-              onPressed: () {},
-              color: backGroundColor, //Text Background Color
-              shape: StadiumBorder(),//shape: CircleBorder(), //To make all widget corner curve
-            ),
-          )
-        ),
-        flex: flex, //Weight
-      );
-  }
 
   Widget customText(String text) {
     return Expanded( //To avoid overflowed pixels in your widget
@@ -62,7 +35,13 @@ class CalculatorState extends State<CalculatorFragment> {
           Expanded( //To avoid overflowed pixels in your widget
             child: Row(
               children: <Widget>[
-                customText('1234567890'),
+                StreamBuilder(
+                  stream: _bloc.counter,
+                  initialData: _bloc.getResult,
+                  builder: (context, snapshot) {
+                    return customText(('${snapshot.data}'));
+                  }
+                ),
               ],
             ),
           ),
@@ -71,49 +50,49 @@ class CalculatorState extends State<CalculatorFragment> {
             child: Row (
               //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                customRaisedButton('C', const Color(0xFFA5A5A5),1,1),
-                customRaisedButton('Del', const Color(0xFFA5A5A5),1,1),
-                customRaisedButton('%', const Color(0xFFA5A5A5),1,1),
-                customRaisedButton('/', Colors.orange,1,1),
+                CustomRaisedButton(text: 'C', backGroundColor: const Color(0xFFA5A5A5), onPressed: () => {}),
+                CustomRaisedButton(text: 'Del', backGroundColor: const Color(0xFFA5A5A5), onPressed: () => {}),
+                CustomRaisedButton(text: '%', backGroundColor: const Color(0xFFA5A5A5), onPressed: () => {}),
+                CustomRaisedButton(text: '/', backGroundColor: Colors.orange, onPressed: () => {}),
               ],
             ),
           ),
           Expanded( //To avoid overflowed pixels in your widget
             child: Row(
               children: <Widget>[
-                customRaisedButton('7', const Color(0xFF333333),1,1),
-                customRaisedButton('8', const Color(0xFF333333),1,1),
-                customRaisedButton('9', const Color(0xFF333333),1,1),
-                customRaisedButton('X', Colors.orange,1,1),
+                CustomRaisedButton(text: '7', backGroundColor: const Color(0xFF333333), onPressed: () => {}),
+                CustomRaisedButton(text: '8', backGroundColor: const Color(0xFF333333), onPressed: () => {}),
+                CustomRaisedButton(text: '9', backGroundColor: const Color(0xFF333333), onPressed: () => {}),
+                CustomRaisedButton(text: 'X', backGroundColor: Colors.orange, onPressed: () => {}),
               ],
             ),
           ),
           Expanded( //To avoid overflowed pixels in your widget
             child: Row(
               children: <Widget>[
-                customRaisedButton('4', const Color(0xFF333333),1,1),
-                customRaisedButton('5', const Color(0xFF333333),1,1),
-                customRaisedButton('6', const Color(0xFF333333),1,1),
-                customRaisedButton('-', Colors.orange,1,1),
+                CustomRaisedButton(text: '4', backGroundColor: const Color(0xFF333333), onPressed: () => {}),
+                CustomRaisedButton(text: '5', backGroundColor: const Color(0xFF333333), onPressed: () => {}),
+                CustomRaisedButton(text: '6', backGroundColor: const Color(0xFF333333), onPressed: () => {}),
+                CustomRaisedButton(text: '-', backGroundColor: Colors.orange, onPressed: () => {}),
               ],
             ),
           ),
           Expanded( //To avoid overflowed pixels in your widget
             child: Row(
               children: <Widget>[
-                customRaisedButton('1', const Color(0xFF333333),1,1),
-                customRaisedButton('2', const Color(0xFF333333),1,1),
-                customRaisedButton('3', const Color(0xFF333333),1,1),
-                customRaisedButton('+', Colors.orange,1,1),
+                CustomRaisedButton(text: '1', backGroundColor: const Color(0xFF333333), onPressed: () => {}),
+                CustomRaisedButton(text: '2', backGroundColor: const Color(0xFF333333), onPressed: () => {}),
+                CustomRaisedButton(text: '3', backGroundColor: const Color(0xFF333333), onPressed: () => {}),
+                CustomRaisedButton(text: '+', backGroundColor: Colors.orange, onPressed: () => {}),
               ],
             )
           ),
           Expanded( //To avoid overflowed pixels in your widget
             child: Row(
               children: <Widget>[
-                customRaisedButton('0', const Color(0xFF333333),2,2),
-                customRaisedButton('.', const Color(0xFF333333),1,1),
-                customRaisedButton('=', Colors.orange,1,1),
+                CustomRaisedButton(text: '0', backGroundColor: const Color(0xFF333333), flex: 2, aspectRatio: 2.0, onPressed: () => {}),
+                CustomRaisedButton(text: '.', backGroundColor: const Color(0xFF333333), onPressed: () => {}),
+                CustomRaisedButton(text: '=', backGroundColor: Colors.orange, onPressed: () => print('implement me') ),
               ],
             ),
           )
