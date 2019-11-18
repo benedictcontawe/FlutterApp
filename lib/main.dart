@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'CalculatorFragment.dart';
 
 void main() async {
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]); //Locks device to portrait mode
@@ -11,9 +10,32 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  new MaterialApp(
-      title: 'Calculator',
+      title: 'Scroll View',
       theme: ThemeData(primarySwatch: Colors.teal),
-      home: new CalculatorFragment(),
-      );
+      home: new ScrollViewWidget(),
+            );
   }  
+}
+      
+class ScrollViewWidget extends StatefulWidget {
+  ScrollViewState createState() => ScrollViewState();
+}
+
+class ScrollViewState extends State<ScrollViewWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: null,
+      backgroundColor: Colors.black,
+      body: SingleChildScrollView(
+        child: new Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            //TODO Follow this https://github.com/benedictcontawe/ScrollViewApp
+          ],
+        ),
+      )
+    );
+  }
+
 }
