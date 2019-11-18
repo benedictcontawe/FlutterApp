@@ -107,3 +107,16 @@ class _MyHomePageState extends State<MyHomePage> {
     _bloc.dispose(); // to avoid memory leaks
   }
 }
+
+
+/*
+int a = 2;
+var b = 2;
+int smallNumber = a < v ? a: b;
+print("${smallNumber} is smaller");
+
+String name = "Tom";
+
+String nameToPrint = name ?? "Guest User"; //Null optional default value
+print(nameToPrint)
+*/
