@@ -11,7 +11,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  new MaterialApp(
       title: 'Scroll View',
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: true,
       theme: ThemeData(primarySwatch: Colors.teal),
       home: new ScrollViewWidget(),
     );
@@ -26,15 +26,15 @@ class ScrollViewState extends State<ScrollViewWidget> {
 bool chckSwitch = false ?? false; //With null default value of false
 
 Widget customCheckBox() {
-  return FractionallySizedBox(
-    widthFactor: 1,
-    heightFactor: 0.1,
-    child: Row(
+  return FractionallySizedBox( //To use the percentage screen layout
+    widthFactor: 1, //match screen parent
+    heightFactor: 0.1, //accumulate 10% of the screen
+    child: Row( //Like Linearlayout orientation horizontal
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Checkbox(
-          value: chckSwitch,
-          onChanged: (bool value) {
+          value: chckSwitch, //Initial value of the check box
+          onChanged: (bool value) { //On check change of the check box
             setState(() {
               chckSwitch = value;
             });
