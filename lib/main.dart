@@ -47,12 +47,12 @@ Widget customCheckBox() {
 }
 
 Widget customScrollView() {
-  //TODO Create SingleChildScrollView, put all the long text inside
   return FractionallySizedBox(
     widthFactor: 1,
     heightFactor: 0.9,
     child: SingleChildScrollView(
       physics: chckSwitch ? const  NeverScrollableScrollPhysics() : const AlwaysScrollableScrollPhysics(), //Conditional statement for enable and disable scrollview
+      //TODO Put the webview inside SingleChildScrollView for the long text, justify
       child: Column(
         children: <Widget>[
           Container(color: Colors.red, height: 50.0),
