@@ -108,11 +108,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-
 /*
 int a = 2;
 var b = 2;
-int smallNumber = a < v ? a: b;
+int smallNumber = a < v ? a: b;  //Ternary operator
 print("${smallNumber} is smaller");
 
 String name = "Tom";
