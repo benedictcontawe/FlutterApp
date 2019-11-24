@@ -17,6 +17,10 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Reference
 
-https://www.youtube.com/watch?v=oxeYeMHVLII
+https://flutter.dev/docs/development/accessibility-and-localization/internationalization
 
-https://www.youtube.com/watch?v=nQMfaQeCL6M&feature=youtu.be
+https://www.youtube.com/watch?v=lDfbbTvq4qM
+
+https://resocoder.com/2019/06/01/flutter-localization-the-easy-way-internationalization-with-json/
+
+https://api.flutter.dev/flutter/flutter_localizations/GlobalMaterialLocalizations-class.html
