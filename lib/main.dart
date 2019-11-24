@@ -12,7 +12,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  new MaterialApp(
-      title: 'Scroll View',
+      title: 'Scroll View - Localization',
       debugShowCheckedModeBanner: true,
       theme: ThemeData(primarySwatch: Colors.teal),
       supportedLocales: [ //List all of the app's supported locales here
