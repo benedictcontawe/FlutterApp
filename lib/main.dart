@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 void main() async {
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]); //Locks device to portrait mode
@@ -10,85 +13,35 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  new MaterialApp(
-      title: 'Scroll View',
+      title: 'Web View',
       debugShowCheckedModeBanner: true,
       theme: ThemeData(primarySwatch: Colors.teal),
-      home: new ScrollViewWidget(),
+      home: new WebViewWidget(),
     );
   }  
 }
       
-class ScrollViewWidget extends StatefulWidget {
-  ScrollViewState createState() => ScrollViewState();
+class WebViewWidget extends StatefulWidget {
+  WebViewState createState() => WebViewState();
 }
 
-class ScrollViewState extends State<ScrollViewWidget> {
-bool chckSwitch = false ?? false; //With null default value of false
+class WebViewState extends State<WebViewWidget> {
+WebViewController _webViewController;
+String filePath = 'html/lorem.html';
 
-Widget customCheckBox() {
-  return FractionallySizedBox( //To use the percentage screen layout
-    widthFactor: 1, //match screen parent
-    heightFactor: 0.1, //accumulate 10% of the screen
-    child: Row( //Like Linearlayout orientation horizontal
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Checkbox(
-          value: chckSwitch, //Initial value of the check box
-          onChanged: (bool value) { //On check change of the check box
-            setState(() {
-              chckSwitch = value;
-            });
+_loadHtmlFromAssets() async {
+  String fileHtmlContents = await rootBundle.loadString(filePath);
+  _webViewController.loadUrl(Uri.dataFromString(fileHtmlContents, mimeType: 'text/html', encoding: Encoding.getByName('utf-8')).toString());
+}
+
+Widget customWebView() {
+  return WebView(
+          initialUrl: '', //initialUrl: 'https://flutter.dev',
+          javascriptMode: JavascriptMode.unrestricted,
+          onWebViewCreated: (WebViewController webViewController) {
+            _webViewController = webViewController;
+            _loadHtmlFromAssets();
           },
-        ),
-        Text("Scroll View Switch"),
-      ],
-    ),
-  );
-}
-
-Widget customScrollView() {
-  return FractionallySizedBox(
-    widthFactor: 1,
-    heightFactor: 0.9,
-    child: SingleChildScrollView(
-      physics: chckSwitch ? const  NeverScrollableScrollPhysics() : const AlwaysScrollableScrollPhysics(), //Conditional statement for enable and disable scrollview
-      //TODO Put the webview inside SingleChildScrollView for the long text, justify
-      child: Column(
-        children: <Widget>[
-          Container(color: Colors.red, height: 50.0),
-          Container(color: Colors.orange, height: 50.0),
-          Container(color: Colors.yellow, height: 50.0),
-          Container(color: Colors.green, height: 50.0),
-          Container(color: Colors.blue, height: 50.0),
-          Container(color: Colors.indigo, height: 50.0),
-          Container(color: Colors.purple, height: 50.0),
-          
-          Container(color: Colors.red, height: 50.0),
-          Container(color: Colors.orange, height: 50.0),
-          Container(color: Colors.yellow, height: 50.0),
-          Container(color: Colors.green, height: 50.0),
-          Container(color: Colors.blue, height: 50.0),
-          Container(color: Colors.indigo, height: 50.0),
-          Container(color: Colors.purple, height: 50.0),
-
-          Container(color: Colors.red, height: 50.0),
-          Container(color: Colors.orange, height: 50.0),
-          Container(color: Colors.yellow, height: 50.0),
-          Container(color: Colors.green, height: 50.0),
-          Container(color: Colors.blue, height: 50.0),
-          Container(color: Colors.indigo, height: 50.0),
-          Container(color: Colors.purple, height: 50.0),
-
-          Container(color: Colors.red, height: 50.0),
-          Container(color: Colors.orange, height: 50.0),
-          Container(color: Colors.yellow, height: 50.0),
-          Container(color: Colors.green, height: 50.0),
-          Container(color: Colors.blue, height: 50.0),
-          Container(color: Colors.indigo, height: 50.0),
-          Container(color: Colors.purple, height: 50.0),
-        ],
-      ),
-    ),
   );
 }
 
@@ -96,23 +49,10 @@ Widget customScrollView() {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: AppBar(
-        title: const Text('ScrollViewApp'),
+        title: const Text('WebViewApp'),
       ),
       backgroundColor: Colors.white,
-      body:  Stack (            
-          fit: StackFit.expand,
-          children: <Widget>[
-            //Container(color: Colors.white,),
-            Align(
-              alignment: Alignment.topCenter,
-              child: customCheckBox(),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: customScrollView(),
-            )
-          ],
-      ),
+      body: customWebView(),
     );
   }
 }
