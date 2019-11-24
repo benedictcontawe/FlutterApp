@@ -17,6 +17,8 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Reference
 
-https://www.youtube.com/watch?v=oxeYeMHVLII
+https://www.youtube.com/watch?v=RA-vLF_vnng&t=4s
 
-https://www.youtube.com/watch?v=nQMfaQeCL6M&feature=youtu.be
+https://www.youtube.com/watch?v=rzxwpHTPfXY&feature=youtu.be&fbclid=IwAR2XUTSeSgnZgzSWoeAiLhHHXvIsSe-RyZSIOXFmLsuu4TCoNpbhzeTw--s
+
+https://www.youtube.com/watch?v=8paqPlzigM0
