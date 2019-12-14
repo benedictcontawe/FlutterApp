@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'counter_bloc.dart';
 import 'counter_event.dart';
@@ -61,6 +62,13 @@ class _MyHomePageState extends State<MyHomePage> {
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
+        automaticallyImplyLeading: true,
+        //`true` if you want Flutter to automatically add Back Button when needed,
+        //or `false` if you want to force your own back button every where
+        leading: IconButton(icon:Icon(Icons.arrow_back),
+          //onPressed:() => Navigator.pop(context, false),
+          onPressed:() => exit(0),
+        )
       ),
       body: Center(
         child: StreamBuilder(
