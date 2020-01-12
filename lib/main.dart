@@ -1,11 +1,10 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 void main() async {
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]); //Locks device to portrait mode
+  //await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]); //Locks device to portrait mode
   runApp(MainApp());
 }
 
@@ -35,12 +34,21 @@ _loadHtmlFromAssets() async {
 }
 
 Widget customWebView() {
+  /*
+  return WebView(
+          initialUrl: 'https://flutter.dev',
+          javascriptMode: JavascriptMode.unrestricted,
+          onWebViewCreated: (WebViewController webViewController) {
+            _webViewController = webViewController;
+          },
+  );
+  */
   return WebView(
           initialUrl: '', //initialUrl: 'https://flutter.dev',
           javascriptMode: JavascriptMode.unrestricted,
           onWebViewCreated: (WebViewController webViewController) {
             _webViewController = webViewController;
-            _loadHtmlFromAssets();
+            //_loadHtmlFromAssets();
           },
   );
 }
