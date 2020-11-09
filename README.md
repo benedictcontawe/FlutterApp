@@ -17,6 +17,10 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Reference
 
-https://www.youtube.com/watch?v=oxeYeMHVLII
+- [Flutter BLoC Pattern Tutorial From Scratch](https://www.youtube.com/watch?v=oxeYeMHVLII)
 
-https://www.youtube.com/watch?v=nQMfaQeCL6M&feature=youtu.be
+- [Bloc Library – Painless State Management for Flutter](https://www.youtube.com/watch?v=nQMfaQeCL6M&feature=youtu.be)
+
+- [How to Change the Package Name of your Flutter app](https://medium.com/@skyblazar.cc/how-to-change-the-package-name-of-your-flutter-app-4529e6e6e6fc)
+
+- [How to Change the Package Name of your Flutter app](https://medium.com/@skyblazar.cc/how-to-change-the-package-name-of-your-flutter-app-4529e6e6e6fc)
