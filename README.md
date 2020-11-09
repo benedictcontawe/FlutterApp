@@ -17,6 +17,8 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Reference
 
-https://www.youtube.com/watch?v=oxeYeMHVLII
+- [ACTIONSHEET IN FLUTTER 1](https://flatteredwithflutter.com/actionsheet-in-flutter/)
 
-https://www.youtube.com/watch?v=nQMfaQeCL6M&feature=youtu.be
+- [ActionSheet in Flutter 2](https://medium.com/codechai/actionsheet-in-flutter-13b1087987f0)
+
+- [CupertinoActionSheet](https://github.com/AseemWangoo/flutter_programs/blob/master/CupertinoActionSheet.dart)
