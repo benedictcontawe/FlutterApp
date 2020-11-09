@@ -1,132 +1,105 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'counter_bloc.dart';
-import 'counter_event.dart';
+import 'package:flutter/cupertino.dart';
 
-void main() => runApp(MainApp());
+void main() async {
+  //await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]); //Locks device to portrait mode
+  runApp(MainApp());
+}
 
 class MainApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(     
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+    return  new MaterialApp(
+      title: 'Action Sheet',
+      debugShowCheckedModeBanner: true,
+      theme: ThemeData(primarySwatch: Colors.teal),
+      home: const Home(),
+    );
+  }  
+}
+
+class Home extends StatelessWidget {
+  const Home({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: AppBar(
+        title: const Text('ActionSheetApp'),
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      backgroundColor: Colors.white,
+      body: Builder(
+        builder: (context) => Center(
+              child: RaisedButton(
+                child: const Text('Show Action Sheet'),
+                onPressed: () => _showActionSheet(context),
+              ),
+            ),
+      ),
     );
   }
-}
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  void _showActionSheet(BuildContext context) {
+    containerForSheet<String>(
+      context: context,
+      child: customActionSheet(context)
+    );
+  }
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
+  void containerForSheet<T>({BuildContext context, Widget child}) {
+    showCupertinoModalPopup<T>(
+      context: context,
+      builder: (BuildContext context) => child,
+    ).then<void>((T value) {
+      Scaffold.of(context).showSnackBar(new SnackBar(
+        content: new Text('You clicked $value'),
+        duration: Duration(milliseconds: 800),
+      ));
+    });
+  }
 
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  final _bloc = CounterBloc();
-
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-        automaticallyImplyLeading: true,
-        //`true` if you want Flutter to automatically add Back Button when needed,
-        //or `false` if you want to force your own back button every where
-        leading: IconButton(icon:Icon(Icons.arrow_back),
-          //onPressed:() => Navigator.pop(context, false),
-          onPressed:() => exit(0),
-        )
+  Widget customActionSheet(BuildContext context) {
+    return CupertinoActionSheet(
+      title: const Text('Choose frankly 😊'),
+      message: const Text(
+        'Your options are'
       ),
-      body: Center(
-        child: StreamBuilder(
-          stream: _bloc.counter,
-          initialData: _bloc.get_counter,
-          builder: (BuildContext context, AsyncSnapshot<int> snapShot) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  'You have pushed the button this many times:',
-                ),
-                Text(
-                  '${snapShot.data}',
-                  style: Theme.of(context).textTheme.display1,
-                ),
-              ],
-            );
+      actions: [
+        CupertinoActionSheetAction(
+          child: const Text('🙋 Yes'),
+          onPressed: () {
+            Navigator.pop(context, '🙋 Yes');
           },
         ),
-      ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          FloatingActionButton(
-            onPressed: () => _bloc.counterEventSink.add(IncrementEvent()),
-            tooltip: 'Increment',
-            child: Icon(Icons.add),
-          ),
-          SizedBox(width: 10,),
-          FloatingActionButton(
-            onPressed: () => _bloc.counterEventSink.add(DecrementEvent()),
-            tooltip: 'Decrement',
-            child: Icon(Icons.remove),
-          ),
-        ],
-      ),
+        CupertinoActionSheetAction(
+          child: const Text('🙋 No'),
+          onPressed: () {
+            Navigator.pop(context, '🙋 No');
+          },
+        ),
+        CupertinoActionSheetAction(
+          child: const Text("🙋 Can't say"),
+          onPressed: () {
+            Navigator.pop(context, "🙋 Can't say");
+          },
+        ),
+        CupertinoActionSheetAction(
+          child: const Text("🙋 Decide in next post"),
+          onPressed: () {
+            Navigator.pop(context, "🙋 Decide in next post");
+          },
+        ),
+      ],
+      cancelButton: 
+      CupertinoActionSheetAction(
+        child: const Text('Cancel'),
+        isDefaultAction: true,
+        onPressed: () {
+          Navigator.pop(context, 'Cancel');
+        },
+      )
     );
   }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _bloc.dispose(); // to avoid memory leaks
-  }
 }
-
-/*
-int a = 2;
-var b = 2;
-int smallNumber = a < v ? a: b;  //Ternary operator
-print("${smallNumber} is smaller");
-
-String name = "Tom";
-
-String nameToPrint = name ?? "Guest User"; //Null optional default value
-print(nameToPrint)
-
-break;
-continue;
-*/
