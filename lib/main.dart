@@ -103,3 +103,101 @@ class Home extends StatelessWidget {
     );
   }
 }
+/*
+import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+
+void main() async {
+  runApp(MainApp());
+}
+
+class MainApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      title: 'Action Sheet',
+      debugShowCheckedModeBanner: true,
+      theme: ThemeData(primarySwatch: Colors.teal),
+      home: const Home(),
+    );
+  }
+}
+
+class Home extends StatelessWidget {
+  const Home({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: AppBar(
+        title: const Text('ActionSheetApp'),
+      ),
+      backgroundColor: Colors.white,
+      body: Builder(
+        builder: (context) => Center(
+          child: RaisedButton(
+                child: const Text('Show Action Sheet'),
+                onPressed: () => _showActionSheet(context),
+              ),
+        )
+      )
+    );
+  }
+
+  void _showActionSheet(BuildContext context) {
+    containerForSheet<String>(
+      context: context,
+      child: customActionSheet(context)
+    );
+  }
+
+  void containerForSheet<T>({BuildContext context, Widget child}) {
+    showCupertinoModalPopup<T>(
+      context: context,
+      builder: (BuildContext context) => child,
+    ).then<void>((T value) {
+      Scaffold.of(context).showSnackBar(new SnackBar(
+        content: new Text('You clicked $value'),
+        duration: Duration(milliseconds: 800),
+      ));
+    });
+  }
+
+  Widget customActionSheet(BuildContext context) {
+      return CupertinoActionSheet(
+        title: const Text('Title'),
+        message: const Text(
+          'Sub Title'
+        ),
+        actions: [
+          CupertinoActionSheetAction(
+            child: const  Text('Option 1'),
+            onPressed: () {
+              Navigator.pop(context, 'Option 1 Clicked');
+            }
+          ),
+          CupertinoActionSheetAction(
+            child: const  Text('Option 2'),
+            onPressed: () {
+              Navigator.pop(context, 'Option 2 Clicked');
+            }
+          ),
+          CupertinoActionSheetAction(
+            child: const  Text('Option 3'),
+            onPressed: () {
+              Navigator.pop(context, 'Option 3 Clicked');
+            }
+          )
+        ], cancelButton: CupertinoActionSheetAction(
+            child: const  Text('Cancel'),
+            isDefaultAction: true,
+            onPressed: () {
+              Navigator.pop(context, 'Cancel Clicked');
+            }
+          )
+      );
+    }
+}
+*/
