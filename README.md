@@ -20,3 +20,9 @@ samples, guidance on mobile development, and a full API reference.
 https://www.youtube.com/watch?v=oxeYeMHVLII
 
 https://www.youtube.com/watch?v=nQMfaQeCL6M&feature=youtu.be
+
+- [How to include images in your Flutter app](https://suragch.medium.com/how-to-include-images-in-your-flutter-app-863889fc0b29)
+
+- [Navigate to a new screen and back](https://flutter.dev/docs/cookbook/navigation/navigation-basics)
+
+- [Image Flutter Widget of the Week](https://www.youtube.com/watch?v=7oIAs-0G4mw)
