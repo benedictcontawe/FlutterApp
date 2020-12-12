@@ -17,6 +17,8 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Reference
 
+- [Flutter: How to fit the web view size to screen?](https://stackoverflow.com/questions/62113082/flutter-how-to-fit-the-web-view-size-to-screen)
+
 - [Flutter BLoC Pattern Tutorial From Scratch](https://www.youtube.com/watch?v=oxeYeMHVLII)
 
 - [Bloc Library – Painless State Management for Flutter](https://www.youtube.com/watch?v=nQMfaQeCL6M&feature=youtu.be)
