@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
-import 'package:navigation_drawer_tab_bar/ContainerFragment.dart';
-import 'package:navigation_drawer_tab_bar/PageViewFragment.dart';
+import 'ContainerFragment.dart';
+import 'PageViewFragment.dart';
 import 'TabBarFragment.dart';
 
 class DrawerItem {

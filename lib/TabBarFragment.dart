@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class TabBarFragment extends StatelessWidget {
   //final String title;
 
-  TabBarFragment({Key key}) : super(key: key);
+  TabBarFragment({Key? key}) : super(key: key);
   //TabBarFragment({Key key, this.title}) : super(key: key);
 
   @override
