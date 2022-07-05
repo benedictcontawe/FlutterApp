@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MainApp());
+void main() => runApp(const MainApp());
 
 class MainApp extends StatelessWidget {
+  const MainApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -10,8 +12,8 @@ class MainApp extends StatelessWidget {
         length: 3, //lenght must be equal to the number of tab bar provided
         child: Scaffold(
           appBar: AppBar(
-            title: Text("AppBar with Tabs",textAlign: TextAlign.center,),
-            bottom: TabBar(
+            title: const Text("AppBar with Tabs",textAlign: TextAlign.center,),
+            bottom: const TabBar(
               isScrollable: true,
               tabs: <Widget>[
                 Text("First Tab"),
@@ -26,8 +28,8 @@ class MainApp extends StatelessWidget {
                 child: Center(child:Text("First Tab Selected")),
                 color: Colors.white,
               ),
-              AndroidAction(),
-              Text("Third Tab Selected"),
+              const AndroidAction(),
+              const Text("Third Tab Selected"),
             ],
           ),
         )
@@ -37,6 +39,8 @@ class MainApp extends StatelessWidget {
 }
 
 class AndroidAction extends StatefulWidget {
+  const AndroidAction({Key? key}) : super(key : key);
+
   @override
   AndroidActionApp createState() {
     return AndroidActionApp();
@@ -56,7 +60,7 @@ class AndroidActionApp extends State<AndroidAction> {
           onChanged: (newTick) {
             setState(() {
               counter++;
-              checkTick = newTick;
+              checkTick = newTick!;
             });
           }
         )
