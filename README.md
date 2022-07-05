@@ -28,3 +28,5 @@ samples, guidance on mobile development, and a full API reference.
 - [How to Change the Package Name of your Flutter app](https://medium.com/@skyblazar.cc/how-to-change-the-package-name-of-your-flutter-app-4529e6e6e6fc)
 
 - [Flutter Solve Your app is not using AndroidX Build Migration Error](https://flutter-examples.com/your-app-is-not-using-androidx-flutter/)
+
+- [What's the difference between "bundle display name" and "bundle name" in cocoa application's info plist](https://stackoverflow.com/questions/3465792/whats-the-difference-between-bundle-display-name-and-bundle-name-in-cocoa-a)
