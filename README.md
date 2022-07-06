@@ -30,3 +30,5 @@ samples, guidance on mobile development, and a full API reference.
 - [Flutter Solve Your app is not using AndroidX Build Migration Error](https://flutter-examples.com/your-app-is-not-using-androidx-flutter/)
 
 - [What's the difference between "bundle display name" and "bundle name" in cocoa application's info plist](https://stackoverflow.com/questions/3465792/whats-the-difference-between-bundle-display-name-and-bundle-name-in-cocoa-a)
+
+- [Values and variables](https://flutterbyexample.com/lesson/values-and-variables)
