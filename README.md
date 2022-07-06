@@ -34,3 +34,5 @@ samples, guidance on mobile development, and a full API reference.
 - [Values and variables](https://flutterbyexample.com/lesson/values-and-variables)
 
 - [What is the difference between the "const" and "final" keywords in Dart?](https://stackoverflow.com/questions/50431055/what-is-the-difference-between-the-const-and-final-keywords-in-dart)
+
+- [Flutter Best Practices](https://medium.com/nonstopio/flutter-best-practices-c3db1c3cd694)
