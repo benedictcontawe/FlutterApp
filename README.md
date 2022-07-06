@@ -32,3 +32,5 @@ samples, guidance on mobile development, and a full API reference.
 - [What's the difference between "bundle display name" and "bundle name" in cocoa application's info plist](https://stackoverflow.com/questions/3465792/whats-the-difference-between-bundle-display-name-and-bundle-name-in-cocoa-a)
 
 - [Values and variables](https://flutterbyexample.com/lesson/values-and-variables)
+
+- [What is the difference between the "const" and "final" keywords in Dart?](https://stackoverflow.com/questions/50431055/what-is-the-difference-between-the-const-and-final-keywords-in-dart)
