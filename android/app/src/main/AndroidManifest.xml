@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.navigation_drawer_tab_bar">
+    package="com.example.get_x">
    <application
-        android:label="navigation_drawer_tab_bar"
+        android:label="get_x"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
