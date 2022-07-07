@@ -38,3 +38,5 @@ samples, guidance on mobile development, and a full API reference.
 - [Flutter Best Practices](https://medium.com/nonstopio/flutter-best-practices-c3db1c3cd694)
 
 - [Navigation management using GetX Flutter.](https://medium.com/@iamrutudhvaj/getx-flutter-b3781be2b644)
+
+- [Flutter Getx - How to make the animation when the screen is changed in Flutter Getx](https://softwarezay.com/notes/467_flutter-getx-how-to-make-the-animation-when-the-screen-is-changed-in-flutter-getx)
