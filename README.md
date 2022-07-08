@@ -42,3 +42,5 @@ samples, guidance on mobile development, and a full API reference.
 - [Flutter Getx - How to make the animation when the screen is changed in Flutter Getx](https://softwarezay.com/notes/467_flutter-getx-how-to-make-the-animation-when-the-screen-is-changed-in-flutter-getx)
 
 - [Yellow lines under Text Widgets in Flutter?](https://stackoverflow.com/questions/47114639/yellow-lines-under-text-widgets-in-flutter)
+
+- [iOS 11 Core NFC - any sample code?](https://stackoverflow.com/questions/44380305/ios-11-core-nfc-any-sample-code#:~:text=Updated%20for%20second%20Xcode%20beta,enable%20%22NFC%20Tag%20Reading%22.)
