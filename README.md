@@ -46,3 +46,5 @@ samples, guidance on mobile development, and a full API reference.
 - [iOS 11 Core NFC - any sample code?](https://stackoverflow.com/questions/44380305/ios-11-core-nfc-any-sample-code#:~:text=Updated%20for%20second%20Xcode%20beta,enable%20%22NFC%20Tag%20Reading%22.)
 
 - [Flutter NFC Manager issue on ios](https://stackoverflow.com/questions/68851357/flutter-nfc-manager-issue-on-ios)
+
+- [Flutter GetX routing history](https://stackoverflow.com/questions/64684952/flutter-getx-routing-history)
