@@ -40,3 +40,5 @@ samples, guidance on mobile development, and a full API reference.
 - [Navigation management using GetX Flutter.](https://medium.com/@iamrutudhvaj/getx-flutter-b3781be2b644)
 
 - [Flutter Getx - How to make the animation when the screen is changed in Flutter Getx](https://softwarezay.com/notes/467_flutter-getx-how-to-make-the-animation-when-the-screen-is-changed-in-flutter-getx)
+
+- [Yellow lines under Text Widgets in Flutter?](https://stackoverflow.com/questions/47114639/yellow-lines-under-text-widgets-in-flutter)
