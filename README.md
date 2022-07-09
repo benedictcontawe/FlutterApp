@@ -50,3 +50,5 @@ samples, guidance on mobile development, and a full API reference.
 - [Flutter GetX routing history](https://stackoverflow.com/questions/64684952/flutter-getx-routing-history)
 
 - [The Flutter GetX Ecosystem ~ Dependency Injection](https://medium.com/flutter-community/the-flutter-getx-ecosystem-dependency-injection-8e763d0ec6b9)
+
+- [Sound null safety](https://dart.dev/null-safety)
