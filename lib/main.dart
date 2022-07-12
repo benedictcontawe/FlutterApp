@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:get_x/bindings/CustomBinding.dart';
+import 'routes/app_pages.dart';
 
-import 'package:get_x/core/routes/app_pages.dart';
 
 Future<void> main() async {
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
-    initialRoute: Routes.LOGIN,
+    initialBinding: CustomBinding(),
+    initialRoute: Routes.CUSTOM,
     theme: ThemeData(
       visualDensity: VisualDensity.adaptivePlatformDensity,
     ),
