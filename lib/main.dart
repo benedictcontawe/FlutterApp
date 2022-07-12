@@ -8,7 +8,7 @@ Future<void> main() async {
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
     initialBinding: CustomBinding(),
-    initialRoute: Routes.CUSTOM,
+    initialRoute: Routes.SPLASH,
     theme: ThemeData(
       visualDensity: VisualDensity.adaptivePlatformDensity,
     ),

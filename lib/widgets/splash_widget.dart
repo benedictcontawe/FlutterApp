@@ -26,26 +26,5 @@ class SplashWidget extends BaseWidget<SplashController> {
       ),),
     ),
     );
-    /*
-    AnimatedSplashScreen(
-      splash: Column(
-        children: [
-          Image.asset('assets/Logo_login.png'),
-          const Text(
-            'Merchant Retail App',
-            style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.indigo),
-          )
-        ],
-      ),
-      backgroundColor: Colors.white,
-      nextScreen: const LoginPage(),
-      splashIconSize: 250,
-      duration: 4000,
-      splashTransition: SplashTransition.fadeTransition,
-    );
-    */
   } 
 }

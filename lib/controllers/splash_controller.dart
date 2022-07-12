@@ -28,12 +28,12 @@ class SplashController extends BaseController {
 
   void _startTimer() {
     logDebug("SplashController startTimer");
-    _timer = Timer(const Duration(milliseconds: 10000), (() => _launchLogin()));
+    _timer = Timer(const Duration(milliseconds: 10000), (() => _launchCustom()));
   }
 
-  void _launchLogin() {
+  void _launchCustom() {
     logDebug("SplashController Timer Stops");
-    Get.offAndToNamed(Routes.LOGIN);
+    Get.offAndToNamed(Routes.CUSTOM);
     _timer.cancel();
   }
 

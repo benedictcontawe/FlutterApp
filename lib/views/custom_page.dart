@@ -9,9 +9,6 @@ class CustomPage extends BaseView<CustomController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.getLog();
-    controller.setSum(1, 2);
-    //Obx(() => Text(controller?.getSum() ?? 0));
     return const Scaffold(
       body: CustomWidget(),
     );
