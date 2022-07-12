@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get_x/bindings/base_binding.dart';
-import 'package:get_x/controllers/CustomController.dart';
+import 'package:get_x/controllers/custom_controller.dart';
 
 class CustomBinding extends BaseBinding {
   @override
