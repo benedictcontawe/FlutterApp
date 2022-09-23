@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.get_x">
+    package="com.sample.dart_http">
    <application
-        android:label="get_x"
+        android:label="dart_http"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
