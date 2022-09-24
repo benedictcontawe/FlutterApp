@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sample.dart_http">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="dart_http"
         android:name="${applicationName}"
