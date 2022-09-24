@@ -1,6 +1,6 @@
 # get_x
 
-A new Flutter project.
+A new Get X Flutter project.
 
 ## Getting Started
 
