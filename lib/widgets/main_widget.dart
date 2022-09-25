@@ -14,7 +14,7 @@ class MainWidget extends BaseWidget<MainController> {
           return const Center(child: CircularProgressIndicator());
         } else {
           return ListView.builder(
-            itemCount: controller.getLenght(),
+            itemCount: controller.getLength(),
             itemBuilder: (BuildContext context, int index) {
               return Card(
                 child: Column(
@@ -23,8 +23,8 @@ class MainWidget extends BaseWidget<MainController> {
                       leading: Image.network( 
                         controller.getImage(index),
                         fit: BoxFit.cover,
-                        height: 100,
-                        width: 100,
+                        height: 50,
+                        width: 50,
                         alignment: Alignment.center,
                       ),
                       dense: true,
