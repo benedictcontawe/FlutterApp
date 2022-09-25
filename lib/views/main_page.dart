@@ -12,17 +12,18 @@ class MainPage extends BaseView<MainController> {
     debugPrint("MainPage initialized ${controller.initialized}");
     debugPrint("MainPage isClosed ${controller.isClosed}");
     return Scaffold( 
-      appBar: AppBar(
+      appBar: AppBar (
         elevation: 0,
-        leading: const Icon(Icons.arrow_back_ios),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.shopping_cart),
+        title: const Text(
+          "Flutter App",
+          style: TextStyle(
+            fontFamily: "avenir",
+            fontSize: 32,
+            fontWeight: FontWeight.w900
           ),
-        ],
+        ),
       ),
-      body: MainWidget(),
+      body: const MainWidget(),
     );
   }
 }
