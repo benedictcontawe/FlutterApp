@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 class NasaHolderModel {
+
   NasaHolderModel({
     this.id,
     this.title,

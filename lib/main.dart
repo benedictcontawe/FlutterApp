@@ -9,7 +9,7 @@ Future<void> main() async {
   await dotenv.load(fileName : Environment.mode); //TODO: Problem with this in android but in Web is OK. Still Fixing
 
   runApp(GetMaterialApp(
-    debugShowCheckedModeBanner: false,
+    debugShowCheckedModeBanner: true,
     initialBinding: SplashBinding(),
     initialRoute: Routes.SPLASH,
     theme: ThemeData(
