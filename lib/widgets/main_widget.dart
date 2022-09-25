@@ -20,7 +20,22 @@ class MainWidget extends BaseWidget<MainController> {
                 child: Column(
                   children: [
                     ListTile(
+                      leading: Image.network( 
+                        controller.getImage(index),
+                        fit: BoxFit.cover,
+                        height: 100,
+                        width: 100,
+                        alignment: Alignment.center,
+                      ),
+                      dense: true,
                       title: Text("${controller.getTitle(index)}"),
+                      subtitle: Text("${controller.getExplanation(index)}", maxLines: 2, overflow: TextOverflow.ellipsis,),
+                      trailing: Column(
+                        children: [
+                          Text("${controller.getDate(index)}", style: TextStyle(fontSize: 10, fontWeight: FontWeight.normal, color: Colors.black)),
+                          Text("${controller.getCopyright(index)}", style: TextStyle(fontSize: 10, fontWeight: FontWeight.normal, color: Colors.black)),
+                        ]
+                      ),
                     )
                   ],
                 ),

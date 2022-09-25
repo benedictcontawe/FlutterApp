@@ -38,12 +38,28 @@ class MainController extends BaseController {
     return _isLoading.value;
   }
 
-  int getLenght() {
+  int getLength() {
     return _list?.length ?? 0;
+  }
+
+  String getImage(int index) {
+    return _list?.value[index].image ?? "Nil";
   }
 
   String getTitle(int index) {
     return _list?.value[index].title ?? "Nil";
+  }
+
+   String getExplanation(int index) {
+    return _list?.value[index].explanation ?? "Nil";
+  }
+
+  String getDate(int index) {
+    return _list?.value[index].date ?? "Nil";
+  }
+
+  String getCopyright(int index) {
+    return _list?.value[index].copyright ?? "Nil";
   }
 
   @override
