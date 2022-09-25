@@ -10,18 +10,17 @@ class MainWidget extends BaseWidget<MainController> {
   @override
   Widget build(BuildContext context) {      
     return Obx( () {
-        if (controller.isLoading.value) {
+        if (controller.isLoading()) {
           return const Center(child: CircularProgressIndicator());
         } else {
-          return const Center(child: Text("Loaded"));
           return ListView.builder(
-            itemCount: controller.list.length,
+            itemCount: controller.getLenght(),
             itemBuilder: (BuildContext context, int index) {
               return Card(
                 child: Column(
                   children: [
                     ListTile(
-                      title: Text("${controller.list[index]['title']}"),
+                      title: Text("${controller.getTitle(index)}"),
                     )
                   ],
                 ),
