@@ -6,7 +6,7 @@ import 'package:get/route_manager.dart';
 import 'routes/app_pages.dart';
 
 Future<void> main() async {
-  await dotenv.load(fileName : Environment.mode); //TODO: Problem with this in android but in Web is OK. Still Fixing
+  await dotenv.load(fileName : Environment.mode);
 
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: true,

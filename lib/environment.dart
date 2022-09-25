@@ -4,9 +4,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 class Environment {
   static String get mode {
     if(kReleaseMode) {
-      return '.emv.production';
+      return 'assets/.emv.production';
     } else {
-      return '.emv.development';
+      return 'assets/.emv.development';
     }
   }
 
