@@ -1,4 +1,5 @@
 
+
 import 'package:dart_http/controllers/base_controller.dart';
 import 'package:dart_http/environment.dart';
 import 'package:dart_http/http/http_service.dart';
@@ -17,10 +18,10 @@ class MainController extends BaseController {
     super.onInit();
   }
 
-  void fetchAPOD() async {
+  Future<void> fetchAPOD() async {
     try {
       _isLoading(true);
-      var apod = await HttpService.getAstronomyPictureOfTheDay(Environment.apiKey, 10);
+      var apod = await HttpService.getAstronomyPictureOfTheDay(Environment.apiKey, getLength() + 5);
       if (apod != null) {
         _list?.value = apod;
       }
