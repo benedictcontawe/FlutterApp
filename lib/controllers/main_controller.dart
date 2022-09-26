@@ -1,19 +1,24 @@
+import 'dart:convert';
 
-
+import 'package:dart_http/constants.dart';
 import 'package:dart_http/controllers/base_controller.dart';
-import 'package:dart_http/environment.dart';
-import 'package:dart_http/http/http_service.dart';
-import 'package:dart_http/nasa_holder_model.dart';
+import 'package:dart_http/dio/api_method.dart';
+import 'package:dart_http/dio/dio_service.dart';
+import 'package:dart_http/models/nasa_holder_model.dart';
+import 'package:dart_http/util/convert_list.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class MainController extends BaseController {
 
-  RxBool _isLoading = true.obs;
-  final RxList<NasaHolderModel> _list = <NasaHolderModel>[].obs;  
+  final RxBool _isLoading = true.obs;
+  final RxList<NasaHolderModel> _list = <NasaHolderModel>[].obs;
+  DioService dioService = new DioService();
 
   @override
   void onInit() {
+    dioService.initialize(null, null, null);
+    dioService.initInterceptors();
     fetchAPOD();
     super.onInit();
   }
@@ -21,11 +26,18 @@ class MainController extends BaseController {
   Future<void> fetchAPOD() async {
     try {
       _isLoading(true);
-      var apod = await HttpService.getAstronomyPictureOfTheDay(Environment.apiKey, getLength() + 5);
-      if (apod != null) {
-        _list?.value = apod;
+      var response = await dioService.request(url: Constants.API_GET, method: ApiMethod.GET, params: {
+        'api_key': Constants.API_KEY,
+        'count': 1,
+      });      
+      debugPrint("MainController statusCode ${response.statusCode}");
+      if (response.statusCode == 200) {
+        debugPrint("MainController response ${response}");
+        debugPrint("MainController data ${response.data}");
+        debugPrint("MainController toResponseList ${ConvertList.toResponseList(response)}");
+        //_list.value = ;
       }
-      debugPrint("MainController list ${_list}");
+      debugPrint("MainController list ${_list.value}");
     } on RangeError {
       debugPrint("MainController RangeError");
     } catch (exception) {
