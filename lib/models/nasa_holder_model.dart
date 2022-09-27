@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'package:dart_http/models/nasa_response_model.dart';
 
 class NasaHolderModel {
 
@@ -36,27 +36,16 @@ class NasaHolderModel {
     "image": image
   };
 
+  factory NasaHolderModel.toHolder(NasaResponseModel response) => NasaHolderModel (
+    title : response.title,
+    copyright : response.copyright,
+    date : response.date,
+    image : response.hdurl,
+    explanation : response.explanation,
+  );
+
   @override
   String toString() {
     return "NasaHolderModel id $id, title $title, copyright $copyright, date $date, explanation $explanation, image $image" ?? super.toString();
   }
 }
-
-List<NasaHolderModel> nasaHolderModelFromJson(String str) {
-  return List<NasaHolderModel>.from(
-        json.decode(str).map( (x) => 
-          NasaHolderModel.fromJson(x)
-        )
-    );
-}
-    
-String productsModelToJson(List<NasaHolderModel> data) {
-  return json.encode(
-      List<dynamic>.from(
-          data.map( (x) =>
-            x.toJson()
-           )
-        )
-    );
-}
-

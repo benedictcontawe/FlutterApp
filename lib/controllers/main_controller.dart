@@ -3,13 +3,14 @@
 import 'package:dart_http/controllers/base_controller.dart';
 import 'package:dart_http/environment.dart';
 import 'package:dart_http/http/http_service.dart';
-import 'package:dart_http/nasa_holder_model.dart';
+import 'package:dart_http/models/nasa_holder_model.dart';
+import 'package:dart_http/util/convert_list.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class MainController extends BaseController {
 
-  RxBool _isLoading = true.obs;
+  final RxBool _isLoading = true.obs;
   final RxList<NasaHolderModel> _list = <NasaHolderModel>[].obs;  
 
   @override
@@ -21,9 +22,9 @@ class MainController extends BaseController {
   Future<void> fetchAPOD() async {
     try {
       _isLoading(true);
-      var apod = await HttpService.getAstronomyPictureOfTheDay(Environment.apiKey, getLength() + 5);
+      final apod = await HttpService.getAstronomyPictureOfTheDay(Environment.apiKey, getLength() + 5);
       if (apod != null) {
-        _list?.value = apod;
+        _list.value = ConvertList.toHolderList(apod);
       }
       debugPrint("MainController list ${_list}");
     } on RangeError {
