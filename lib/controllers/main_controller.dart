@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dart_http/constants.dart';
 import 'package:dart_http/controllers/base_controller.dart';
 import 'package:dart_http/dio/api_method.dart';
@@ -28,14 +26,11 @@ class MainController extends BaseController {
       _isLoading(true);
       var response = await dioService.request(url: Constants.API_GET, method: ApiMethod.GET, params: {
         'api_key': Constants.API_KEY,
-        'count': 1,
+        'count': getLength() + 5,
       });      
       debugPrint("MainController statusCode ${response.statusCode}");
       if (response.statusCode == 200) {
-        debugPrint("MainController response ${response}");
-        debugPrint("MainController data ${response.data}");
-        debugPrint("MainController toResponseList ${ConvertList.toResponseList(response)}");
-        //_list.value = ;
+        _list.value = ConvertList.toHolderList( ConvertList.toResponseList( response.data ) );
       }
       debugPrint("MainController list ${_list.value}");
     } on RangeError {
