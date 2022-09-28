@@ -1,5 +1,3 @@
-
-
 import 'package:dart_http/controllers/base_controller.dart';
 import 'package:dart_http/environment.dart';
 import 'package:dart_http/http/http_service.dart';
