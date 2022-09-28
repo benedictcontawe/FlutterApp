@@ -1,6 +1,6 @@
 import 'dart:developer';
-import 'package:dart_http/constants.dart';
 import 'package:dart_http/models/nasa_response_model.dart';
+import 'package:dart_http/util/constants.dart';
 import 'package:dart_http/util/convert_list.dart';
 import 'package:http/http.dart' as http;
 
