@@ -1,6 +1,6 @@
-import 'package:dart_http/constants.dart';
 import 'package:dart_http/dio/api_method.dart';
 import 'package:dart_http/dio/bad_request_exception.dart';
+import 'package:dart_http/util/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
