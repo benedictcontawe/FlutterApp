@@ -54,3 +54,5 @@ samples, guidance on mobile development, and a full API reference.
 - [Sound null safety](https://dart.dev/null-safety)
 
 - [Flutter - Display and Adjust Images from Assets](https://www.woolha.com/tutorials/flutter-display-and-adjust-images-from-assets)
+
+- [Passing Objects in Flutter through DropdownMenuItem in DropDownList](https://stackoverflow.com/questions/61111194/passing-objects-in-flutter-through-dropdownmenuitem-in-dropdownlist)
