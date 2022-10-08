@@ -56,3 +56,5 @@ samples, guidance on mobile development, and a full API reference.
 - [Flutter - Display and Adjust Images from Assets](https://www.woolha.com/tutorials/flutter-display-and-adjust-images-from-assets)
 
 - [Passing Objects in Flutter through DropdownMenuItem in DropDownList](https://stackoverflow.com/questions/61111194/passing-objects-in-flutter-through-dropdownmenuitem-in-dropdownlist)
+
+- [Flutter stretch columns to full screen height](https://stackoverflow.com/questions/57203505/flutter-stretch-columns-to-full-screen-height)
