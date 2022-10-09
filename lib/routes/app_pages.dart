@@ -1,7 +1,7 @@
-import 'package:dart_http/bindings/splash_binding.dart';
-import 'package:dart_http/bindings/main_binding.dart';
-import 'package:dart_http/views/main_page.dart';
-import 'package:dart_http/views/splash_page.dart';
+import 'package:getx_storage/bindings/splash_binding.dart';
+import 'package:getx_storage/bindings/main_binding.dart';
+import 'package:getx_storage/views/main_page.dart';
+import 'package:getx_storage/views/splash_page.dart';
 import 'package:get/get.dart';
 part 'routes.dart';
 

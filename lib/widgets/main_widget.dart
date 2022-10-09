@@ -1,8 +1,7 @@
-import 'package:dart_http/controllers/main_controller.dart';
-import 'package:dart_http/widgets/base_widgets.dart';
-import 'package:dart_http/widgets/swipe_refresh_list_widget.dart';
+import 'package:getx_storage/controllers/main_controller.dart';
+import 'package:getx_storage/widgets/base_widgets.dart';
+import 'package:getx_storage/widgets/boolean_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class MainWidget extends BaseWidget<MainController> {
   
@@ -10,13 +9,33 @@ class MainWidget extends BaseWidget<MainController> {
 
   @override
   Widget build(BuildContext context) {      
-    return Obx( () {
-        if (controller.isLoading()) {
-          return const Center(child: CircularProgressIndicator());
-        } else {
-          return const SwipeRefreshListWidget();
-        }
-      }, 
-    );
+    return Column (
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              BooleanWidget(),
+              Expanded(
+                child: ColoredBox (
+                  child: Center(child:Text("Page 2")),
+                  color: Colors.blue,
+                ),
+              ),
+
+              Expanded(
+              child:  ColoredBox (
+                  child: Center(child:Text("Page 3")),
+                  color: Colors.orange,
+                ),
+              ),
+
+              Expanded(
+                child: ColoredBox (
+                  child: Center(child:Text("Page 4")),
+                  color: Colors.green,
+                ),
+              ),
+
+            ],
+          );
   }
 }

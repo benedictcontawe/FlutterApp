@@ -1,6 +1,6 @@
-import 'package:dart_http/controllers/main_controller.dart';
-import 'package:dart_http/views/base_view.dart';
-import 'package:dart_http/widgets/main_widget.dart';
+import 'package:getx_storage/controllers/main_controller.dart';
+import 'package:getx_storage/views/base_view.dart';
+import 'package:getx_storage/widgets/main_widget.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends BaseView<MainController> {

@@ -1,5 +1,5 @@
-import 'package:dart_http/util/environment.dart';
-import 'package:dart_http/util/hex_color.dart';
+import 'package:getx_storage/util/environment.dart';
+import 'package:getx_storage/util/hex_color.dart';
 import 'package:flutter/material.dart';
 
 class Constants {
