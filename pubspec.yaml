@@ -40,6 +40,7 @@ dependencies:
   flutter_dotenv: ^5.0.2
   get: ^4.6.5
   get_storage:
+  google_fonts: ^3.0.1
 
 dev_dependencies:
   flutter_test:

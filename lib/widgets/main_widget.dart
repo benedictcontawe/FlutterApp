@@ -2,6 +2,9 @@ import 'package:getx_storage/controllers/main_controller.dart';
 import 'package:getx_storage/widgets/base_widgets.dart';
 import 'package:getx_storage/widgets/boolean_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:getx_storage/widgets/double_widget.dart';
+import 'package:getx_storage/widgets/integer_widget.dart';
+import 'package:getx_storage/widgets/string_widget.dart';
 
 class MainWidget extends BaseWidget<MainController> {
   
@@ -13,28 +16,10 @@ class MainWidget extends BaseWidget<MainController> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              BooleanWidget(),
-              Expanded(
-                child: ColoredBox (
-                  child: Center(child:Text("Page 2")),
-                  color: Colors.blue,
-                ),
-              ),
-
-              Expanded(
-              child:  ColoredBox (
-                  child: Center(child:Text("Page 3")),
-                  color: Colors.orange,
-                ),
-              ),
-
-              Expanded(
-                child: ColoredBox (
-                  child: Center(child:Text("Page 4")),
-                  color: Colors.green,
-                ),
-              ),
-
+              const BooleanWidget(),
+              const StringWidget(),
+              const IntegerWidget(),
+              const DoubleWidget(),
             ],
           );
   }

@@ -17,7 +17,7 @@ class BooleanWidget extends BaseWidget<MainController> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
               const Text (
-                'Boolean:',  
+                'Boolean Value:',  
                 style: const TextStyle(
                   color: Colors.black
                 ),
