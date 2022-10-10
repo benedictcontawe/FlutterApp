@@ -66,3 +66,5 @@ samples, guidance on mobile development, and a full API reference.
 - [Create Custom Widget(Button) in Flutter – Android or iOS](https://www.coderzheaven.com/2019/01/03/create-custom-widgetbutton-in-flutter-android-or-ios/)
 
 - [Flutter: Expanded vs Flexible](https://stackoverflow.com/questions/52645944/flutter-expanded-vs-flexible#:~:text=Flexible%20takes%20only%20the%20needed,Expanded%20widget%20for%20more%20info.&text=Flexible%20and%20Container%20both%20take%20the%20needed%20space.&text=What%20confused%20me%20is%20the,child%20of%20Flexible%20or%20Expanded%20.)
+
+- [Layout bounds not showing in Fultter app but it shows for other apps](https://stackoverflow.com/questions/54821625/layout-bounds-not-showing-in-fultter-app-but-it-shows-for-other-apps)
