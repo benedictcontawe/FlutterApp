@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:getx_storage/controllers/main_controller.dart';
 import 'package:getx_storage/widgets/base_widgets.dart';
 import 'package:getx_storage/widgets/button_widget.dart';
@@ -32,18 +33,20 @@ class IntegerWidget extends BaseWidget<MainController> {
             child: ButtonWidget (
               text: "Update", 
               onPressed: () {
-                  
+                  controller.updateInteger();
               },
             ),
           ),
           Flexible(
-            child: Text (
-              'Value', 
-              style: const TextStyle (
-                color: Colors.black, 
-                fontSize: 20
-              ),
-            ),
+            child: Obx( () {
+              return Text (
+                controller.getInteger().toString(), 
+                style: const TextStyle (
+                  color: Colors.black, 
+                  fontSize: 20
+                ),
+              );
+            } ),
           )
         ],
       ),

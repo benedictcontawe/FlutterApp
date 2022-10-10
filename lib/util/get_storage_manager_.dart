@@ -6,39 +6,43 @@ class GetStorageManager {
 
   static final _box = GetStorage('GetStorage');
       
-  void setBoolean(String booleanKey, bool value,) {
+  Future setBoolean(String booleanKey, bool value,) async {
         _box.write(booleanKey, value);
   }
 
-  void setString(String stringKey, String value,) {
+  Future setString(String stringKey, String value,) async {
         _box.write(stringKey, value);
   }
 
-  void setInteger(String integerKey, int value,) {
+  Future setInteger(String integerKey, int value,) async {
       _box.write(integerKey, value);
   }
 
-  void setDouble(String doubleKey, double value,) {
+  Future setDouble(String doubleKey, double value,) async {
       _box.write(doubleKey, value);
   }
 
-  bool getBoolean(String booleanKey) {
+  bool? getBoolean(String booleanKey) {
       return _box.read(booleanKey);
   }
 
-  String getString(String stringKey) {
+  String? getString(String stringKey) {
       return _box.read(stringKey);
   }
 
-  int getInteger(String integerKey) {
+  int? getInteger(String integerKey) {
       return _box.read(integerKey);
   }
 
-  Future getDouble(String doubleKey) async {
+  double? getDouble(String doubleKey) {
       return _box.read(doubleKey);
   }
 
   void remove(String key) {
     _box.remove(key);
+  }
+
+  void erase() {
+    _box.erase();
   }
 }

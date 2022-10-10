@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:getx_storage/controllers/main_controller.dart';
 import 'package:getx_storage/widgets/base_widgets.dart';
 import 'package:getx_storage/widgets/button_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class BooleanWidget extends BaseWidget<MainController> {
 
@@ -33,16 +33,18 @@ class BooleanWidget extends BaseWidget<MainController> {
             ButtonWidget (
               text: "Update", 
               onPressed: () {
-              
+                controller.updateBoolean();
               },
             ),
-            Text (
-              'Value', 
-              style: const TextStyle (
-                color: Colors.black, 
-                fontSize: 20
-              ),
-            ),
+            Obx( () {
+              return Text (
+                controller.getBoolean(), 
+                style: const TextStyle (
+                  color: Colors.black, 
+                  fontSize: 20
+                ),
+              );
+            } ),
           ],
         ),
         color: Colors.white,
