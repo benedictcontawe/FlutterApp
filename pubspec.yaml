@@ -39,8 +39,9 @@ dependencies:
   #dio: ^4.0.6
   flutter_dotenv: ^5.0.2
   get: ^4.6.5
-  get_storage:
+  #get_storage:
   google_fonts: ^3.0.1
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:

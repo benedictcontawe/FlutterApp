@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:getx_storage/controllers/base_controller.dart';
-import 'package:getx_storage/util/get_storage_manager_.dart';
 import 'package:get/get.dart';
+import 'package:getx_storage/util/shared_preferences_manager.dart';
 
 class MainController extends BaseController {
 
-  MainController(GetStorageManager this._getStorageManager) {
+  MainController(SharedPreferencesManager this._sharedPreferencesManager) {
     
   }
   
@@ -17,15 +17,15 @@ class MainController extends BaseController {
   final RxString _liveString = "Nil".obs;
   final RxInt _liveInteger = 0.obs;
   final RxDouble _liveDoubleValue = 0.00.obs;
-  final GetStorageManager _getStorageManager;
+  final SharedPreferencesManager _sharedPreferencesManager;
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
-    _liveBoolean( ( _getStorageManager.getBoolean('BOOLEAN') ?? false ).toString() );
-    _liveString( _getStorageManager.getString('STRING') ?? 'Nil' );
-    _liveInteger( _getStorageManager.getInteger('INTEGER') ?? 0 );
-    _liveDoubleValue( _getStorageManager.getDouble('DOUBLE') ?? 0.00 );
+    _liveBoolean( (await _sharedPreferencesManager.getBoolean('BOOLEAN') ?? false ).toString() );
+    _liveString( await _sharedPreferencesManager.getString('STRING') ?? 'Nil' );
+    _liveInteger( await _sharedPreferencesManager.getInteger('INTEGER') ?? 0 );
+    _liveDoubleValue( await _sharedPreferencesManager.getDouble('DOUBLE') ?? 0.00 );
   }
 
   void setBoolean(bool? value) {
@@ -49,8 +49,8 @@ class MainController extends BaseController {
   }
 
   Future<void> updateBoolean() async {
-    _getStorageManager.setBoolean('BOOLEAN', _liveChecked.value);
-    _liveBoolean(_getStorageManager.getBoolean('BOOLEAN').toString());
+    _sharedPreferencesManager.setBoolean('BOOLEAN', _liveChecked.value);
+    _liveBoolean( (await _sharedPreferencesManager.getBoolean('BOOLEAN') ?? false ).toString() );
   }
 
   String getBoolean() {
@@ -58,8 +58,8 @@ class MainController extends BaseController {
   }
 
   Future<void> updateString() async {
-    _getStorageManager.setString('STRING', _stringController.text.toString());
-    _liveString(_getStorageManager.getString('STRING'));
+    _sharedPreferencesManager.setString('STRING', _stringController.text.toString());
+    _liveString( await _sharedPreferencesManager.getString('STRING') ?? 'Nil' );
   }
 
   String getString() {
@@ -67,17 +67,16 @@ class MainController extends BaseController {
   }
 
   Future<void> updateInteger() async {
-    _getStorageManager.setInteger('INTEGER', int.parse(_integerController.text.toString()));
-    _liveInteger(_getStorageManager.getInteger('INTEGER'));
+    _sharedPreferencesManager.setInteger('INTEGER', int.parse(_integerController.text.toString()));
+    _liveInteger( await _sharedPreferencesManager.getInteger('INTEGER') ?? 0 );
   }
-
   int getInteger() {
     return _liveInteger.value;
   }
 
   Future<void> updateDouble() async {
-    _getStorageManager.setDouble('DOUBLE', double.parse(_doubleController.text.toString()));
-    _liveDoubleValue(_getStorageManager.getDouble('DOUBLE'));
+    _sharedPreferencesManager.setDouble('DOUBLE', double.parse(_doubleController.text.toString()));
+    _liveDoubleValue( await _sharedPreferencesManager.getDouble('DOUBLE') ?? 0.00 );
   }
 
   double getDouble() {
