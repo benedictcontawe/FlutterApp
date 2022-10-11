@@ -45,6 +45,16 @@ class SharedPreferencesManager {
     return pref.getDouble(doubleKey);
   }
 
+  Future<void> removeValue(String key) async{
+    final pref = await SharedPreferences.getInstance();
+    pref.remove(key);
+  }
+
+  Future<bool?> containsKey(String key) async{
+    final pref = await SharedPreferences.getInstance();
+    return pref.containsKey(key);
+  }
+
   Future clearStorage() async {
     final pref = await SharedPreferences.getInstance();
     pref.clear();
