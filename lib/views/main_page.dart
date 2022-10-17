@@ -1,5 +1,6 @@
 import 'package:dart_http/controllers/main_controller.dart';
 import 'package:dart_http/views/base_view.dart';
+import 'package:dart_http/views/custom_dialog.dart';
 import 'package:dart_http/widgets/main_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -30,18 +31,23 @@ class MainPage extends BaseView<MainController> {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            FloatingActionButton(
-              onPressed: () {
-
-              },
+          children: <Widget> [
+            FloatingActionButton (
               child: const Icon(CupertinoIcons.add),
-            ),
-            FloatingActionButton(
               onPressed: () {
-                
+                CustomDialog.addDialog(
+                  null, 
+                  () {
+                    controller.add(null);
+                  },
+                );
               },
+            ),
+            FloatingActionButton (
               child: const Icon(CupertinoIcons.delete),
+              onPressed: () {
+                controller.deleteAll();
+              },
             )
           ],
         ),

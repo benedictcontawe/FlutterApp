@@ -4,7 +4,7 @@ import 'package:dart_http/dio/dio_service.dart';
 import 'package:dart_http/models/nasa_holder_model.dart';
 import 'package:dart_http/util/constants.dart';
 import 'package:dart_http/util/convert_list.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class MainController extends BaseController {
@@ -68,6 +68,28 @@ class MainController extends BaseController {
 
   String getCopyright(int index) {
     return _list?.value[index].copyright ?? "Nil";
+  }
+
+  Future<void> add(TextEditingController? controller) async {
+    //TODO: Add Data to Hive
+    //controller.text.toString();
+    Get.back();
+  }
+
+  Future<void> updateName(TextEditingController? controller) async {
+    //TODO: Edit Data to Hive
+    //controller.text.toString();
+    Get.back();
+  }
+
+  Future<void> delete(int index) async {
+    //TODO: Delete Data to Hive
+    debugPrint("delete $index");
+  }
+
+  Future<void> deleteAll() async {
+    //TODO: Delete All to Hive
+    debugPrint("deleteAll");
   }
 
   @override
