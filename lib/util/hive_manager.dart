@@ -8,6 +8,7 @@ class HiveManager {
   Box? box;
 
   Future<void> onOpen() async {
+    //box ??= await Hive.openBox(Constants.Hive);
     if(box == null) {
       box = await Hive.openBox(Constants.Hive);
     }
