@@ -1,45 +1,25 @@
 import 'package:dart_http/controllers/base_controller.dart';
-import 'package:dart_http/dio/api_method.dart';
-import 'package:dart_http/dio/dio_service.dart';
-import 'package:dart_http/models/nasa_holder_model.dart';
-import 'package:dart_http/util/constants.dart';
-import 'package:dart_http/util/convert_list.dart';
+import 'package:dart_http/models/custom_model.dart';
+import 'package:dart_http/util/hive_manager.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MainController extends BaseController {
 
-  final RxBool _isLoading = true.obs;
-  final RxList<NasaHolderModel> _list = <NasaHolderModel>[].obs;
-  DioService dioService = new DioService();
-
-  @override
-  void onInit() {
-    dioService.initialize(null, null, null);
-    dioService.initInterceptors();
-    fetchAPOD();
-    super.onInit();
+  MainController(HiveManager this._hiveManager) { debugPrint("MainController Constructor");
+    _hiveManager.onOpen();
   }
 
-  Future<void> fetchAPOD() async {
-    try {
-      _isLoading(true);
-      var response = await dioService.request(url: Constants.API_GET, method: ApiMethod.GET, params: {
-        'api_key': Constants.API_KEY,
-        'count': getLength() + 5,
-      });      
-      debugPrint("MainController statusCode ${response.statusCode}");
-      if (response.statusCode == 200) {
-        _list.value = ConvertList.toHolderList( ConvertList.toResponseList( response.data ) );
-      }
-      debugPrint("MainController list ${_list.value}");
-    } on RangeError {
-      debugPrint("MainController RangeError");
-    } catch (exception) {
-      debugPrint("MainController exception $exception");
-    } finally {
-      _isLoading(false);
-    }
+  final RxBool _isLoading = true.obs;
+  final RxList<CustomModel> _list = <CustomModel>[].obs;
+  TextEditingController? _controller;
+  final HiveManager _hiveManager;
+
+  @override
+  void onInit() { debugPrint("MainController onInit");
+    updateModels();
+    super.onInit();
   }
 
   bool isLoading() {
@@ -47,33 +27,47 @@ class MainController extends BaseController {
   }
 
   int getLength() {
-    return _list?.length ?? 0;
+    return _list.value.length ?? 0;
+  }
+  /*
+  String getIcon(int index) {
+    return _list.value[index].icon ?? "Nil";
+  }
+  */
+  String getName(int index) {
+    return _list.value[index].name ?? "Nil";
   }
 
-  String getImage(int index) {
-    return _list?.value[index].image ?? "Nil";
+  Future<void> updateModels() async {
+    try {
+      _isLoading(true);
+      _list.value = <CustomModel>[];
+      _list.value = await _hiveManager.getModels();
+      debugPrint("MainController _list ${_list.value.length} ${_list.value}");
+    } catch (exception) {
+      debugPrint("MainController update models exception $exception");
+    } finally {
+      _isLoading(false);
+    }
   }
 
-  String getTitle(int index) {
-    return _list?.value[index].title ?? "Nil";
+  Future<void> resetController() async {
+    _controller = null;
+    _controller = new TextEditingController();
   }
 
-   String getExplanation(int index) {
-    return _list?.value[index].explanation ?? "Nil";
-  }
-
-  String getDate(int index) {
-    return _list?.value[index].date ?? "Nil";
-  }
-
-  String getCopyright(int index) {
-    return _list?.value[index].copyright ?? "Nil";
+  TextEditingController getController() {
+    return _controller ?? TextEditingController();
   }
 
   Future<void> add(TextEditingController? controller) async {
-    //TODO: Add Data to Hive
-    //controller.text.toString();
+    final model = CustomModel(
+      name: controller?.text.toString(),
+      //icon:  const Icon(Icons.android)
+    );
+    _hiveManager.add(model);
     Get.back();
+    updateModels();
   }
 
   Future<void> updateName(TextEditingController? controller) async {
@@ -84,16 +78,20 @@ class MainController extends BaseController {
 
   Future<void> delete(int index) async {
     //TODO: Delete Data to Hive
-    debugPrint("delete $index");
+    _hiveManager.onDelete(_list.value[index]);
+    debugPrint("MainController delete $index");
   }
 
   Future<void> deleteAll() async {
-    //TODO: Delete All to Hive
-    debugPrint("deleteAll");
+    //TODO: Update UI after Delete All in Hive Done
+    _hiveManager.onClear();
+    debugPrint("MainController deleteAll");
+    updateModels();
   }
 
   @override
   void onClose() {
+    _hiveManager.onClose();
     super.onClose();
   }
 }

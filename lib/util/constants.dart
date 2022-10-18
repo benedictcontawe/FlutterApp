@@ -8,6 +8,7 @@ class Constants {
   static final API_KEY = Environment.apiKey;
   static const TIMEOUT = 3000;
   static const BLANK = " ";
+  static const Hive = "hiveBox";
   Color kBackgroundColor = HexColor('FFFFFF');
   Color kSolidButtonColor = HexColor('F38E36');
   Color kPrimaryTextColor = HexColor('000000');

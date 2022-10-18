@@ -35,10 +35,13 @@ class MainPage extends BaseView<MainController> {
             FloatingActionButton (
               child: const Icon(CupertinoIcons.add),
               onPressed: () {
+                controller.resetController();
                 CustomDialog.addDialog(
-                  null, 
+                  controller.getController(), 
                   () {
-                    controller.add(null);
+                    controller.add(
+                      controller.getController(),
+                    );
                   },
                 );
               },

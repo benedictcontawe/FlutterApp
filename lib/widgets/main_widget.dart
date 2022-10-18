@@ -10,13 +10,12 @@ class MainWidget extends BaseWidget<MainController> {
 
   @override
   Widget build(BuildContext context) {      
-    return Obx( () {
+    return Obx ( () {
         if (controller.isLoading()) {
           return const Center(child: CircularProgressIndicator());
         } else {
           return const SwipeRefreshListWidget();
         }
-      }, 
-    );
+    }, );
   }
 }
