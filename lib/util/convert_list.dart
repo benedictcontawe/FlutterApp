@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:dart_http/models/nasa_holder_model.dart';
 import 'package:dart_http/models/nasa_response_model.dart';
 
@@ -16,5 +17,15 @@ class ConvertList {
       value.add(NasaResponseModel.fromJson(element));
     });
     return value ?? List<NasaResponseModel>.empty();
+  }
+
+  static String toJson(List<NasaResponseModel> responses) {
+    return json.encode(
+      List<dynamic>.from(
+        responses.map( (response) =>
+          response.toJson()
+        )
+      )
+    );
   }
 }
