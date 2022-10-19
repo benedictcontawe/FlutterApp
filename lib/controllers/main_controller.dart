@@ -8,8 +8,12 @@ import 'package:get/get.dart';
 
 class MainController extends BaseController {
 
+  MainController() {
+    debugPrint("MainController Constructor");
+  }
+
   final RxBool _isLoading = true.obs;
-  final RxList<NasaHolderModel> _list = <NasaHolderModel>[].obs;  
+  final RxList<NasaHolderModel> _list = new List<NasaHolderModel>.empty().obs;
 
   @override
   void onInit() {

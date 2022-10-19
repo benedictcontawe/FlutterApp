@@ -13,19 +13,19 @@ class ConvertList {
 
   static List<NasaResponseModel> toResponseList(String data) {
     return List<NasaResponseModel>.from(
-      json.decode(data).map( (x) => 
-        NasaResponseModel.fromJson(x)
+      json.decode(data).map( (json) => 
+        NasaResponseModel.fromJson(json)
       )
     );
   }
 
-  static String toJson(List<NasaResponseModel> data) {
-  return json.encode(
-    List<dynamic>.from(
-      data.map( (x) =>
-        x.toJson()
+  static String toJson(List<NasaResponseModel> responses) {
+    return json.encode(
+      List<dynamic>.from(
+        responses.map( (response) =>
+          response.toJson()
+        )
       )
-    )
-  );
-}
+    );
+  }
 }
