@@ -1,5 +1,5 @@
-import 'package:dart_http/controllers/splash_controller.dart';
-import 'package:dart_http/widgets/base_widgets.dart';
+import 'package:dart_hive/controllers/splash_controller.dart';
+import 'package:dart_hive/widgets/base_widgets.dart';
 import 'package:flutter/material.dart';
 
 class SplashWidget extends BaseWidget<SplashController> {

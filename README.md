@@ -1,4 +1,4 @@
-# dart_http
+# dart_hive
 
 A new Flutter project.
 

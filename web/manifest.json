@@ -1,6 +1,6 @@
 {
-    "name": "dart_http",
-    "short_name": "dart_http",
+    "name": "dart_hive",
+    "short_name": "dart_hive",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

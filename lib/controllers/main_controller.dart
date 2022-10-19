@@ -1,6 +1,6 @@
-import 'package:dart_http/controllers/base_controller.dart';
-import 'package:dart_http/models/custom_model.dart';
-import 'package:dart_http/util/hive_manager.dart';
+import 'package:dart_hive/controllers/base_controller.dart';
+import 'package:dart_hive/models/custom_model.dart';
+import 'package:dart_hive/util/hive_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

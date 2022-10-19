@@ -1,7 +1,7 @@
 import 'dart:io';
-import 'package:dart_http/bindings/splash_binding.dart';
-import 'package:dart_http/models/custom_model.dart';
-import 'package:dart_http/util/environment.dart';
+import 'package:dart_hive/bindings/splash_binding.dart';
+import 'package:dart_hive/models/custom_model.dart';
+import 'package:dart_hive/util/environment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/route_manager.dart';

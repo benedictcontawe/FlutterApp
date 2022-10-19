@@ -1,5 +1,5 @@
-import 'package:dart_http/models/custom_model.dart';
-import 'package:dart_http/util/constants.dart';
+import 'package:dart_hive/models/custom_model.dart';
+import 'package:dart_hive/util/constants.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 

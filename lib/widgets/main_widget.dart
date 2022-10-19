@@ -1,6 +1,6 @@
-import 'package:dart_http/controllers/main_controller.dart';
-import 'package:dart_http/widgets/base_widgets.dart';
-import 'package:dart_http/widgets/swipe_refresh_list_widget.dart';
+import 'package:dart_hive/controllers/main_controller.dart';
+import 'package:dart_hive/widgets/base_widgets.dart';
+import 'package:dart_hive/widgets/swipe_refresh_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,7 +1,7 @@
-import 'package:dart_http/controllers/main_controller.dart';
-import 'package:dart_http/views/custom_dialog.dart';
-import 'package:dart_http/widgets/base_widgets.dart';
-import 'package:dart_http/widgets/button_widget.dart';
+import 'package:dart_hive/controllers/main_controller.dart';
+import 'package:dart_hive/views/custom_dialog.dart';
+import 'package:dart_hive/widgets/base_widgets.dart';
+import 'package:dart_hive/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
