@@ -9,9 +9,13 @@ import 'package:get/get.dart';
 
 class MainController extends BaseController {
 
+  MainController(DioService this.dioService) {
+    debugPrint("MainController Constructor");
+  }
+
   final RxBool _isLoading = true.obs;
   final RxList<NasaHolderModel> _list = <NasaHolderModel>[].obs;
-  DioService dioService = new DioService();
+  final DioService dioService;
 
   @override
   void onInit() {
