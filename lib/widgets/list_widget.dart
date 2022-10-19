@@ -28,10 +28,11 @@ class ListWidget extends BaseWidget<MainController> {
                       child: ButtonWidget (
                         text: "Edit", 
                         onPressed: () {
+                          controller.setController(index);
                           CustomDialog.editDialog(
-                            null, 
+                            controller.getController(),
                             () {
-                              controller.updateName(null);
+                              controller.updateName(index);
                             },
                           );
                         },

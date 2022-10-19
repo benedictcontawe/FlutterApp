@@ -36,12 +36,10 @@ class MainPage extends BaseView<MainController> {
               child: const Icon(CupertinoIcons.add),
               onPressed: () {
                 controller.resetController();
-                CustomDialog.addDialog(
+                CustomDialog.addDialog (
                   controller.getController(), 
                   () {
-                    controller.add(
-                      controller.getController(),
-                    );
+                    controller.add();
                   },
                 );
               },

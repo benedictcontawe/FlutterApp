@@ -9,6 +9,7 @@ class Constants {
   static const TIMEOUT = 3000;
   static const BLANK = " ";
   static const Hive = "hiveBox";
+  static const HivePrimitive = "hivePrimitiveBox";
   Color kBackgroundColor = HexColor('FFFFFF');
   Color kSolidButtonColor = HexColor('F38E36');
   Color kPrimaryTextColor = HexColor('000000');

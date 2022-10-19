@@ -5,12 +5,13 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 class HiveManager {
   //LazyBox box = Hive.lazyBox(Constants.Hive);
-  Box? box;
+  Box? box, primitiveBox;
 
   Future<void> onOpen() async {
     //box ??= await Hive.openBox(Constants.Hive);
     if(box == null) {
-      box = await Hive.openBox(Constants.Hive);
+      box = await Hive.openBox(Constants.Hive);//Hive.box(Constants.Hive);
+      primitiveBox = await Hive.openBox(Constants.HivePrimitive);
     }
   }
 
@@ -20,19 +21,19 @@ class HiveManager {
   }
 
   Future<void> setBoolean(String booleanKey, bool value,) async {
-    box?.put(booleanKey, value);
+    primitiveBox?.put(booleanKey, value);
   }
 
   Future<void> setString(String stringKey, String value,) async {
-    box?.put(stringKey, value);
+    primitiveBox?.put(stringKey, value);
   }
 
   Future<void> setInteger(String integerKey, int value,) async {
-    box?.put(integerKey, value);
+    primitiveBox?.put(integerKey, value);
   }
 
   Future<void> setDouble(String doubleKey, double value,) async {
-    box?.put(doubleKey, value);
+    primitiveBox?.put(doubleKey, value);
   }
 
   Future<void> setList(String listKey, List<dynamic> value,) async {
@@ -40,19 +41,19 @@ class HiveManager {
   }
 
   Future<bool?> getBoolean(String booleanKey) async {
-    return await box?.get(booleanKey);
+    return await primitiveBox?.get(booleanKey);
   }
 
   Future<String?> getString(String stringKey) async {
-    return await box?.get(stringKey);
+    return await primitiveBox?.get(stringKey);
   }
 
   Future<int?> getInteger(String integerKey) async {
-    return await box?.get(integerKey);
+    return await primitiveBox?.get(integerKey);
   }
 
   Future<double?> getDouble(String doubleKey) async {
-    return await box?.get(doubleKey);
+    return await primitiveBox?.get(doubleKey);
   }
 
   Future<List<CustomModel>> getModels() async {
@@ -60,26 +61,39 @@ class HiveManager {
     return box?.values.toList(growable: false)?.cast<CustomModel>() ?? <CustomModel>[];
   }
 
+  Future<Stream<BoxEvent>?> observeModels() async {
+    return box?.watch(); //TODO: Still on going
+  }
+
   Future<bool?> containsKey(String key) async {
     return box?.containsKey(key);
   }
 
-  Future<void> onClear() async {
-    box?.clear();
+  Future<void> onUpdate(CustomModel value,) async {
+    value.save();
   }
 
   Future<void> onDelete(CustomModel value,) async {
-    box?.delete(value);
-    //box?.deleteAll();
+    //box?.delete(value.key);
+    value.delete();
   }
 
   Future<void> onDeleteAll() async {
     //box?.deleteAll();
   }
 
+  Future<void> onClear() async {
+    box?.clear();
+    primitiveBox?.clear();
+  }
+
   Future<void> onDeleteFromDisk() async {
     if(Hive.isBoxOpen(Constants.Hive)) {
       box?.deleteFromDisk();
+    }
+
+    if(Hive.isBoxOpen(Constants.HivePrimitive)) {
+      primitiveBox?.deleteFromDisk();
     }
   }
 
@@ -88,10 +102,16 @@ class HiveManager {
   }
 
   Future<void> onClose() async {
+    /*
     if(Hive.isBoxOpen(Constants.Hive) || box?.isOpen == true) {
-      //Hive.box(Constants.Hive);
       box?.close();
-      Hive.close();
+    }
+    if(Hive.isBoxOpen(Constants.HivePrimitive) || primitiveBox?.isOpen == true) {
+      primitiveBox?.close();
+    }
+    */
+    if(Hive.isBoxOpen(Constants.Hive) || Hive.isBoxOpen(Constants.HivePrimitive)) {
+      Hive.close(); 
     }
   }
 }

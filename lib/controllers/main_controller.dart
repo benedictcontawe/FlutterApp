@@ -12,7 +12,7 @@ class MainController extends BaseController {
   }
 
   final RxBool _isLoading = true.obs;
-  final RxList<CustomModel> _list = <CustomModel>[].obs;
+  final RxList<CustomModel> _list = new List<CustomModel>.empty().obs;
   TextEditingController? _controller;
   final HiveManager _hiveManager;
 
@@ -56,13 +56,19 @@ class MainController extends BaseController {
     _controller = new TextEditingController();
   }
 
+  Future<void> setController(int index) async {
+    _controller = null;
+    _controller = new TextEditingController();
+    _controller?.text = _list.value[index].name ?? "";
+  }
+
   TextEditingController getController() {
     return _controller ?? TextEditingController();
   }
 
-  Future<void> add(TextEditingController? controller) async {
+  Future<void> add() async {
     final model = CustomModel(
-      name: controller?.text.toString(),
+      name: _controller?.text.toString(),
       //icon:  const Icon(Icons.android)
     );
     _hiveManager.add(model);
@@ -70,23 +76,21 @@ class MainController extends BaseController {
     updateModels();
   }
 
-  Future<void> updateName(TextEditingController? controller) async {
-    //TODO: Edit Data to Hive
-    //controller.text.toString();
+  Future<void> updateName(int index) async {
+    _list.value[index].name = _controller?.text.toString();
+    _hiveManager.onUpdate( _list.value[index]) ;
     Get.back();
+    updateModels();
   }
 
   Future<void> delete(int index) async {
-    //TODO: Delete Data to Hive
-    _hiveManager.onDelete(_list.value[index]);
-    debugPrint("MainController delete $index");
+    _hiveManager.onDelete( _list.value[index] );
+    updateModels();
   }
 
   Future<void> deleteAll() async {
-    //TODO: Update UI after Delete All in Hive Done
+    _list.value = <CustomModel>[];
     _hiveManager.onClear();
-    debugPrint("MainController deleteAll");
-    updateModels();
   }
 
   @override

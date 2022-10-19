@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
 part 'custom_model.g.dart';
@@ -16,7 +15,7 @@ class CustomModel extends HiveObject {
   //final int? id;
 
   @HiveField(0)
-  final String? name;
+  String? name;
 
   //@HiveField(1)
   //final Icon? icon;
