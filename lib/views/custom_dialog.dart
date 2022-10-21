@@ -1,4 +1,4 @@
-import 'package:dart_hive/widgets/button_widget.dart';
+import 'package:dart_sqflite/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

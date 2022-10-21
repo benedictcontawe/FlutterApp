@@ -1,7 +1,7 @@
-import 'package:dart_hive/controllers/main_controller.dart';
-import 'package:dart_hive/views/base_view.dart';
-import 'package:dart_hive/views/custom_dialog.dart';
-import 'package:dart_hive/widgets/main_widget.dart';
+import 'package:dart_sqflite/controllers/main_controller.dart';
+import 'package:dart_sqflite/views/base_view.dart';
+import 'package:dart_sqflite/views/custom_dialog.dart';
+import 'package:dart_sqflite/widgets/main_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

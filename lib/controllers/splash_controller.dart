@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:dart_hive/controllers/base_controller.dart';
-import 'package:dart_hive/routes/app_pages.dart';
+import 'package:dart_sqflite/controllers/base_controller.dart';
+import 'package:dart_sqflite/routes/app_pages.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 

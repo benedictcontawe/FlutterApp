@@ -20,7 +20,7 @@ class CustomModel {
 
   factory CustomModel.fromJson(Map<String, dynamic> json) {
     return CustomModel(
-      id: json['id'], name: json['name'],
+      id: json['Id'], name: json['Name'],
     );
   }
 

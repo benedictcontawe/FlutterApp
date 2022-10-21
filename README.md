@@ -1,4 +1,4 @@
-# dart_hive
+# dart_sqflite
 
 A new Flutter project.
 

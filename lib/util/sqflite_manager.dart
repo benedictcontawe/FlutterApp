@@ -1,9 +1,9 @@
 import 'dart:io' show Directory;
-import 'package:dart_hive/util/convert_list.dart';
+import 'package:dart_sqflite/util/convert_list.dart';
 import 'package:flutter/foundation.dart';
 import 'package:path/path.dart' show join;
-import 'package:dart_hive/models/custom_model.dart';
-import 'package:dart_hive/util/constants.dart';
+import 'package:dart_sqflite/models/custom_model.dart';
+import 'package:dart_sqflite/util/constants.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart' as pathProvider;
 
@@ -42,12 +42,12 @@ class SqfliteManager {
     /*
     await _database?.insert (
       tableName, {
-        'id': value.id,
-        'name': value.name
+        'Id': value.id,
+        'Name': value.name
       }
     );
     */
-    return await _database?.rawInsert('INSERT INTO ${tableName}(id, name) VALUES(?, ?)', [value.id, value.name] );
+    return await _database?.rawInsert('INSERT INTO ${tableName} (Id, Name) VALUES(?, ?)', [value.id, value.name] );
   }
 
   Future<int?> queryRowCount(String tableName,) async {
@@ -60,9 +60,10 @@ class SqfliteManager {
     var result = await _database?.query (
       tableName,
       distinct: true,
-      //columns: ['name'],
-      orderBy: 'id',
+      //columns: ['Name'],
+      orderBy: 'Id',
     );
+    debugPrint("SqfliteManager getModels $tableName $result");
     return ConvertList.toModelList(result);
   }
 
@@ -77,7 +78,7 @@ class SqfliteManager {
   Future<void> onUpdate(String tableName, CustomModel value,) async { 
     debugPrint("SqfliteManager onUpdate $tableName $value");
     await _database?.rawUpdate (
-      'UPDATE $tableName SET name = ? WHERE id = ?',
+      'UPDATE $tableName SET Name = ? WHERE Id = ?',
       [value.name, value.id,],
     );
   }
@@ -88,7 +89,7 @@ class SqfliteManager {
     await _database?.transaction((txn) async {
         await txn.delete (
           tableName,
-          where: 'id = ?',  //where: 'id = ? AND id = ?',
+          where: 'Id = ?',  //where: 'Id = ? AND Id = ?',
           whereArgs: [value.id],  //whereArgs: [42, 1337],
         );
       }
@@ -97,12 +98,12 @@ class SqfliteManager {
     /*
     await _database?.delete(
       tableName, 
-      where: 'id = ? AND name = ?', 
+      where: 'Id = ? AND Name = ?', 
       whereArgs: [value.id, value.name,],
     );
     */
     await _database?.rawDelete (
-      'DELETE FROM $tableName WHERE id = ? AND name = ?',
+      'DELETE FROM $tableName WHERE Id = ? AND Name = ?',
       [value.id, value.name,],
     );
   }

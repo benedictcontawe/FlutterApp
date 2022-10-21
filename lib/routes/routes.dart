@@ -1,4 +1,4 @@
-part of 'package:dart_hive/routes/app_pages.dart';
+part of 'package:dart_sqflite/routes/app_pages.dart';
 
 abstract class Routes {
   static const INITIAL = '/';

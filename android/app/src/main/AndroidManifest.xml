@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sample.dart_hive">
+    package="com.sample.dart_sqflite">
    <application
-        android:label="dart_hive"
+        android:label="dart_sqflite"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

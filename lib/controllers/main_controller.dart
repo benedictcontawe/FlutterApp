@@ -1,7 +1,7 @@
-import 'package:dart_hive/controllers/base_controller.dart';
-import 'package:dart_hive/models/custom_model.dart';
-import 'package:dart_hive/util/constants.dart';
-import 'package:dart_hive/util/sqflite_manager.dart';
+import 'package:dart_sqflite/controllers/base_controller.dart';
+import 'package:dart_sqflite/models/custom_model.dart';
+import 'package:dart_sqflite/util/constants.dart';
+import 'package:dart_sqflite/util/sqflite_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
