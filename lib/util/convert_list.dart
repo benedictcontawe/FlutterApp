@@ -1,19 +1,11 @@
-
+import 'package:dart_hive/models/custom_model.dart';
 
 class ConvertList {
-  // static List<NasaHolderModel> toHolderList(List<NasaResponseModel> responses) {
-  //   return List<NasaHolderModel>.from(
-  //     responses.map( (response) => 
-  //       NasaHolderModel.toHolder(response)
-  //     )
-  //   );
-  // }
-
-  // static List<NasaResponseModel> toResponseList(List<dynamic> data) {
-  //   List<NasaResponseModel> value = <NasaResponseModel>[];
-  //   data.forEach((element) {
-  //     value.add(NasaResponseModel.fromJson(element));
-  //   });
-  //   return value ?? List<NasaResponseModel>.empty();
-  // }
+  static List<CustomModel> toModelList(List<Map<String, Object?>>? data) {
+    List<CustomModel> value = new List<CustomModel>.empty(growable: true);
+    data?.forEach((element) {
+      value.add(CustomModel.fromJson(element));
+     } );
+    return value;
+  }
 }

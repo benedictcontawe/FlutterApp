@@ -1,23 +1,15 @@
-import 'package:hive/hive.dart';
-
-part 'custom_model.g.dart';
-
-@HiveType(typeId: 0, adapterName: "CustomModelAdapter")
-class CustomModel extends HiveObject {
+class CustomModel {
 
   CustomModel ( {
-    //this.id,
+    this.id,
     this.name,
     //this.icon,
   } );
 
-  //@HiveField(0)
-  //final int? id;
+  final int? id;
 
-  @HiveField(0)
-  String? name;
+  final String? name;
 
-  //@HiveField(1)
   //final Icon? icon;
 
   factory CustomModel.toHolder(/*HiveModel model*/) => CustomModel (
@@ -26,8 +18,21 @@ class CustomModel extends HiveObject {
     //icon : model.icon,
   );
 
+  factory CustomModel.fromJson(Map<String, dynamic> json) {
+    return CustomModel(
+      id: json['id'], name: json['name'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name
+    };
+  }
+
   @override
   String toString() {
-    return "CustomModel name $name" ?? super.toString();
+    return "CustomModel id $id, name $name" ?? super.toString();
   }
 }
