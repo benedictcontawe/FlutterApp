@@ -70,3 +70,5 @@ samples, guidance on mobile development, and a full API reference.
 - [Layout bounds not showing in Fultter app but it shows for other apps](https://stackoverflow.com/questions/54821625/layout-bounds-not-showing-in-fultter-app-but-it-shows-for-other-apps)
 
 - [Using SharedPreferences in Flutter](https://medium.flutterdevs.com/using-sharedpreferences-in-flutter-251755f07127)
+
+- [Simple SQFlite database example in Flutter](https://suragch.medium.com/simple-sqflite-database-example-in-flutter-e56a5aaa3f91)
