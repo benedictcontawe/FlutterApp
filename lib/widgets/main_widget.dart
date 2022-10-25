@@ -1,8 +1,7 @@
 import 'package:dart_hive/controllers/main_controller.dart';
 import 'package:dart_hive/widgets/base_widgets.dart';
-import 'package:dart_hive/widgets/swipe_refresh_list_widget.dart';
+import 'package:dart_hive/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class MainWidget extends BaseWidget<MainController> {
   
@@ -10,12 +9,27 @@ class MainWidget extends BaseWidget<MainController> {
 
   @override
   Widget build(BuildContext context) {      
-    return Obx ( () {
-        if (controller.isLoading()) {
-          return const Center(child: CircularProgressIndicator());
-        } else {
-          return const SwipeRefreshListWidget();
-        }
-    }, );
+    return Align(
+      alignment: Alignment.center,
+      child: Column (
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          ButtonWidget(
+            onPressed: () {
+              controller.launchPrimitive();
+            },
+            text: 'Primitive',
+          ),
+          ButtonWidget(
+            onPressed: () {
+              controller.launchObject();
+            },
+            text: 'Object',
+          ),
+        ],
+      ),
+    );
   }
 }

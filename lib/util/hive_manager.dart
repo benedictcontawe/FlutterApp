@@ -11,6 +11,8 @@ class HiveManager {
     //box ??= await Hive.openBox(Constants.Hive);
     if(box == null) {
       box = await Hive.openBox(Constants.Hive);//Hive.box(Constants.Hive);
+    }
+    if(primitiveBox == null) {
       primitiveBox = await Hive.openBox(Constants.HivePrimitive);
     }
   }

@@ -1,10 +1,11 @@
-import 'package:dart_hive/controllers/main_controller.dart';
+import 'package:dart_hive/controllers/primitive_controller.dart';
 import 'package:dart_hive/views/base_view.dart';
-import 'package:dart_hive/widgets/main_widget.dart';
+import 'package:dart_hive/widgets/primitive_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MainPage extends BaseView<MainController> {
-  const MainPage({Key? key}) : super(key: key);
+class PrimitivePage extends BaseView<PrimitiveController> {
+  const PrimitivePage( {Key? key} ) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +14,13 @@ class MainPage extends BaseView<MainController> {
     debugPrint("MainPage isClosed ${controller.isClosed}");
     return Scaffold (
       appBar: AppBar (
+        actions: [
+          IconButton(
+            icon: Icon(CupertinoIcons.refresh), 
+            onPressed: () {
+              controller.updatePrimitives();
+            }),
+        ],
         elevation: 0,
         title: const Text(
           "Flutter App",
@@ -23,7 +31,7 @@ class MainPage extends BaseView<MainController> {
           ),
         ),
       ),
-      body: const MainWidget(),
+      body: const PrimitiveWidget(),
     );
   }
 }

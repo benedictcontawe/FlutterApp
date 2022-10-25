@@ -1,11 +1,11 @@
-import 'package:dart_hive/controllers/main_controller.dart';
+import 'package:dart_hive/controllers/object_controller.dart';
 import 'package:dart_hive/views/custom_dialog.dart';
 import 'package:dart_hive/widgets/base_widgets.dart';
 import 'package:dart_hive/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ListWidget extends BaseWidget<MainController> {
+class ListWidget extends BaseWidget<ObjectController> {
   
   const ListWidget({super.key});
 
