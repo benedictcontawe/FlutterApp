@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class TabBarFragment extends StatelessWidget {
+class TabBarWidget extends StatelessWidget {
   //final String title;
 
-  TabBarFragment({Key? key}) : super(key: key);
+  TabBarWidget({Key? key}) : super(key: key);
   //TabBarFragment({Key key, this.title}) : super(key: key);
 
   @override
@@ -18,7 +18,7 @@ class TabBarFragment extends StatelessWidget {
             title: new TabBar(
               onTap: (index) {
                 //your currently selected index
-                print("TabBarFragment onTap(): " + index.toString());
+                print("TabBarWidget onTap(): " + index.toString());
               },
               tabs: [
                 new Tab(icon: new Icon(Icons.directions_walk)),

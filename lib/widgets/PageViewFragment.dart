@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class PageViewFragment extends StatelessWidget {
+class PageViewWidget extends StatelessWidget {
   PageController controller = PageController();
 
   @override
@@ -29,7 +29,7 @@ class PageViewFragment extends StatelessWidget {
           onPageChanged: (num) {
             //controller.jumpToPage(0);
             //print("PageViewFragment onPageChanged(): " + controller.position.toString());
-            print("PageViewFragment onPageChanged(): " + num.toString());
+            print("PageViewWidget onPageChanged(): " + num.toString());
           },
           scrollDirection: Axis.horizontal, // scrollDirection: Axis.vertical,
           pageSnapping: true,
