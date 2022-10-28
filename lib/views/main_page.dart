@@ -1,39 +1,33 @@
-import 'package:navigation_drawer/fragments/first_fragment.dart';
-import "package:navigation_drawer/fragments/second_fragment.dart";
-import "package:navigation_drawer/fragments/third_fragment.dart";
+import 'package:navigation_drawer/models/navigation_drawer_model.dart';
+import 'package:navigation_drawer/widgets/first_widget.dart';
+import 'package:navigation_drawer/widgets/second_widget.dart';
+import 'package:navigation_drawer/widgets/third_widget.dart';
 import "package:flutter/material.dart";
 
-class DrawerItem {
-  String title;
-  IconData icon;
-  DrawerItem(this.title, this.icon);
-}
-
-class HomePage extends StatefulWidget {
-  final drawerItems = [
-    new DrawerItem("Fragment 1", Icons.rss_feed),
-    new DrawerItem("Fragment 2", Icons.local_pizza),
-    new DrawerItem("Fragment 3", Icons.info)
+class MainPage extends StatefulWidget {
+  final drawerModels = [
+    new NavigationDrawerModel("Fragment 1", Icons.rss_feed),
+    new NavigationDrawerModel("Fragment 2", Icons.local_pizza),
+    new NavigationDrawerModel("Fragment 3", Icons.info)
   ];
 
   @override
   State<StatefulWidget> createState() {
-    return new HomePageState();
+    return new MainPageState();
   }
 }
 
-class HomePageState extends State<HomePage> {
+class MainPageState extends State<MainPage> {
   int _selectedDrawerIndex = 0;
 
   _getDrawerItemWidget(int pos) {
     switch (pos) {
       case 0:
-        return new FirstFragment();
+        return new FirstWidget();
       case 1:
-        return new SecondFragment();
+        return new SecondWidget();
       case 2:
-        return new ThirdFragment();
-
+        return new ThirdWidget();
       default:
         return new Text("Error");
     }
@@ -47,8 +41,8 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     var drawerOptions = <Widget>[];
-    for (var i = 0; i < widget.drawerItems.length; i++) {
-      var d = widget.drawerItems[i];
+    for (var i = 0; i < widget.drawerModels.length; i++) {
+      var d = widget.drawerModels[i];
       drawerOptions.add(
         new ListTile(
           leading: new Icon(d.icon),
@@ -63,7 +57,7 @@ class HomePageState extends State<HomePage> {
       appBar: new AppBar(
         // here we display the title corresponding to the fragment
         // you can instead choose to have a static title
-        title: new Text(widget.drawerItems[_selectedDrawerIndex].title),
+        title: new Text(widget.drawerModels[_selectedDrawerIndex].title),
       ),
       drawer: new Drawer(
         child: new Column(

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-class ThirdFragment extends StatelessWidget {
+class SecondWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return new Center(
-      child: new Text("Hello Fragment 3"),
+      child: new Text("Hello Fragment 2"),
     );
   }
 
