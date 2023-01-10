@@ -72,3 +72,5 @@ samples, guidance on mobile development, and a full API reference.
 - [Using SharedPreferences in Flutter](https://medium.flutterdevs.com/using-sharedpreferences-in-flutter-251755f07127)
 
 - [Simple SQFlite database example in Flutter](https://suragch.medium.com/simple-sqflite-database-example-in-flutter-e56a5aaa3f91)
+
+- [Flutter TabBar: A complete tutorial with examples](https://blog.logrocket.com/flutter-tabbar-a-complete-tutorial-with-examples/)
