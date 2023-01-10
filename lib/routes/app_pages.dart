@@ -1,7 +1,7 @@
-import 'package:dart_sqflite/bindings/splash_binding.dart';
-import 'package:dart_sqflite/bindings/main_binding.dart';
-import 'package:dart_sqflite/views/main_page.dart';
-import 'package:dart_sqflite/views/splash_page.dart';
+import 'package:tab_bar/bindings/splash_binding.dart';
+import 'package:tab_bar/bindings/main_binding.dart';
+import 'package:tab_bar/views/main_page.dart';
+import 'package:tab_bar/views/splash_page.dart';
 import 'package:get/get.dart';
 part 'routes.dart';
 

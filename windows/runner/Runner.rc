@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.sample" "\0"
-            VALUE "FileDescription", "dart_sqflite" "\0"
+            VALUE "FileDescription", "tab_bar" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "dart_sqflite" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2022 com.sample. All rights reserved." "\0"
-            VALUE "OriginalFilename", "dart_sqflite.exe" "\0"
-            VALUE "ProductName", "dart_sqflite" "\0"
+            VALUE "InternalName", "tab_bar" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2023 com.sample. All rights reserved." "\0"
+            VALUE "OriginalFilename", "tab_bar.exe" "\0"
+            VALUE "ProductName", "tab_bar" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

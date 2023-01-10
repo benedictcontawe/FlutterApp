@@ -1,4 +1,0 @@
-API_DOMAIN = "https://api.nasa.gov";
-API_GET = "/planetary/apod";
-API_KEY = "lebNOALEyzgIAKKggQws8YGcWVLDK72R0l2Twryx";
-API_AUTHORIZATION = "Basic YWZwaWRldnVzZXI6YWZwaWRldlBAc3N3MHJk";

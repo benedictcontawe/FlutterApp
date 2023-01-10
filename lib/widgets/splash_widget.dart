@@ -1,5 +1,5 @@
-import 'package:dart_sqflite/controllers/splash_controller.dart';
-import 'package:dart_sqflite/widgets/base_widgets.dart';
+import 'package:tab_bar/controllers/splash_controller.dart';
+import 'package:tab_bar/widgets/base_widgets.dart';
 import 'package:flutter/material.dart';
 
 class SplashWidget extends BaseWidget<SplashController> {

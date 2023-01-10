@@ -1,4 +1,4 @@
-package com.sample.dart_hive
+package com.sample.tab_bar
 
 import io.flutter.embedding.android.FlutterActivity
 

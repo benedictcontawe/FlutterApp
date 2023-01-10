@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:dart_sqflite/controllers/base_controller.dart';
-import 'package:dart_sqflite/routes/app_pages.dart';
+import 'package:tab_bar/controllers/base_controller.dart';
+import 'package:tab_bar/routes/app_pages.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 

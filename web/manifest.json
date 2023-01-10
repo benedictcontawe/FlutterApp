@@ -1,6 +1,6 @@
 {
-    "name": "dart_sqflite",
-    "short_name": "dart_sqflite",
+    "name": "tab_bar",
+    "short_name": "tab_bar",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

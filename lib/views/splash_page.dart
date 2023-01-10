@@ -1,6 +1,6 @@
-import 'package:dart_sqflite/controllers/splash_controller.dart';
-import 'package:dart_sqflite/views/base_view.dart';
-import 'package:dart_sqflite/widgets/splash_widget.dart';
+import 'package:tab_bar/controllers/splash_controller.dart';
+import 'package:tab_bar/views/base_view.dart';
+import 'package:tab_bar/widgets/splash_widget.dart';
 import 'package:flutter/material.dart';
 
 class SplashPage extends BaseView<SplashController> {
