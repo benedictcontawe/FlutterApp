@@ -52,6 +52,23 @@ class MainController extends BaseController {
     );
   }
 
+  /// NotificationListenerCallback
+  /// Return true to cancel the notification bubbling. Return false to
+  /// allow the notification to continue to be dispatched to further ancestors.
+  bool onCheckScroll(ScrollNotification scrollNotification) {
+    if (scrollNotification is ScrollStartNotification) {
+      debugPrint("MainController onStartScroll Scroll Start");
+
+    } else if (scrollNotification is ScrollUpdateNotification) {
+      debugPrint("MainController onUpdateScroll Scroll Update");
+
+    } else if (scrollNotification is ScrollEndNotification) {
+      debugPrint("MainController onEndScroll Scroll End");
+
+    }
+    return false;
+  }
+
   ScrollController getScrollController() {
     return _scrollController;
   }
@@ -61,7 +78,7 @@ class MainController extends BaseController {
       _isLoading(true);
       var response = await dioService.request(url: Constants.API_GET, method: ApiMethod.GET, params: {
         'api_key': Constants.API_KEY,
-        'count': getLength() + count ?? 5,
+        'count': getLength() + count,
       });      
       debugPrint("MainController statusCode ${response.statusCode}");
       if (response.statusCode == 200) {
