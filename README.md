@@ -76,3 +76,5 @@ samples, guidance on mobile development, and a full API reference.
 - [Flutter TabBar: A complete tutorial with examples](https://blog.logrocket.com/flutter-tabbar-a-complete-tutorial-with-examples/)
 
 - [Dart – extends Vs with Vs implements](https://www.geeksforgeeks.org/dart-extends-vs-with-vs-implements/)
+
+- [Flutter : let’s know the ScrollController and ScrollNotification](https://medium.com/@diegoveloper/flutter-lets-know-the-scrollcontroller-and-scrollnotification-652b2685a4ac)
