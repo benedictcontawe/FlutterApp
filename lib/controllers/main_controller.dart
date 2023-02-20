@@ -29,12 +29,13 @@ class MainController extends BaseController {
 
   void _scrollListener() {
     if (_scrollController.offset >= _scrollController.position.maxScrollExtent && !_scrollController.position.outOfRange) {
-      debugPrint("MainController statusCode reach the bottom");
+      debugPrint("MainController ListView reach the bottom");
     } else if (_scrollController.offset <= _scrollController.position.minScrollExtent && !_scrollController.position.outOfRange) {
-      debugPrint("MainController statusCode reach the top");
+      debugPrint("MainController ListView reach the top");
     }
   }
 
+  ///Method for ListView will Scroll up 
   void scrollUp(int itemSize, ) {
     _scrollController.animateTo(
       _scrollController.offset - itemSize,
@@ -43,6 +44,7 @@ class MainController extends BaseController {
     );
   }
 
+  ///Method for ListView will Scroll down
   void scrollDown(int itemSize, ) {
     //_controller.jumpTo(pixelsToMove);
     _scrollController.animateTo(
@@ -73,7 +75,8 @@ class MainController extends BaseController {
     return _scrollController;
   }
 
-  Future<void> fetchAPOD(int count) async {
+  Future<void> fetchAPOD(int count) async { 
+    debugPrint("MainController fetchAPOD ${count}");
     try {
       _isLoading(true);
       var response = await dioService.request(url: Constants.API_GET, method: ApiMethod.GET, params: {
@@ -82,13 +85,23 @@ class MainController extends BaseController {
       });      
       debugPrint("MainController statusCode ${response.statusCode}");
       if (response.statusCode == 200) {
-        _list.value = ConvertList.toHolderList( ConvertList.toResponseList( response.data ) );
+        //_list.value = ConvertList.toHolderList( ConvertList.toResponseList( response.data ) );
+        _list.value.clear();
+        _list.value.addAll(
+          ConvertList.toHolderList( 
+            ConvertList.toResponseList( 
+              response.data 
+            ) 
+          )
+        );
       }
       debugPrint("MainController list ${_list.value}");
+      debugPrint("MainController list lenght ${_list.value.length}");
     } on RangeError {
       debugPrint("MainController RangeError");
     } catch (exception) {
       debugPrint("MainController exception $exception");
+      Get.snackbar("Error", exception.toString());
     } finally {
       _isLoading(false);
     }
