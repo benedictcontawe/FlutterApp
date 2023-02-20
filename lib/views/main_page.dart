@@ -14,7 +14,7 @@ class MainPage extends BaseView<MainController> {
     return Scaffold( 
       appBar: AppBar (
         elevation: 0,
-        title: const Text(
+        title: const Text (
           "Flutter App",
           style: TextStyle(
             fontFamily: "avenir",
