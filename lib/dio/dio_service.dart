@@ -15,7 +15,7 @@ class DioService {
     }
   };
 
-  Future<DioService> initialize(String? baseUrl, int? connectTimeout, int? receiveTimeout) async {
+  Future<DioService> initialize(String? baseUrl, Duration? connectTimeout, Duration? receiveTimeout) async {
     _dio = Dio( BaseOptions (
         baseUrl: baseUrl ?? Constants.API_DOMAIN,
         connectTimeout: connectTimeout ?? Constants.TIMEOUT,

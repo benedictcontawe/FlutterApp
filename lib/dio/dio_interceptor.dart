@@ -46,22 +46,28 @@ class DioInterceptor extends Interceptor {
   @override
   void onError(DioError error, ErrorInterceptorHandler handler) {
     switch (error.type) {
-      case DioErrorType.connectTimeout: {
-
-      } break;
-      case DioErrorType.receiveTimeout: {
+      case DioErrorType.connectionTimeout: {
 
       } break;
       case DioErrorType.sendTimeout: {
 
       } break;
+      case DioErrorType.receiveTimeout: {
+
+      } break;
+      case DioErrorType.badCertificate: {
+
+      } break;
+      case DioErrorType.badResponse: {
+
+      } break;
       case DioErrorType.cancel: {
 
       } break;
-      case DioErrorType.response: {
+      case DioErrorType.connectionError: {
 
       } break;
-      case DioErrorType.other: {
+      case DioErrorType.unknown: {
 
       } break;
     }
