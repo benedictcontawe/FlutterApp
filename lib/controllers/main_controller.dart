@@ -94,6 +94,7 @@ class MainController extends BaseController {
             ) 
           )
         );
+        _list.value.reversed;
       }
       debugPrint("MainController list ${_list.value}");
       debugPrint("MainController list lenght ${_list.value.length}");
