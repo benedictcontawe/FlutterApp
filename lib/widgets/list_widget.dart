@@ -10,6 +10,7 @@ class ListWidget extends BaseWidget<MainController> {
   Widget build(BuildContext context) {
     //return Obx( () {
       return ListView.builder (
+        controller: controller.getScrollController(),
         itemCount: controller.getLength(),
         itemBuilder: (BuildContext context, int index) {
           return Card(

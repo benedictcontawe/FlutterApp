@@ -10,9 +10,12 @@ class SwipeRefreshListWidget extends BaseWidget<MainController> {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator (
+      notificationPredicate: (notification) {
+        return true;//true to enable swipe up refresh, false to disable swipe up refresh
+      },
       triggerMode: RefreshIndicatorTriggerMode.onEdge,
       onRefresh: () {
-        return controller.fetchAPOD();
+        return controller.fetchAPOD(5);
       },
       child: const ListWidget(),
     );
