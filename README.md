@@ -17,6 +17,8 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Reference
 
+- [GetX for your Flutter applications - Part 1](https://techblog.geekyants.com/getx-for-your-flutter-applications-part-1)
+
 - [Flutter: How to fit the web view size to screen?](https://stackoverflow.com/questions/62113082/flutter-how-to-fit-the-web-view-size-to-screen)
 
 - [Flutter BLoC Pattern Tutorial From Scratch](https://www.youtube.com/watch?v=oxeYeMHVLII)
