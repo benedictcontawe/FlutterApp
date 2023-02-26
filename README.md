@@ -80,3 +80,5 @@ samples, guidance on mobile development, and a full API reference.
 - [Dart – extends Vs with Vs implements](https://www.geeksforgeeks.org/dart-extends-vs-with-vs-implements/)
 
 - [Flutter : let’s know the ScrollController and ScrollNotification](https://medium.com/@diegoveloper/flutter-lets-know-the-scrollcontroller-and-scrollnotification-652b2685a4ac)
+
+- [Let’s GetX in Flutter](https://medium.com/mindful-engineering/lets-getx-in-flutter-4eaff2826ac7)
