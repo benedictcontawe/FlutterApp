@@ -1,13 +1,9 @@
-import 'package:dart_http/bindings/splash_binding.dart';
-import 'package:dart_http/util/environment.dart';
+import 'package:dart_media_query/bindings/splash_binding.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/route_manager.dart';
 import 'routes/app_pages.dart';
 
 Future<void> main() async {
-  await dotenv.load(fileName : Environment.mode);
-
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: true,
     initialBinding: SplashBinding(),

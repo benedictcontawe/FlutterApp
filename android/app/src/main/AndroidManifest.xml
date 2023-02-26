@@ -1,8 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sample.dart_http">
-    <uses-permission android:name="android.permission.INTERNET"/>
+    package="com.sample.dart_media_query">
    <application
-        android:label="dart_http"
+        android:label="dart_media_query"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
