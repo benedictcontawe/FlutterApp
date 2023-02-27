@@ -19,9 +19,9 @@ class MainController extends BaseController {
     super.onInit();
   }
 
-  bool setWidth(SizeChangedLayoutNotification notification) {
-    debugPrint("MainController setWidth ${Get.width}");
-    _width(Get.width);
+  bool setWidth(double width) {
+    debugPrint("MainController setWidth ${width}");
+    _width(width);
     return false;
   }
 

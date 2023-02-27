@@ -1,4 +1,5 @@
 import 'package:dart_media_query/views/base_view.dart';
+import 'package:dart_media_query/widgets/app_bar_title_widget.dart';
 import 'package:dart_media_query/widgets/drawer_wiget.dart';
 import 'package:dart_media_query/widgets/mobile_body_widget.dart';
 import 'package:flutter/material.dart';
@@ -9,17 +10,10 @@ class MobilePage extends BaseView {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( 
+    return Scaffold (
       appBar: AppBar (
         elevation: 0,
-        title: const Text (
-          "Flutter App",
-          style: TextStyle(
-            fontFamily: "avenir",
-            fontSize: 32,
-            fontWeight: FontWeight.w900
-          ),
-        ),
+        title: const AppBarTitleWidget(),
       ),
       body: const MobileBodyWidget(),
       drawer: const DrawerWidget(),

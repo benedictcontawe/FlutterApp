@@ -9,7 +9,7 @@ class MobileBodyWidget extends BaseWidget<MainController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.blue,
+      color: Colors.orange,
     );
   }
 }
