@@ -88,3 +88,5 @@ samples, guidance on mobile development, and a full API reference.
 - [Responsive layouts in Flutter: Split View and Drawer Navigation](https://codewithandrea.com/articles/flutter-responsive-layouts-split-view-drawer-navigation/)
 
 - [Flutter : Collapsing Toolbar — Sliver App Bar](https://medium.com/@diegoveloper/flutter-collapsing-toolbar-sliver-app-bar-14b858e87abe)
+
+- [How to implement infinite scroll pagination in Flutter](https://blog.logrocket.com/implement-infinite-scroll-pagination-flutter/)
