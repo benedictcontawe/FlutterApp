@@ -10,7 +10,6 @@ class MainController extends BaseController {
   }
 
   final RxDouble _width = Get.width.obs;
-  final RxDouble _height = Get.height.obs;
   final RxBool _isLoading = true.obs;
 
   @override
@@ -20,7 +19,7 @@ class MainController extends BaseController {
   }
 
   bool setWidth(double width) {
-    debugPrint("MainController setWidth ${width}");
+    debugPrint("MainController setWidth $width");
     _width(width);
     return false;
   }
@@ -31,6 +30,10 @@ class MainController extends BaseController {
 
   bool isMobile() { debugPrint("MainController isMobile");
     return _width.value < 600.00;
+  }
+
+  double getAppBarHeight() {
+    return Get.height * 0.05; //MediaQuery.of(context).size.height
   }
 
   bool isLoading() {
