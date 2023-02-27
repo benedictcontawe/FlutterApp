@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 
 class DrawerCellWidget extends BaseWidget<MainController> {
 
-  const DrawerCellWidget({
+  const DrawerCellWidget( {
     super.key,
     required this.icon,
     required this.text,
     this.onTap,
-  });
+  } );
 
   final IconData icon;
   final String text;
@@ -22,7 +22,7 @@ class DrawerCellWidget extends BaseWidget<MainController> {
       children: <Widget>[
         Icon(icon),
         Padding(
-          padding: EdgeInsets.only(left: 8.0),
+          padding: const EdgeInsets.only(left: 8.0),
           child: Text(text),
         )
       ],

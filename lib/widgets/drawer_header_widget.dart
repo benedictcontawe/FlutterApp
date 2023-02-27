@@ -1,8 +1,7 @@
-import 'package:dart_media_query/controllers/main_controller.dart';
 import 'package:dart_media_query/widgets/base_widgets.dart';
 import 'package:flutter/material.dart';
 
-class DrawerHeaderWidget extends BaseWidget<MainController> {
+class DrawerHeaderWidget extends BaseWidget {
 
   const DrawerHeaderWidget({super.key});
 

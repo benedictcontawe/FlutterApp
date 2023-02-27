@@ -1,7 +1,7 @@
-import 'package:dart_media_query/views/base_view.dart';
+import 'package:dart_media_query/widgets/base_widgets.dart';
 import 'package:flutter/material.dart';
 
-class AppBarTitleWidget extends BaseView {
+class AppBarTitleWidget extends BaseWidget {
 
   const AppBarTitleWidget({super.key});
 
