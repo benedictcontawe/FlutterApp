@@ -90,3 +90,5 @@ samples, guidance on mobile development, and a full API reference.
 - [Flutter : Collapsing Toolbar — Sliver App Bar](https://medium.com/@diegoveloper/flutter-collapsing-toolbar-sliver-app-bar-14b858e87abe)
 
 - [How to implement infinite scroll pagination in Flutter](https://blog.logrocket.com/implement-infinite-scroll-pagination-flutter/)
+
+- [Know Your Widgets: Scaffold in Flutter](https://medium.flutterdevs.com/know-your-widgets-scaffold-in-flutter-292b8bc1281)
