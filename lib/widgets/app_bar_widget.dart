@@ -24,7 +24,7 @@ class AppBarWidget extends BaseWidget<MainController> with PreferredSizeWidget {
             "Flutter App",
             style: TextStyle(
               fontFamily: "avenir",
-              fontSize: 32,
+              fontSize: 30,
               fontWeight: FontWeight.w900
             ),
           ),
