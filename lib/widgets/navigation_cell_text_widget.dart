@@ -5,19 +5,30 @@ class NavigationCellTextWidget extends NavigationCellWidget {
   
   NavigationCellTextWidget( {
     super.key,
-    required String text
+    required String text,
+    //required bool isHovered,
+    //Function? onHover,
+    //Function? onExit,
   } ) : super (
     
     onHover: () {
       debugPrint("NavigationCellTextWidget onHovers $text");
+
     },
 
     onExit: () {
       debugPrint("NavigationCellTextWidget onExit $text");
+
     },
   
     child: Text (
-      text
+      text,
+      style: TextStyle (
+        color: Colors.white,
+        //decoration: TextDecoration.overline,
+        fontSize: 13,
+      ),
     ),
   );
+
 }

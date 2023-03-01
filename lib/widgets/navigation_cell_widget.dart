@@ -10,7 +10,7 @@ class NavigationCellWidget extends MouseRegion {
     super.key,
     required Widget child,
     Function? onHover,
-    Function? onExit
+    Function? onExit,
   } ) : super (
         
     onHover: (PointerHoverEvent evt) {
