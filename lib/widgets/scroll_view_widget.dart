@@ -12,7 +12,10 @@ class ScrollViewWidget extends BaseWidget {
 
    @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView (
+    return Scrollbar(
+      thickness: 10,
+      //isAlwaysShown: true,
+      child: SingleChildScrollView (
         physics: isScrollable ? const AlwaysScrollableScrollPhysics() : const NeverScrollableScrollPhysics(),
         child: Column(
           children: <Widget>[
@@ -49,6 +52,7 @@ class ScrollViewWidget extends BaseWidget {
             Container(color: Colors.purple, height: 50.0),
           ],
         ),
-      );
+      )
+    );
   } 
 }
