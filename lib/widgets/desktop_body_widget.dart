@@ -18,14 +18,14 @@ class DesktopBodyWidget extends BaseWidget<MainController> {
           alignment: Alignment.topCenter,
           child: FractionallyNavigationBarWidget (
             widthFactor: 1,
-            heightFactor: 0.05,
+            heightFactor: 0.10,
           ),
         ),
         Align(
           alignment: Alignment.bottomCenter,
           child: FractionallyScrollViewWidget (
             widthFactor: 1,
-            heightFactor: 0.95,
+            heightFactor: 0.90,
             isScrollable: true,
           ),
         )

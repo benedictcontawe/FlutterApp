@@ -33,7 +33,7 @@ class MainController extends BaseController {
   }
 
   double getAppBarHeight() {
-    return Get.height * 0.05; //MediaQuery.of(context).size.height * 0.05;
+    return Get.height * 0.10; //MediaQuery.of(context).size.height * 0.10;
   }
 
   bool isLoading() {
