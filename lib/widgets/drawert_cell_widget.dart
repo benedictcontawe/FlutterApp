@@ -18,16 +18,18 @@ class DrawerCellWidget extends BaseWidget<MainController> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-    title: Row(
-      children: <Widget>[
-        Icon(icon),
-        Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: Text(text),
-        )
-      ],
-    ),
-    onTap: onTap,
-  );
+      title: Row(
+        children: <Widget> [
+          Icon (
+            icon
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Text(text),
+          )
+        ],
+      ),
+      onTap: onTap,
+    );
   }
 }
