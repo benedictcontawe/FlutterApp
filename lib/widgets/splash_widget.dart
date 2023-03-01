@@ -14,13 +14,10 @@ class SplashWidget extends BaseWidget<SplashController> {
       child: Align(alignment: Alignment.center,
       child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            'assets/flutter.webp',
-            fit: BoxFit.cover,
-            height: 100,
-            width: 100,
-            alignment: Alignment.center,
+        children: <Widget> [
+          const FlutterLogo(
+            size: 100,
+            style: FlutterLogoStyle.markOnly,
           ),
           const Text(
             'Flutter App', 
