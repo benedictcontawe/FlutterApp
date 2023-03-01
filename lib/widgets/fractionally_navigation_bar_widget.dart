@@ -19,7 +19,7 @@ class FractionallyNavigationBarWidget extends BaseWidget {
       widthFactor: widthFactor,
       heightFactor: heightFactor,
       child: Container (
-        color: Colors.pink,
+        color: Colors.grey,
         child: Row (
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           mainAxisSize: MainAxisSize.max,
