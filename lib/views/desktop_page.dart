@@ -13,6 +13,8 @@ class DesktopPage extends BaseView<MainController> {
     return Scaffold ( 
       appBar: AppBarWidget(height: controller.getAppBarHeight(),),
       body: const DesktopBodyWidget(),
+      drawer: null,
+      endDrawer: null,
     );
   }
 }

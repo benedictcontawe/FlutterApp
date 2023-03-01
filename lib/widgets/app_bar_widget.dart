@@ -19,14 +19,13 @@ class AppBarWidget extends BaseWidget<MainController> with PreferredSizeWidget {
       return PreferredSize(
         preferredSize: preferredSize,
         child: AppBar (
+          backgroundColor: Colors.grey,
           elevation: 0,
-          title: const Text (
-            "Flutter App",
-            style: TextStyle(
-              fontFamily: "avenir",
-              fontSize: 30,
-              fontWeight: FontWeight.w900
-            ),
+          title: Image.asset (
+            'assets/flutter.png',
+            fit: BoxFit.cover,
+            height: height,
+            width: height,
           ),
         ),
       );

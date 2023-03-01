@@ -14,7 +14,8 @@ class MobilePage extends BaseView<MainController> {
     return Scaffold (
       appBar: AppBarWidget(height: controller.getAppBarHeight(),),
       body: const MobileBodyWidget(),
-      drawer: const DrawerWidget(),
+      drawer: null,
+      endDrawer: const DrawerWidget(),
     );
   }
 }
