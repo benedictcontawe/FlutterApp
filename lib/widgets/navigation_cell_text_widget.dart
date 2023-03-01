@@ -7,6 +7,14 @@ class NavigationCellTextWidget extends NavigationCellWidget {
     super.key,
     required String text
   } ) : super (
+    
+    onHover: () {
+      debugPrint("NavigationCellTextWidget onHovers $text");
+    },
+
+    onExit: () {
+      debugPrint("NavigationCellTextWidget onExit $text");
+    },
   
     child: Text (
       text
