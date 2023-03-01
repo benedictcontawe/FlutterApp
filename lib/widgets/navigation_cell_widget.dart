@@ -4,13 +4,12 @@ import 'package:universal_html/html.dart' as html;
 
 class NavigationCellWidget extends MouseRegion {
 
-static final appContainer = html.window.document.querySelectorAll('flt-glass-pane')[0];
+  static final appContainer = html.window.document.querySelectorAll('flt-glass-pane')[0];
 
   NavigationCellWidget( {
     super.key,
-    //required Widget child, 
-    required String text
-  }) : super (
+    required Widget child,
+  } ) : super (
         
     onHover: (PointerHoverEvent evt) {
       appContainer.style.cursor = 'pointer';
@@ -20,8 +19,6 @@ static final appContainer = html.window.document.querySelectorAll('flt-glass-pan
       appContainer.style.cursor = 'default';
     },
   
-    child: Text(
-      text
-    ),
+    child: child,
   );
 }

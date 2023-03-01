@@ -1,5 +1,6 @@
 import 'package:dart_media_query/controllers/main_controller.dart';
 import 'package:dart_media_query/widgets/base_widgets.dart';
+import 'package:dart_media_query/widgets/navigation_cell_image_widget.dart';
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends BaseWidget<MainController> with PreferredSizeWidget {
@@ -21,8 +22,8 @@ class AppBarWidget extends BaseWidget<MainController> with PreferredSizeWidget {
         child: AppBar (
           backgroundColor: Colors.grey,
           elevation: 0,
-          title: Image.asset (
-            'assets/flutter.png',
+          title: NavigationCellImageWidget (
+            image: 'assets/flutter.png',
             fit: BoxFit.cover,
             height: height,
             width: height,
