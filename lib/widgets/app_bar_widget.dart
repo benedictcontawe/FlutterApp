@@ -20,7 +20,7 @@ class AppBarWidget extends BaseWidget<MainController> with PreferredSizeWidget {
       return PreferredSize(
         preferredSize: preferredSize,
         child: AppBar (
-          backgroundColor: Colors.grey,
+          backgroundColor: Colors.black,
           elevation: 0,
           title: NavigationCellImageWidget (
             image: 'assets/flutter.png',
