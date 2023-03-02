@@ -26,7 +26,9 @@ class DrawerWidget extends BaseWidget {
           const DrawerCellWidget(icon: Icons.bug_report, text: 'Report an issue'),
           ListTile(
             title: const Text('0.0.1'),
-            onTap: () {},
+            onTap: () {
+              
+            },
           ),
         ],
       ),

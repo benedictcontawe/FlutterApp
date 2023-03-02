@@ -1,4 +1,3 @@
-
 import 'package:dart_media_query/widgets/base_widgets.dart';
 import 'package:dart_media_query/widgets/scroll_view_widget.dart';
 import 'package:flutter/material.dart';
