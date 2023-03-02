@@ -23,13 +23,13 @@ class FractionallyNavigationBarWidget extends BaseWidget<MainController> {
       heightFactor: heightFactor,
       child: Container (
         color: Colors.black,
-        child: Obx (() {
+        child: Obx ( () {
           controller.isLoading();
           return Row (
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             mainAxisSize: MainAxisSize.max,
             children: [
-              NavigationCellImageWidget(
+              NavigationCellImageWidget (
                 image: 'assets/flutter.png',
                 fit: BoxFit.cover,
                 height: controller.getAppBarHeight(),
@@ -50,7 +50,7 @@ class FractionallyNavigationBarWidget extends BaseWidget<MainController> {
               NavigationCellTextWidget(text: 'Report an issue'),
             ],
           );
-        }),
+        } ),
       ),
     );
   }
