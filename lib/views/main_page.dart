@@ -5,7 +5,7 @@ import 'package:page_view/widgets/main_widget.dart';
 
 class MainPage extends BaseView {
 
-  const MainPage({Key? key}) : super(key: key);
+  const MainPage( {Key? key } ) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

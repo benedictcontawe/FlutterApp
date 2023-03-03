@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_view/controllers/main_controller.dart';
 import 'package:page_view/widgets/base_widget.dart';
+import 'package:page_view/widgets/page_view_widget.dart';
 
 class MainWidget extends BaseWidget<MainController> {
   
@@ -8,37 +9,44 @@ class MainWidget extends BaseWidget<MainController> {
 
   @override
   Widget build(BuildContext context) {      
-    return PageView(
+    return Stack(
       children: <Widget> [
-        Container(
-          child: Center(child:Text("Page 1")),
-          color: Colors.redAccent,
+        PageViewWidget(),
+        Positioned (
+          left: 0,
+          right: 0,
+          bottom: 0,
+          height: 40,
+          child: Container (
+            color: Colors.black12,
+            child: null/*Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List<Widget>.generate(
+                _Pages.length,
+                (index) => Padding (
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: InkWell(
+                    onTap: () {
+                      _pageViewController.animateToPage(
+                        index,
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeIn
+                      );
+                    },
+                    child: CircleAvatar(
+                      radius: 5,
+                      // check if a dot is connected to the current page
+                      // if true, give it a different color
+                      backgroundColor: _activePage == index ? Colors.greenAccent : Colors.white30,
+                    ),
+                  ),
+                )
+              ),
+            ),
+            */
+          ),
         ),
-        Container(
-          child: Center(child:Text("Page 2")),
-          color: Colors.blueAccent,
-        ),
-        Container(
-          child: Center(child:Text("Page 3")),
-          color: Colors.amberAccent,
-        ),
-        Container(
-          child: Center(child:Text("Page 4")),
-          color: Colors.greenAccent,
-        ),
-        Container(
-          child: Center(child:Text("Page 5")),
-          color: Colors.purpleAccent,
-        )
       ],
-      controller: controller.getPageController(),
-      onPageChanged: (value) {
-        return print("MainWidget onPageChanged: " + value.toString());
-      },
-      pageSnapping: controller.isPageSnapping(),
-      physics: controller.getScrollPhysics(),
-      reverse: controller.isReverese(),
-      scrollDirection: controller.getPageAxis(),
     );
   }
 }

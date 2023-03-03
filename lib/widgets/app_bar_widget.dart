@@ -31,13 +31,13 @@ class AppBarWidget extends BaseWidget<MainController> with PreferredSizeWidget {
           IconButton (
             icon: const Icon(CupertinoIcons.arrow_left),
             onPressed: () {
-              controller.onPreviousPage(1);
+              controller.onPreviousPage(250);
             },
           ),
           IconButton (
             icon: const Icon(CupertinoIcons.arrow_right),
             onPressed: () {
-              controller.onNextPage(1);
+              controller.onNextPage(250);
             },
           )
         ],

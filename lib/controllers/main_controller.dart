@@ -53,16 +53,16 @@ class MainController extends BaseController {
     );
   }
 
-  void onNextPage(int seconds) {
+  void onNextPage(int milliseconds) {
     _pageController.nextPage (
-      duration: Duration(seconds: seconds), 
+      duration: Duration(milliseconds: milliseconds), 
       curve: Curves.easeInOut,
     );
   }
 
-   void onPreviousPage(int seconds) {
+   void onPreviousPage(int milliseconds) {
     _pageController.previousPage (
-      duration: Duration(seconds: seconds), 
+      duration: Duration(milliseconds: milliseconds), 
       curve: Curves.easeInOut,
     );
   }
