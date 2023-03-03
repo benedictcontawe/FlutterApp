@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:page_view/controllers/base_controller.dart';
-import 'package:flutter/foundation.dart';
-import 'package:get/get.dart';
 
 class MainController extends BaseController {
 
@@ -56,14 +54,14 @@ class MainController extends BaseController {
   }
 
   void onNextPage(int seconds) {
-    _pageController.nextPage(
+    _pageController.nextPage (
       duration: Duration(seconds: seconds), 
       curve: Curves.easeInOut,
     );
   }
 
    void onPreviousPage(int seconds) {
-    _pageController.previousPage(
+    _pageController.previousPage (
       duration: Duration(seconds: seconds), 
       curve: Curves.easeInOut,
     );
