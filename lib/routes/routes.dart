@@ -1,4 +1,4 @@
-part of 'package:dart_media_query/routes/app_pages.dart';
+part of 'package:page_view/routes/app_pages.dart';
 
 abstract class Routes {
   static const INITIAL = '/';

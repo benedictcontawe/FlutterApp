@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sample.dart_media_query">
+    package="com.sample.page_view">
    <application
-        android:label="dart_media_query"
+        android:label="page_view"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

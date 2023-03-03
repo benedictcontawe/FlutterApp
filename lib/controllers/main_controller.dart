@@ -1,6 +1,6 @@
-import 'dart:io' show Platform;
-import 'package:dart_media_query/controllers/base_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:page_view/controllers/base_controller.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class MainController extends BaseController {
@@ -9,40 +9,70 @@ class MainController extends BaseController {
     debugPrint("MainController Constructor");
   }
 
-  final RxDouble _width = Get.width.obs;
-  final RxBool _isLoading = true.obs;
-
+  PageController _pageController = new PageController(initialPage: 0);
+  
   @override
   void onInit() {
-    //Platform.isIOS;
+    //controller.jumpToPage(2);
     super.onInit();
   }
 
-  bool setWidth(double width) {
-    debugPrint("MainController setWidth $width");
-    _width(width);
+  PageController getPageController() {
+    return _pageController;
+  }
+
+  Axis getPageAxis() {
+    return Axis.horizontal; //Axis.vertical,
+  }
+
+  ScrollPosition getPageScrollPosition() {
+    return _pageController.position;
+  }
+
+  ScrollPhysics? getScrollPhysics() {
+    return const ClampingScrollPhysics();
+    //return const NeverScrollableScrollPhysics;
+    //return const BouncingScrollPhysics();
+  }
+
+  bool isPageSnapping() {
+    return true;
+  }
+
+  bool isReverese() {
     return false;
   }
 
-  bool isDesktop() { debugPrint("MainController isDesktop");
-    return _width.value >= 600.00;
+  void jumpToPage(int page) {
+    _pageController.jumpToPage(page);
   }
 
-  bool isMobile() { debugPrint("MainController isMobile");
-    return _width.value < 600.00;
+  void animateToPage(int page, int seconds) {
+    _pageController.animateToPage (
+      page, 
+      duration: Duration(seconds: seconds), 
+      curve: Curves.easeInOut,
+    );
   }
 
-  double getAppBarHeight() {
-    return Get.height * 0.10; //MediaQuery.of(context).size.height * 0.10;
+  void onNextPage(int seconds) {
+    _pageController.nextPage(
+      duration: Duration(seconds: seconds), 
+      curve: Curves.easeInOut,
+    );
   }
 
-  bool isLoading() {
-    return _isLoading.value;
+   void onPreviousPage(int seconds) {
+    _pageController.previousPage(
+      duration: Duration(seconds: seconds), 
+      curve: Curves.easeInOut,
+    );
   }
 
   @override
   void onClose() {
     debugPrint("MainController onClose");
+    _pageController.dispose();
     super.onClose();
   }
 }

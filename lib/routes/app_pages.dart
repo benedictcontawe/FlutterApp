@@ -1,7 +1,7 @@
-import 'package:dart_media_query/bindings/splash_binding.dart';
-import 'package:dart_media_query/bindings/main_binding.dart';
-import 'package:dart_media_query/views/main_page.dart';
-import 'package:dart_media_query/views/splash_page.dart';
+import 'package:page_view/bindings/splash_binding.dart';
+import 'package:page_view/bindings/main_binding.dart';
+import 'package:page_view/views/main_page.dart';
+import 'package:page_view/views/splash_page.dart';
 import 'package:get/get.dart';
 part 'routes.dart';
 

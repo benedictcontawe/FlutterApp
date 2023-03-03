@@ -1,5 +1,5 @@
-import 'package:dart_media_query/controllers/splash_controller.dart';
-import 'package:dart_media_query/widgets/base_widgets.dart';
+import 'package:page_view/controllers/splash_controller.dart';
+import 'package:page_view/widgets/base_widget.dart';
 import 'package:flutter/material.dart';
 
 class SplashWidget extends BaseWidget<SplashController> {
@@ -21,7 +21,7 @@ class SplashWidget extends BaseWidget<SplashController> {
           ),
           const Text(
             'Flutter App', 
-            style: TextStyle(
+            style: TextStyle (
               fontSize: 20, 
               fontWeight: FontWeight.bold, 
               color: Colors.indigo

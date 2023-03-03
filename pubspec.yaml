@@ -1,4 +1,4 @@
-name: dart_media_query
+name: page_view
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -36,7 +36,6 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   get: ^4.6.5
-  universal_html: ^2.0.9
 
 dev_dependencies:
   flutter_test:

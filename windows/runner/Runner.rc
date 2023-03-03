@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.sample" "\0"
-            VALUE "FileDescription", "dart_media_query" "\0"
+            VALUE "FileDescription", "page_view" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "dart_media_query" "\0"
+            VALUE "InternalName", "page_view" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.sample. All rights reserved." "\0"
-            VALUE "OriginalFilename", "dart_media_query.exe" "\0"
-            VALUE "ProductName", "dart_media_query" "\0"
+            VALUE "OriginalFilename", "page_view.exe" "\0"
+            VALUE "ProductName", "page_view" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

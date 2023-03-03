@@ -1,6 +1,6 @@
 {
-    "name": "dart_media_query",
-    "short_name": "dart_media_query",
+    "name": "page_view",
+    "short_name": "page_view",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

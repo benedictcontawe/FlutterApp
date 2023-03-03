@@ -1,6 +1,6 @@
-import 'package:dart_media_query/controllers/splash_controller.dart';
-import 'package:dart_media_query/views/base_view.dart';
-import 'package:dart_media_query/widgets/splash_widget.dart';
+import 'package:page_view/controllers/splash_controller.dart';
+import 'package:page_view/views/base_view.dart';
+import 'package:page_view/widgets/splash_widget.dart';
 import 'package:flutter/material.dart';
 
 class SplashPage extends BaseView<SplashController> {

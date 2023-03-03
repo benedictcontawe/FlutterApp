@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:dart_media_query/controllers/base_controller.dart';
-import 'package:dart_media_query/routes/app_pages.dart';
+import 'package:page_view/controllers/base_controller.dart';
+import 'package:page_view/routes/app_pages.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 

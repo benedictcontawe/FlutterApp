@@ -1,7 +1,7 @@
-import 'package:dart_media_query/controllers/main_controller.dart';
-import 'package:dart_media_query/widgets/base_widgets.dart';
-import 'package:dart_media_query/widgets/navigation_cell_image_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:page_view/controllers/main_controller.dart';
+import 'package:page_view/widgets/base_widget.dart';
 
 class AppBarWidget extends BaseWidget<MainController> with PreferredSizeWidget {
 
@@ -14,25 +14,35 @@ class AppBarWidget extends BaseWidget<MainController> with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (controller.isDesktop()) {
-      return const SizedBox();
-    } else if (controller.isMobile()) {
-      return PreferredSize(
-        preferredSize: preferredSize,
-        child: AppBar (
-          backgroundColor: Colors.black,
-          elevation: 0,
-          title: NavigationCellImageWidget (
-            image: 'assets/flutter.png',
-            fit: BoxFit.cover,
-            height: height,
-            width: height,
+    return PreferredSize (
+      preferredSize: preferredSize,
+      child: AppBar (
+        backgroundColor: null,
+        elevation: 0,
+        title: const Text (
+          "Flutter App",
+          style: TextStyle(
+            fontFamily: "avenir",
+            fontSize: 32,
+            fontWeight: FontWeight.w900
           ),
         ),
-      );
-    } else {
-      return const Center(child: CircularProgressIndicator());
-    }
+        actions: [
+          IconButton (
+            icon: const Icon(CupertinoIcons.arrow_left),
+            onPressed: () {
+              controller.onPreviousPage(1);
+            },
+          ),
+          IconButton (
+            icon: const Icon(CupertinoIcons.arrow_right),
+            onPressed: () {
+              controller.onNextPage(1);
+            },
+          )
+        ],
+      ),
+    );
   }
   
   @override

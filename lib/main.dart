@@ -1,4 +1,4 @@
-import 'package:dart_media_query/bindings/splash_binding.dart';
+import 'package:page_view/bindings/splash_binding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'routes/app_pages.dart';

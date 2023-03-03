@@ -1,25 +1,22 @@
-import 'package:dart_media_query/controllers/main_controller.dart';
-import 'package:dart_media_query/views/base_view.dart';
-import 'package:dart_media_query/views/desktop_page.dart';
-import 'package:dart_media_query/views/mobile_page.dart';
 import 'package:flutter/material.dart';
+import 'package:page_view/views/base_view.dart';
+import 'package:page_view/widgets/app_bar_widget.dart';
+import 'package:page_view/widgets/main_widget.dart';
 
-class MainPage extends BaseView<MainController> {
+class MainPage extends BaseView {
 
   const MainPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     debugPrint("MainPage build");
-    debugPrint("MainPage initialized ${controller.initialized}");
-    debugPrint("MainPage isClosed ${controller.isClosed}");
-    controller.setWidth(MediaQuery.of(context).size.width);
-    if (controller.isDesktop()) {
-      return const DesktopPage();
-    } else if (controller.isMobile()) {
-      return const MobilePage();
-    } else {
-      return const Center(child: CircularProgressIndicator());
-    }
+    return Scaffold (
+      appBar: AppBarWidget(
+        height: MediaQuery.of(context).size.height * 0.07,
+      ),
+      body: const MainWidget(),
+      drawer: null,
+      endDrawer: null,
+    );
   }
 }

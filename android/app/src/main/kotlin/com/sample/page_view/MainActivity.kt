@@ -1,4 +1,4 @@
-package com.sample.dart_media_query
+package com.sample.page_view
 
 import io.flutter.embedding.android.FlutterActivity
 
