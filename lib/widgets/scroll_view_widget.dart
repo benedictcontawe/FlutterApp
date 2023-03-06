@@ -5,53 +5,40 @@ class ScrollViewWidget extends BaseWidget {
 
   const ScrollViewWidget( {
     super.key,
+    required this.children,
     required this.isScrollable,
+    required this.mainAxisAlignment,
+    required this.mainAxisSize,
+    this.padding,
+    required this.scrollContoller,
   } );
 
+  final List<Widget> children;
   final bool isScrollable;
+  final MainAxisAlignment? mainAxisAlignment;
+  final MainAxisSize? mainAxisSize;
+  final EdgeInsetsGeometry? padding;
+  final ScrollController? scrollContoller;
 
    @override
   Widget build(BuildContext context) {
-    return Scrollbar(
-      thickness: 10,
-      //isAlwaysShown: true,
-      child: SingleChildScrollView (
-        physics: isScrollable ? const AlwaysScrollableScrollPhysics() : const NeverScrollableScrollPhysics(),
-        child: Column(
-          children: <Widget>[
-            Container(color: Colors.red, height: 50.0),
-            Container(color: Colors.orange, height: 50.0),
-            Container(color: Colors.yellow, height: 50.0),
-            Container(color: Colors.green, height: 50.0),
-            Container(color: Colors.blue, height: 50.0),
-            Container(color: Colors.indigo, height: 50.0),
-            Container(color: Colors.purple, height: 50.0),
-            
-            Container(color: Colors.red, height: 50.0),
-            Container(color: Colors.orange, height: 50.0),
-            Container(color: Colors.yellow, height: 50.0),
-            Container(color: Colors.green, height: 50.0),
-            Container(color: Colors.blue, height: 50.0),
-            Container(color: Colors.indigo, height: 50.0),
-            Container(color: Colors.purple, height: 50.0),
-
-            Container(color: Colors.red, height: 50.0),
-            Container(color: Colors.orange, height: 50.0),
-            Container(color: Colors.yellow, height: 50.0),
-            Container(color: Colors.green, height: 50.0),
-            Container(color: Colors.blue, height: 50.0),
-            Container(color: Colors.indigo, height: 50.0),
-            Container(color: Colors.purple, height: 50.0),
-
-            Container(color: Colors.red, height: 50.0),
-            Container(color: Colors.orange, height: 50.0),
-            Container(color: Colors.yellow, height: 50.0),
-            Container(color: Colors.green, height: 50.0),
-            Container(color: Colors.blue, height: 50.0),
-            Container(color: Colors.indigo, height: 50.0),
-            Container(color: Colors.purple, height: 50.0),
-          ],
-        ),
+    return Expanded (
+      child: Scrollbar (
+        controller: scrollContoller,
+        thickness: 10,
+        trackVisibility: true, //showTrackOnHover: true,
+        thumbVisibility: true, //isAlwaysShown: true,
+        child: SingleChildScrollView (
+          physics: isScrollable ? const AlwaysScrollableScrollPhysics() : const NeverScrollableScrollPhysics(),
+          child: Padding (
+            padding: padding ?? EdgeInsets.zero,
+            child: Column (
+              mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
+              mainAxisSize: mainAxisSize ?? MainAxisSize.max,
+              children: children,
+            ),
+          ),
+        )
       )
     );
   } 

@@ -9,11 +9,17 @@ class FractionallyScrollViewWidget extends BaseWidget {
     required this.widthFactor,
     required this.heightFactor,
     required this.isScrollable,
+    this.padding,
+    required this.scrollContoller,
+    required this.children,
   } );
 
   final double widthFactor;
   final double heightFactor;
   final bool isScrollable;
+  final EdgeInsetsGeometry? padding;
+  final ScrollController? scrollContoller;
+  final List<Widget> children;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +28,11 @@ class FractionallyScrollViewWidget extends BaseWidget {
       heightFactor: heightFactor,
       child: ScrollViewWidget (
         isScrollable: isScrollable,
+        mainAxisAlignment: null,
+        mainAxisSize: null,
+        padding: padding,
+        scrollContoller: scrollContoller,
+        children: children,
       ),
     );
   }
