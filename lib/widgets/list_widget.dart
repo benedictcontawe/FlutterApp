@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dart_http/controllers/main_controller.dart';
 import 'package:dart_http/widgets/base_widgets.dart';
 import 'package:flutter/material.dart';
@@ -17,13 +18,16 @@ class ListWidget extends BaseWidget<MainController> {
             child: Column(
               children: [
                 ListTile(
-                  leading: Image.network( 
-                    controller.getImage(index),
+                  leading: CachedNetworkImage (
+                    imageUrl: controller.getImage(index),
                     fit: BoxFit.cover,
                     height: 200,
                     width: 50,
                     alignment: Alignment.center,
-                    errorBuilder: ( (context, error, stackTrace) {
+                    placeholder: (context, url) {
+                      return const CircularProgressIndicator();
+                    },
+                    errorWidget: ( (context, error, stackTrace) {
                       return const Icon(
                         Icons.broken_image,
                         color: Colors.cyan,
