@@ -92,3 +92,5 @@ samples, guidance on mobile development, and a full API reference.
 - [How to implement infinite scroll pagination in Flutter](https://blog.logrocket.com/implement-infinite-scroll-pagination-flutter/)
 
 - [Know Your Widgets: Scaffold in Flutter](https://medium.flutterdevs.com/know-your-widgets-scaffold-in-flutter-292b8bc1281)
+
+- [What is TabPageSelector Class in Flutter?](https://medium.com/@pankajdas09/what-is-tabpageselector-class-in-flutter-2d977da2d53e)
