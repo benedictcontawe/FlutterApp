@@ -1,21 +1,26 @@
-import 'package:dart_http/bindings/splash_binding.dart';
-import 'package:dart_http/util/environment.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:get/route_manager.dart';
-import 'routes/app_pages.dart';
+import 'package:iframe/iframe_widget.dart';
 
-Future<void> main() async {
-  await dotenv.load(fileName : Environment.mode);
+void main() {
+  runApp(
+    MainApp()
+  );
+}
 
-  runApp(GetMaterialApp(
-    debugShowCheckedModeBanner: true,
-    initialBinding: SplashBinding(),
-    initialRoute: Routes.SPLASH,
-    theme: ThemeData(
-      visualDensity: VisualDensity.adaptivePlatformDensity,
-    ),
-    defaultTransition: Transition.fade,
-    getPages: AppPages.pages,
-  ));
+class MainApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp (
+      title: 'Iframe Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: IframeWidget (
+        height: '80%',
+        width: '80%',
+        src: 'https://flutter.dev/',
+        border: 'none',
+      ),
+    );
+  }
 }
