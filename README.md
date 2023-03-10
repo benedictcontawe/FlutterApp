@@ -94,3 +94,5 @@ samples, guidance on mobile development, and a full API reference.
 - [Know Your Widgets: Scaffold in Flutter](https://medium.flutterdevs.com/know-your-widgets-scaffold-in-flutter-292b8bc1281)
 
 - [What is TabPageSelector Class in Flutter?](https://medium.com/@pankajdas09/what-is-tabpageselector-class-in-flutter-2d977da2d53e)
+
+- [Adding Google Maps to Flutter](https://medium.com/flutter/google-maps-and-flutter-cfb330f9a245)
