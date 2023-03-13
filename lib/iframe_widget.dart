@@ -5,15 +5,18 @@ import 'package:flutter/material.dart';
 
 class IframeWidget extends StatefulWidget {
 
-  IframeWidget( {
+  const IframeWidget( {
     super.key, 
     required this.height, 
     required this.width, 
     required this.src, 
     required this.border,
+    required this.mediaQueryHeight,
+    required this.mediaQueryWidth,
   } );
 
-  String height, width, src, border;
+  final String height, width, src, border;
+  final double mediaQueryHeight, mediaQueryWidth;
 
   @override
   State<IframeWidget> createState() {
@@ -27,11 +30,15 @@ class _IframeWidgetState extends State<IframeWidget> {
 
   @override
   void initState() {
-    _iFrameElement.style.height = widget.height;
-    _iFrameElement.style.width = widget.width;
+     _iFrameElement.allowFullscreen = true;
     _iFrameElement.src = widget.src;
     _iFrameElement.style.border = widget.border;
-
+    _iFrameElement.style.borderColor = "initial";
+    _iFrameElement.style.borderImage = "initial";
+    _iFrameElement.style.borderWidth = "2px";
+    _iFrameElement.style.height = widget.height;
+    _iFrameElement.style.overflow = "clip !important";
+    _iFrameElement.style.width = widget.width;
     //ignore: undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(
       'iframeElement',
@@ -39,26 +46,17 @@ class _IframeWidgetState extends State<IframeWidget> {
         return _iFrameElement;
       },
     );
-
     super.initState();
   }
-
-  final Widget _iframeWidget = HtmlElementView(
-    viewType: 'iframeElement',
-    key: UniqueKey(),
-  );
-
+  
   @override
   Widget build(BuildContext context) {
-    return Scaffold (
-      body: Column (
-        children: [
-          SizedBox (
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: _iframeWidget,
-          )
-        ],
+    return SizedBox (
+      height: widget.mediaQueryHeight,
+      width: widget.mediaQueryWidth,
+      child: HtmlElementView (
+        viewType: 'iframeElement',
+        key: UniqueKey(),
       ),
     );
   }
