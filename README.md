@@ -98,3 +98,7 @@ samples, guidance on mobile development, and a full API reference.
 - [What is TabPageSelector Class in Flutter?](https://medium.com/@pankajdas09/what-is-tabpageselector-class-in-flutter-2d977da2d53e)
 
 - [Adding Google Maps to Flutter](https://medium.com/flutter/google-maps-and-flutter-cfb330f9a245)
+
+- [A simple Search Bar in Flutter](https://medium.com/codechai/a-simple-search-bar-in-flutter-f99aed68f523)
+
+- [Playing with AppBar in Flutter](https://medium.com/codechai/playing-with-appbar-in-flutter-3a8abd9b982a)
