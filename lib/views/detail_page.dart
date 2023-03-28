@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dart_http/controllers/detail_controller.dart';
 import 'package:dart_http/views/base_view.dart';
-import 'package:dart_http/widgets/app_bar_widget.dart';
+import 'package:dart_http/widgets/title_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +15,7 @@ class DetailPage extends BaseView<DetailController> {
     debugPrint("DetailPage isClosed ${controller.isClosed}");
 
     return Scaffold( 
-      appBar: AppBarWidget(height: MediaQuery.of(context).size.height * 0.10, title: "Details",),
+      appBar: TitleBarWidget(height: MediaQuery.of(context).size.height * 0.10, title: "Details",),
       body: Obx( () {
         if (controller.isLoading()) {
           return const Center(child: CircularProgressIndicator());

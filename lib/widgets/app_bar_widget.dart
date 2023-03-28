@@ -1,9 +1,12 @@
+import 'package:dart_http/controllers/main_controller.dart';
+import 'package:dart_http/widgets/title_bar_widget.dart';
 import 'package:dart_http/widgets/base_widgets.dart';
-import 'package:dart_http/widgets/title_widget.dart';
+import 'package:dart_http/widgets/search_bar_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class AppBarWidget extends BaseWidget with PreferredSizeWidget {
-
+class AppBarWidget extends BaseWidget<MainController> with PreferredSizeWidget {
+  
   const AppBarWidget( {
     super.key,
     required this.height,
@@ -15,15 +18,27 @@ class AppBarWidget extends BaseWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PreferredSize (
-      preferredSize: preferredSize,
-      child: AppBar (
-        elevation: 0,
-        title: TitleWidget(title: title,),
-      ),
+    return Obx( () {
+        if (controller.hasSearch()) {
+          return SearchBarWidget (
+            height: height, 
+            title: title,
+            onTapSearch: () {
+              controller.toogleSearch();
+            },
+            isShowed: controller.isSearchVisible(),
+            editingController: controller.getSearchController(),
+          );
+        } else {
+          return TitleBarWidget (
+            height: height, 
+            title: title,
+          );
+        }
+      }, 
     );
   }
-  
+
   @override
   Size get preferredSize {
     return Size.fromHeight(height);

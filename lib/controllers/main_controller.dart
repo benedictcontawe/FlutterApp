@@ -14,10 +14,11 @@ class MainController extends BaseController {
     debugPrint("MainController Constructor");
   }
 
-  final RxBool _isLoading = true.obs;
+  final RxBool _isLoading = true.obs, _isSearchEnabled = false.obs, _isSearchVisible = false.obs;
   final RxList<NasaHolderModel> _list = <NasaHolderModel>[].obs;
   final DioService dioService;
   final ScrollController _scrollController = new ScrollController();
+  final TextEditingController _searchController = new TextEditingController();
 
   @override
   void onInit() {
@@ -25,9 +26,11 @@ class MainController extends BaseController {
     dioService.initInterceptors();
     _scrollController.addListener(_scrollListener);
     fetchAPOD(10);
+    //enableSearch();
+    //addSeachListener();
     super.onInit();
   }
-
+  //#region Scroll Methods
   void _scrollListener() {
     if (_scrollController.offset >= _scrollController.position.maxScrollExtent && !_scrollController.position.outOfRange) {
       debugPrint("MainController ListView reach the bottom");
@@ -75,7 +78,7 @@ class MainController extends BaseController {
   ScrollController getScrollController() {
     return _scrollController;
   }
-
+  //#endregion
   Future<void> fetchAPOD(int count) async { 
     debugPrint("MainController fetchAPOD ${count}");
     try {
@@ -112,7 +115,52 @@ class MainController extends BaseController {
   bool isLoading() {
     return _isLoading.value;
   }
+  //#region Search Methods
+  bool hasSearch() {
+    return _isSearchEnabled.value;
+  }
 
+  RxBool isSearchVisible() {
+    return _isSearchVisible;
+  }
+
+  void toogleSearch() {
+    debugPrint("MainController toogleSearch");
+    _isSearchVisible.toggle();
+  }
+
+  TextEditingController getSearchController() {
+    return _searchController;
+  }
+
+  void enableSearch() {
+    debugPrint("MainController enableSearch");
+    _isSearchEnabled(true);
+  }
+
+  void addSeachListener() {
+    debugPrint("MainController addSeachListener");
+    _searchController.addListener(() {
+      debugPrint("MainController search text ${_searchController.text}");
+      //TODO Search Filter Code Still On going
+      if (_searchController.text.isEmpty) {
+        debugPrint("MainController search text isEmpty");
+        //fetchAPOD(10);
+        _list.clear();
+        //_list.value.reversed;
+      } else {
+        debugPrint("MainController search text not Empty");
+        _list(
+          _list.value.where(
+            (model) => model.title != null && model.title!.contains(_searchController.text.toString())
+          ).toList()
+        );
+        //_list.value.reversed;
+      }
+    });
+  }
+  //#endregion
+  //#region List Getter Methods
   int getLength() {
     return _list?.length ?? 0;
   }
@@ -136,7 +184,7 @@ class MainController extends BaseController {
   String getCopyright(int index) {
     return _list?.value[index].copyright ?? "Nil";
   }
-
+  //#endregion
   void launchDetails(int index) {
     debugPrint("MainController launchDetails ${index}");
     Get.toNamed(

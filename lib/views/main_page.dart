@@ -12,8 +12,8 @@ class MainPage extends BaseView<MainController> {
     debugPrint("MainPage build");
     debugPrint("MainPage initialized ${controller.initialized}");
     debugPrint("MainPage isClosed ${controller.isClosed}");
-    return Scaffold( 
-      appBar: AppBarWidget(
+    return Scaffold ( 
+      appBar: AppBarWidget (
         height: MediaQuery.of(context).size.height * 0.10, 
         title: "Flutter App",
       ),
