@@ -116,7 +116,7 @@ class MainController extends BaseController {
     return _isLoading.value;
   }
   //#region Search Methods
-  bool hasSearch() {
+  bool isSearchEnabled() {
     return _isSearchEnabled.value;
   }
 
@@ -127,6 +127,15 @@ class MainController extends BaseController {
   void toogleSearch() {
     debugPrint("MainController toogleSearch");
     _isSearchVisible.toggle();
+    if(_isSearchEnabled.value && _isSearchVisible.value == false) {
+      _searchController.clear();
+    }
+  }
+
+  void resetSearch() {
+    debugPrint("MainController resetSearch");
+    _isSearchVisible(false);
+    _searchController.clear();
   }
 
   TextEditingController getSearchController() {
@@ -141,23 +150,40 @@ class MainController extends BaseController {
   void addSeachListener() {
     debugPrint("MainController addSeachListener");
     _searchController.addListener(() {
-      debugPrint("MainController search text ${_searchController.text}");
       //TODO Search Filter Code Still On going
-      if (_searchController.text.isEmpty) {
+      filterAPOD(_searchController.text.toString());
+    });
+  }
+
+  Future<void> filterAPOD(String filter) async {
+    debugPrint("MainController filterAPOD $filter");
+    try {
+      _isLoading(true);
+      if (filter.isEmpty) {
         debugPrint("MainController search text isEmpty");
         //fetchAPOD(10);
-        _list.clear();
+        //_list.clear();
         //_list.value.reversed;
       } else {
         debugPrint("MainController search text not Empty");
-        _list(
-          _list.value.where(
-            (model) => model.title != null && model.title!.contains(_searchController.text.toString())
-          ).toList()
-        );
+        List<NasaHolderModel> filtered = _list.value.where(
+          (model) => model.title!.contains(_searchController.text.toString())
+        ).toList();
+        debugPrint("MainController filtered ${filtered.length}");
+        debugPrint("MainController _list ${_list.length}");
+        _list.value.clear();
+        _list.value.addAll(filtered);
         //_list.value.reversed;
+        debugPrint("MainController filtered added");
       }
-    });
+    } on RangeError {
+      debugPrint("MainController RangeError");
+    } catch (exception) {
+      debugPrint("MainController exception $exception");
+      Get.snackbar("Error", exception.toString());
+    } finally {
+      _isLoading(false);
+    } 
   }
   //#endregion
   //#region List Getter Methods
