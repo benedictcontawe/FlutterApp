@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dart_http/controllers/main_controller.dart';
 import 'package:dart_http/widgets/base_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ListWidget extends BaseWidget<MainController> {
   
@@ -9,7 +10,7 @@ class ListWidget extends BaseWidget<MainController> {
 
   @override
   Widget build(BuildContext context) {
-    //return Obx( () {
+    return Obx( () {
       return ListView.builder (
         controller: controller.getScrollController(),
         itemCount: controller.getLength(),
@@ -51,10 +52,10 @@ class ListWidget extends BaseWidget<MainController> {
                   )
                 ],
               ),
-            ),
+            )
           );
         }
       );
-    //}, );
+    }, );
   }
 }

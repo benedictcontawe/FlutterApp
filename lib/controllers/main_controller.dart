@@ -27,7 +27,6 @@ class MainController extends BaseController {
     _scrollController.addListener(_scrollListener);
     fetchAPOD(10);
     //enableSearch();
-    //addSeachListener();
     super.onInit();
   }
   //#region Scroll Methods
@@ -88,10 +87,8 @@ class MainController extends BaseController {
         'count': getLength() + count,
       });      
       debugPrint("MainController statusCode ${response.statusCode}");
-      if (response.statusCode == 200) {
-        //_list.value = ConvertList.toHolderList( ConvertList.toResponseList( response.data ) );
-        _list.value.clear();
-        _list.value.addAll(
+      if (response.statusCode == 200 && _searchController.text.toString().isEmpty) {
+        _list.assignAll(
           ConvertList.toHolderList( 
             ConvertList.toResponseList( 
               response.data 
@@ -112,15 +109,15 @@ class MainController extends BaseController {
     }
   }
 
-  bool isLoading() {
-    return _isLoading.value;
+  RxBool observeLoading() {
+    return _isLoading;
   }
   //#region Search Methods
-  bool isSearchEnabled() {
-    return _isSearchEnabled.value;
+  RxBool observeSearchEnabled() {
+    return _isSearchEnabled;
   }
 
-  RxBool isSearchVisible() {
+  RxBool observeSearchVisible() {
     return _isSearchVisible;
   }
 
@@ -145,25 +142,18 @@ class MainController extends BaseController {
   void enableSearch() {
     debugPrint("MainController enableSearch");
     _isSearchEnabled(true);
-  }
-
-  void addSeachListener() {
-    debugPrint("MainController addSeachListener");
     _searchController.addListener(() {
-      //TODO Search Filter Code Still On going
       filterAPOD(_searchController.text.toString());
     });
   }
 
-  Future<void> filterAPOD(String filter) async {
+  Future<void> filterAPOD(String filter) async { //TODO Search Filter Code Still On going
     debugPrint("MainController filterAPOD $filter");
     try {
       _isLoading(true);
       if (filter.isEmpty) {
         debugPrint("MainController search text isEmpty");
-        //fetchAPOD(10);
-        //_list.clear();
-        //_list.value.reversed;
+        fetchAPOD(10);
       } else {
         debugPrint("MainController search text not Empty");
         List<NasaHolderModel> filtered = _list.value.where(
@@ -171,9 +161,8 @@ class MainController extends BaseController {
         ).toList();
         debugPrint("MainController filtered ${filtered.length}");
         debugPrint("MainController _list ${_list.length}");
-        _list.value.clear();
-        _list.value.addAll(filtered);
-        //_list.value.reversed;
+        _list.assignAll(filtered); //_list.refresh();
+        _list.value.reversed;
         debugPrint("MainController filtered added");
       }
     } on RangeError {

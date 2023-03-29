@@ -10,14 +10,14 @@ class SearchBarWidget extends BaseWidget with PreferredSizeWidget {
     required this.height,
     required this.title,
     this.onTapSearch,
-    required this.isShowed,
+    required this.observeVisibility,
     this.editingController,
   } );
 
   final double height;
   final String title;
   final GestureTapCallback? onTapSearch;
-  final RxBool isShowed;
+  final Rx<bool> observeVisibility;
   final TextEditingController? editingController;
 
   @override
@@ -28,15 +28,17 @@ class SearchBarWidget extends BaseWidget with PreferredSizeWidget {
         elevation: 0,
         leading: IconButton (
           onPressed: onTapSearch,
-          icon: isShowed.value ? new Icon(Icons.close) : new Icon(Icons.search),
+          icon: observeVisibility.value ? new Icon(Icons.close) : new Icon(Icons.search),
         ),
-        title: isShowed.value ? TextField (
+        title: observeVisibility.value ? TextField (
           controller: editingController,
+          cursorColor: Colors.white,
           decoration: new InputDecoration (
             prefixIcon: new Icon(Icons.search),
             hintText: 'Search...'
-          ) ) : TitleWidget(title: title,),
-        );
+          ),
+        ) : TitleWidget(title: title,),
+      );
     } );
   }
 

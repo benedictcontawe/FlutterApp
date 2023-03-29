@@ -11,7 +11,8 @@ class MainWidget extends BaseWidget<MainController> {
   @override
   Widget build(BuildContext context) {      
     return Obx( () {
-        if (controller.isLoading()) {
+        debugPrint("MainWidget build ${controller.observeLoading().value}");
+        if (controller.observeLoading().value) {
           return const Center(child: CircularProgressIndicator());
         } else {
           return const NotificationListenerWidget();

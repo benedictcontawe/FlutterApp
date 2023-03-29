@@ -19,14 +19,14 @@ class AppBarWidget extends BaseWidget<MainController> with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Obx( () {
-        if (controller.isSearchEnabled()) {
+        if (controller.observeSearchEnabled().value) {
           return SearchBarWidget (
             height: height, 
             title: title,
             onTapSearch: () {
               controller.toogleSearch();
             },
-            isShowed: controller.isSearchVisible(),
+            observeVisibility: controller.observeSearchVisible(),
             editingController: controller.getSearchController(),
           );
         } else {
