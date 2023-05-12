@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 class Constants {
   static const BLANK = " ";
-  Color kBackgroundColor = HexColor('FFFFFF');
-  Color kSolidButtonColor = HexColor('F38E36');
-  Color kPrimaryTextColor = HexColor('000000');
-  Color kSecondaryTextColor = HexColor('FFFFFF');
+  static Color kBackgroundColor = HexColor('FFFFFF');
+  static Color kSolidButtonColor = HexColor('F38E36');
+  static Color kPrimaryTextColor = HexColor('000000');
+  static Color kSecondaryTextColor = HexColor('FFFFFF');
 }

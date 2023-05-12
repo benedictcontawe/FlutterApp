@@ -9,7 +9,8 @@ class MainWidget extends BaseWidget<MainController> {
 
   @override
   Widget build(BuildContext context) {      
-    return Column(
+    return Column (
+      
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const Center(child: CircularProgressIndicator()),
@@ -23,7 +24,7 @@ class MainWidget extends BaseWidget<MainController> {
         ElevatedButton(
           onPressed: () async {
             controller.onPickFiles(true);
-          }, 
+          },  
           child: Text("Pick Multiple")
         ),
       ],
