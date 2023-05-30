@@ -106,4 +106,6 @@ samples, guidance on mobile development, and a full API reference.
 - [How to Get User’s Current Location Address in Flutter — Geolocator & Geocoding](https://medium.com/@fernnandoptr/how-to-get-users-current-location-address-in-flutter-geolocator-geocoding-be563ad6f66a)
 
 - [rpi_gpio | Dart Package](https://pub.dev/packages/rpi_gpio)
+
+- [Flutter on Raspberry Pi — Fall 2022](https://bruce-abernethy.medium.com/flutter-on-raspberry-pi-fall-2022-ac0766839b92)
 <!-- - [xxx](xxx) -->
