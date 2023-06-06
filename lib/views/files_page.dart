@@ -1,6 +1,6 @@
+import 'dart:io';
 import 'package:dart_http/util/constants.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:open_file/open_file.dart';
 
@@ -30,8 +30,8 @@ class _FilesPageState extends State<FilesPage> {
         centerTitle: true,
       ),
       body: Center (
-        child:  GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        child:  GridView.builder (
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount (
             crossAxisCount: 2,
             mainAxisSpacing: 8,
             crossAxisSpacing: 8,
@@ -49,31 +49,29 @@ class _FilesPageState extends State<FilesPage> {
   Widget buidFile(PlatformFile file) {
     final kb = file.size / 1024;
     final mb = kb / 1024;
-    final fileSize = mb >= 1 ? '${mb.toStringAsFixed(2)} MB' : '${kb.toStringAsFixed(2)} KB';
-    final extension = file.extension ?? 'none';
-    final isImage = extension?.toLowerCase()?.contains("jpg") == true || extension?.toLowerCase()?.contains("png") == true || extension?.toLowerCase()?.contains("webp") == true; 
+    final fileSize = mb >= 1 ? '${mb.toStringAsFixed(2)} MB' : '${kb.toStringAsFixed(2)} KB';    
 
-    return InkWell(
+    return InkWell (
       onTap: () {
         OpenFile.open(file.path);
       },
-      child: Container(
-        padding: EdgeInsets.all(8),
+      child: Container (
+        padding: const EdgeInsets.all(8),
         child: Column (
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded (
-              child: buildThumbnail(isImage, file.bytes!, extension),
+              child: buildThumbnail(file),
             ),
             const SizedBox(height: 8,),
                 Text (
                   file.name,
-                  style:  const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text (
                   fileSize,
-                  style:  TextStyle(fontSize:  16),
+                  style: const TextStyle(fontSize:  16),
                 )
           ],
         ),
@@ -81,15 +79,21 @@ class _FilesPageState extends State<FilesPage> {
     );
   }
 
-  Widget buildThumbnail(bool isImage, Uint8List bytes, String extension) {
+  Widget buildThumbnail(PlatformFile file) {
     final color = Constants.kSolidButtonColor;//getColor(extension);
+    final extension = file.extension ?? 'none';
+    final isImage = extension.toLowerCase().contains("jpg") == true || extension.toLowerCase().contains("png") == true || extension.toLowerCase().contains("webp") == true; 
 
-    if (isImage) {
+    if (isImage && file.bytes != null) {
       return Image.memory (
-        bytes, 
+        file.bytes!, 
         fit: BoxFit.scaleDown,
         height: 250,
         width: 250,
+      );
+    } else if (isImage && file.path != null) {
+      return Image.file(
+        File(file.path!),
       );
     } else {
       return Container (
@@ -101,7 +105,7 @@ class _FilesPageState extends State<FilesPage> {
         ),
         child: Text (
           '.$extension',
-          style: TextStyle (
+          style: const TextStyle (
             fontSize: 28,
             fontWeight: FontWeight.bold,
             color: Colors.white
