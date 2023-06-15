@@ -1,4 +1,5 @@
 import 'package:get_storage/get_storage.dart';
+import 'package:getx_storage/models/custom_model.dart';
 
 class GetStorageManager {
     
@@ -36,6 +37,26 @@ class GetStorageManager {
 
   double? getDouble(String doubleKey) {
     return _box.read(doubleKey);
+  }
+
+  Future addModel(CustomModel model) async {
+    //TODO: Code Under Construction
+  }
+
+  Future updateModel(CustomModel model) async {
+    //TODO: Code Under Construction
+  }
+
+  Future deleteModel(CustomModel model) async {
+    //TODO: Code Under Construction
+  }
+
+  List<CustomModel> getModels() {
+    return new List<CustomModel>.empty();
+  }
+
+  void removeModels() {
+    //TODO: Code Under Construction
   }
 
   void remove(String key) {
