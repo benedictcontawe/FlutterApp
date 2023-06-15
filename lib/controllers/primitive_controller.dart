@@ -9,6 +9,7 @@ class PrimitiveController extends BaseController {
     
   }
   
+  final GetStorageManager _getStorageManager;
   final TextEditingController _stringController = TextEditingController();
   final TextEditingController _integerController = TextEditingController();
   final TextEditingController _doubleController = TextEditingController();
@@ -17,7 +18,6 @@ class PrimitiveController extends BaseController {
   final RxString _liveString = "Nil".obs;
   final RxInt _liveInteger = 0.obs;
   final RxDouble _liveDoubleValue = 0.00.obs;
-  final GetStorageManager _getStorageManager;
   
   @override
   void onInit() {
@@ -28,12 +28,9 @@ class PrimitiveController extends BaseController {
     _liveDoubleValue( _getStorageManager.getDouble('DOUBLE') ?? 0.00 );
   }
 
-  void onLaunchPrimitive() {
-
-  }
-
-  void onLaunchObject() {
-
+  @override
+  void onReady() {
+    super.onReady();
   }
   
   void setBoolean(bool? value) {
