@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_storage/controllers/main_controller.dart';
+import 'package:getx_storage/controllers/primitive_controller.dart';
 import 'package:getx_storage/widgets/base_widgets.dart';
 import 'package:getx_storage/widgets/button_widget.dart';
 
-class IntegerWidget extends BaseWidget<MainController> {
+class IntegerWidget extends BaseWidget<PrimitiveController> {
   
   const IntegerWidget({super.key});
 
@@ -18,7 +18,7 @@ class IntegerWidget extends BaseWidget<MainController> {
           Expanded (
             child: TextField (
               controller: controller.getIntegerController(),
-              decoration: InputDecoration (
+              decoration: const InputDecoration (
                 hintText: 'Enter Integer Value',
                 labelText: 'Integer value',
               ),

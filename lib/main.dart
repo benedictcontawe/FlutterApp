@@ -11,7 +11,7 @@ Future<void> main() async {
   await dotenv.load(fileName : Environment.mode);
   await GetStorage.init();
   debugPaintSizeEnabled = false;
-  runApp(GetMaterialApp(
+  runApp( GetMaterialApp (
     debugShowCheckedModeBanner: true,
     initialBinding: SplashBinding(),
     initialRoute: Routes.SPLASH,
@@ -20,5 +20,5 @@ Future<void> main() async {
     ),
     defaultTransition: Transition.fade,
     getPages: AppPages.pages,
-  ));
+  ) );
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_storage/controllers/main_controller.dart';
+import 'package:getx_storage/controllers/primitive_controller.dart';
 import 'package:getx_storage/widgets/base_widgets.dart';
 import 'package:getx_storage/widgets/button_widget.dart';
 
-class StringWidget extends BaseWidget<MainController> {
+class StringWidget extends BaseWidget<PrimitiveController> {
   
   const StringWidget({super.key});
 
@@ -18,7 +18,7 @@ class StringWidget extends BaseWidget<MainController> {
           Expanded (
             child: TextField (
               controller: controller.getStringController(),
-              decoration: InputDecoration (
+              decoration: const InputDecoration (
                 hintText: 'Enter String Value',
                 labelText: 'String value',
               ),

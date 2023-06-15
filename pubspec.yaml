@@ -39,7 +39,7 @@ dependencies:
   #dio: ^4.0.6
   flutter_dotenv: ^5.1.0
   get: ^4.6.5
-  get_storage: ^2.1.1
+  get_storage:
   google_fonts: ^5.0.0
 
 dev_dependencies:

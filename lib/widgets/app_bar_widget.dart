@@ -11,7 +11,7 @@ class AppBarWidget extends BaseWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar (
       elevation: 0,
-      title: const Text(
+      title: const Text (
         "Flutter App",
         style: TextStyle (
           fontFamily: "avenir",

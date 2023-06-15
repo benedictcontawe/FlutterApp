@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_storage/controllers/main_controller.dart';
+import 'package:getx_storage/controllers/primitive_controller.dart';
 import 'package:getx_storage/widgets/base_widgets.dart';
 import 'package:getx_storage/widgets/button_widget.dart';
 
-class DoubleWidget extends BaseWidget<MainController> {
+class DoubleWidget extends BaseWidget<PrimitiveController> {
   
   const DoubleWidget({super.key});
 
@@ -18,7 +18,7 @@ class DoubleWidget extends BaseWidget<MainController> {
           Expanded (
             child: TextField (
               controller: controller.getDoubleController(),
-              decoration: InputDecoration (
+              decoration: const InputDecoration (
                 hintText: 'Enter Double Value',
                 labelText: 'Double value',
               ),
