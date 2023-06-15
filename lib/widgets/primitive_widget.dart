@@ -6,9 +6,11 @@ import 'package:getx_storage/widgets/double_widget.dart';
 import 'package:getx_storage/widgets/integer_widget.dart';
 import 'package:getx_storage/widgets/string_widget.dart';
 
-class PrimitiveWidget extends BaseWidget<MainController> {
+class PrimitiveWidget extends BaseWidget {
   
-  const PrimitiveWidget( { super.key } );
+  const PrimitiveWidget( { 
+    super.key 
+  } );
 
   @override
   Widget build(BuildContext context) {      

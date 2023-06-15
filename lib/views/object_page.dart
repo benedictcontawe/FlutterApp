@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:getx_storage/views/base_view.dart';
+import 'package:getx_storage/widgets/app_bar_widget.dart';
 
 class ObjectPage extends BaseView {
   
@@ -10,6 +11,9 @@ class ObjectPage extends BaseView {
 
   @override
   Widget build(BuildContext context) {
-    throw UnimplementedError();
+    return Scaffold ( 
+      appBar: const AppBarWidget(),
+      body: throw UnimplementedError(),
+    );
   }
 }

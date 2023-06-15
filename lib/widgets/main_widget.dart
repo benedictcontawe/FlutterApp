@@ -13,6 +13,8 @@ class MainWidget extends BaseWidget<MainController> {
   Widget build(BuildContext context) {
     return Center (
       child: Row (
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           ButtonWidget (
             text: "Primitive", 
