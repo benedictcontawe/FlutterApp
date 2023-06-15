@@ -84,7 +84,7 @@ class MainController extends BaseController {
     } on RangeError {
       debugPrint("MainController RangeError");
     } catch (exception) {
-      debugPrint("MainController exception $exception");
+      debugPrint("MainController exception ${exception}");
     } finally {
       _isLoading(false);
     }
