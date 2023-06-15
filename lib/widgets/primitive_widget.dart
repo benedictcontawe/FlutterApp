@@ -6,21 +6,21 @@ import 'package:getx_storage/widgets/double_widget.dart';
 import 'package:getx_storage/widgets/integer_widget.dart';
 import 'package:getx_storage/widgets/string_widget.dart';
 
-class MainWidget extends BaseWidget<MainController> {
+class PrimitiveWidget extends BaseWidget<MainController> {
   
-  const MainWidget( { super.key } );
+  const PrimitiveWidget( { super.key } );
 
   @override
   Widget build(BuildContext context) {      
-    return Column (
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const BooleanWidget(),
-              const StringWidget(),
-              const IntegerWidget(),
-              const DoubleWidget(),
-            ],
-          );
+    return const Column (
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        BooleanWidget(),
+        StringWidget(),
+        IntegerWidget(),
+        DoubleWidget(),
+      ],
+    );
   }
 }
