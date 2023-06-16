@@ -46,7 +46,7 @@ class ObjectController extends BaseController {
     try {
       _isLoading(true);
       _list.value = <CustomModel>[];
-      //_list.value = await _getStorageManager.getModels();
+      _list.value = await _getStorageManager.getModels();
       debugPrint("ObjectController _list ${_list.value.length} ${_list.value}");
     } catch (exception) {
       debugPrint("ObjectController update models exception $exception");
