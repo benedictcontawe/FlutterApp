@@ -93,7 +93,7 @@ class ObjectController extends BaseController {
       final model = CustomModel (
         id: _generateId(0, _list.length + 1),
         name: _controller?.text.toString(),
-        icon:  null,//const Icon(Icons.android)
+        icon:  null,//TODO Use Picture for displaying const Icon(Icons.android)
       );
       _getStorageManager.addModel(model);
     } catch (exception) {
