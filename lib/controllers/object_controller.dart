@@ -23,8 +23,12 @@ class ObjectController extends BaseController {
     fetchModels();
   }
 
-  int _random(int min, int max) {
-    return min + Random().nextInt(max - min);
+  int _generateId(int min, int max) {
+    int newId = min + Random().nextInt(max - min);
+    while(_list.where((oldModel) => oldModel.id == newId ).isEmpty == false) {
+      newId = min + Random().nextInt(max - min);
+    }
+    return newId;
   }
 
   void onShowAlert(String title, String message) {
@@ -87,7 +91,7 @@ class ObjectController extends BaseController {
     try {
       _isLoading(true);
       final model = CustomModel (
-        id: _random(0, _list.length),
+        id: _generateId(0, _list.length + 1),
         name: _controller?.text.toString(),
         icon:  null,//const Icon(Icons.android)
       );
@@ -111,6 +115,7 @@ class ObjectController extends BaseController {
   }
 
   Future<void> deleteModel(int index) async {
+    //_list?.removeAt(index);
     _getStorageManager.deleteModel( _list?.value[index] );
     fetchModels();
   }

@@ -47,11 +47,11 @@ class GetStorageManager {
   Future addModel(CustomModel newModel) async {
     debugPrint("GetStorageManager addModel ${newModel}");
     final List<CustomModel>? models = getModels();
-    if (models?.where((oldModel) => oldModel.id == newModel.id ).isEmpty == true) {
+    if (models?.where((oldModel) => oldModel.id == newModel.id ).isEmpty == false) {
+      throw Exception("Id is in Used by other Models");
+    } else {
       models?.add( newModel );
       updateModels( models );
-    } else {
-      throw Exception("Id is in Used by other Models");
     }
   }
 
@@ -78,15 +78,18 @@ class GetStorageManager {
   }
 
   Future deleteModel(CustomModel? model) async {
-    //TODO: Code Under Construction
+    debugPrint("GetStorageManager deleteModel ${model}");
+    final List<CustomModel>? models = getModels();
+    models?.removeWhere ( 
+      (filterModel) => filterModel.id == model?.id 
+    );
+    updateModels( models );
   }
 
   List<CustomModel>? getModels() {
     debugPrint("GetStorageManager getModels");
+    //_box.write("OBJECT", '[{"id":1,"name":"AAA","icon":"aaa"}, {"id":2,"name":"BBB","icon":"bbb"}, {"id":3,"name":"CCC","icon":"ccc"}]');
     final String results = _box.read("OBJECT") ?? "[]";
-    //String results = '[{"id":1,"name":"AAA","icon":"aaa"}, {"id":2,"name":"BBB","icon":"bbb"}, {"id":3,"name":"CCC","icon":"ccc"}]';
-    //_box.write("OBJECT",results);
-    //results = _box.read("OBJECT") ?? "[]";
     debugPrint("GetStorageManager getModels results $results");
     return List<CustomModel>.from (
       jsonDecode(results).map( (result) {
