@@ -45,35 +45,44 @@ class GetStorageManager {
   //#region Object Methods
   Future addModel(CustomModel model) async {
     debugPrint("GetStorageManager addModel ${model}");
-    final List<CustomModel> models = getModels();
-    models.add( model );
+    final List<CustomModel>? models = getModels();
+    models?.add( model );
     updateModels( models );
   }
 
-  Future updateModel(CustomModel model) async {
+  Future updateModel(CustomModel? model) async {
+    debugPrint("GetStorageManager updateModel ${model}");
     //TODO: Code Under Construction
   }
 
-  Future updateModels(List<CustomModel> models) async {
-    debugPrint("GetStorageManager updateModels ${models.length} ${models.toList()}");
-    var modelsAsMap = models.map(
+  Future updateModels(List<CustomModel>? models) async {
+    debugPrint("GetStorageManager updateModels ${models?.length} ${models?.toList()}");
+    var modelsAsMap = models?.map(
       ( custom ) => custom.toJson()
     ).toList();
+    debugPrint("GetStorageManager updateModels modelsAsMap ${modelsAsMap?.length} ${modelsAsMap?.toList()}");
     String jsonString = jsonEncode(modelsAsMap);
+    debugPrint("GetStorageManager updateModels jsonString $jsonString");
     await _box.write('OBJECT', jsonString);
   }
 
-  Future deleteModel(CustomModel model) async {
+  Future deleteModel(CustomModel? model) async {
     //TODO: Code Under Construction
   }
 
-  List<CustomModel> getModels() {
+  List<CustomModel>? getModels() {
     debugPrint("GetStorageManager getModels");
-    final result = _box.read("OBJECT") ?? "";
-    dynamic jsonData = jsonDecode(result);
-    return jsonData.map ( 
-      ( custom ) => CustomModel.fromJson( custom )
-    ).toList();
+    final String results = _box.read("OBJECT") ?? "[]";
+    //String results = '[{"id":1,"name":"AAA","icon":"aaa"}, {"id":2,"name":"BBB","icon":"bbb"}, {"id":3,"name":"CCC","icon":"ccc"}]';
+    //_box.write("OBJECT",results);
+    //results = _box.read("OBJECT") ?? "[]";
+    debugPrint("GetStorageManager getModels results $results");
+    return List<CustomModel>.from (
+      jsonDecode(results).map( (result) {
+      debugPrint("GetStorageManager getModels result $result");
+      return CustomModel.fromJson(result);
+      } )
+    );
   }
 
   void removeModels() {

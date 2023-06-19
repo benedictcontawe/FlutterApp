@@ -19,11 +19,18 @@ class CustomModel {
   }
 
   Map<String, dynamic> toJson() {
+    /*
     final data = <String, dynamic>{};
     data['id'] = id;
     data['name'] = name;
     data['icon'] = icon;
     return data;
+    */
+    return {
+      "id" : id,
+      "name" : name,
+      "icon" : icon,
+    };
   }
 
   @override

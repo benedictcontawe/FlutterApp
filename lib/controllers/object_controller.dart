@@ -12,7 +12,7 @@ class ObjectController extends BaseController {
 
   final GetStorageManager _getStorageManager;
   final RxBool _isLoading = true.obs;
-  final RxList<CustomModel> _list = new List<CustomModel>.empty().obs;
+  final RxList<CustomModel?> _list = new List<CustomModel>.empty().obs;
   TextEditingController? _controller;
 
   @override
@@ -39,14 +39,14 @@ class ObjectController extends BaseController {
   }
   */
   String getName(int index) {
-    return _list.value[index].name ?? "Nil";
+    return _list.value[index]?.name ?? "Nil";
   }
 
   Future<void> updateModels() async {
     try {
       _isLoading(true);
       _list.value = <CustomModel>[];
-      _list.value = await _getStorageManager.getModels();
+      _list.value = await _getStorageManager.getModels() ?? <CustomModel>[];
       debugPrint("ObjectController _list ${_list.value.length} ${_list.value}");
     } catch (exception) {
       debugPrint("ObjectController update models exception $exception");
@@ -64,7 +64,7 @@ class ObjectController extends BaseController {
   Future<void> setController(int index) async {
     _controller = null;
     _controller = new TextEditingController();
-    _controller?.text = _list.value[index].name ?? "";
+    _controller?.text = _list.value[index]?.name ?? "";
   }
 
   TextEditingController getController() {
@@ -83,14 +83,14 @@ class ObjectController extends BaseController {
   }
 
   Future<void> updateName(int index) async {
-    _list.value[index].name = _controller?.text.toString();
-    _getStorageManager.updateModel( _list.value[index]) ;
+    _list.value[index]?.name = _controller?.text.toString();
+    _getStorageManager.updateModel( _list?.value[index]) ;
     Get.back();
     updateModels();
   }
 
   Future<void> delete(int index) async {
-    _getStorageManager.deleteModel( _list.value[index] );
+    _getStorageManager.deleteModel( _list?.value[index] );
     updateModels();
   }
 
