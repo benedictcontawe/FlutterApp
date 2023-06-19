@@ -43,7 +43,7 @@ class ListWidget extends BaseWidget<ObjectController> {
                         child: ButtonWidget (
                         text: "Delete", 
                         onPressed: () {
-                          controller.delete(index);
+                          controller.deleteModel(index);
                         },
                       ),
                     )

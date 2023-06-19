@@ -43,16 +43,27 @@ class GetStorageManager {
   }
   //#endregion
   //#region Object Methods
-  Future addModel(CustomModel model) async {
-    debugPrint("GetStorageManager addModel ${model}");
+
+  Future addModel(CustomModel newModel) async {
+    debugPrint("GetStorageManager addModel ${newModel}");
     final List<CustomModel>? models = getModels();
-    models?.add( model );
-    updateModels( models );
+    if (models?.where((oldModel) => oldModel.id == newModel.id ).isEmpty == true) {
+      models?.add( newModel );
+      updateModels( models );
+    } else {
+      throw Exception("Id is in Used by other Models");
+    }
   }
 
-  Future updateModel(CustomModel? model) async {
-    debugPrint("GetStorageManager updateModel ${model}");
-    //TODO: Code Under Construction
+  Future updateModel(CustomModel? newModel) async {
+    debugPrint("GetStorageManager updateModel ${newModel}");
+    final List<CustomModel>? models = getModels();
+    models?.where( 
+      (filterModel) => filterModel.id == newModel?.id 
+    ).map( 
+      (oldModel) => oldModel.name = newModel?.name
+    );
+    updateModels( models );
   }
 
   Future updateModels(List<CustomModel>? models) async {

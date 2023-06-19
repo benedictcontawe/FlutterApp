@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_storage/controllers/base_controller.dart';
@@ -12,13 +14,23 @@ class ObjectController extends BaseController {
 
   final GetStorageManager _getStorageManager;
   final RxBool _isLoading = true.obs;
-  final RxList<CustomModel?> _list = new List<CustomModel>.empty().obs;
+  final RxList<CustomModel> _list = new List<CustomModel>.empty().obs;
   TextEditingController? _controller;
 
   @override
   void onInit() {
     super.onInit();
-    updateModels();
+    fetchModels();
+  }
+
+  int _random(int min, int max) {
+    return min + Random().nextInt(max - min);
+  }
+
+  void onShowAlert(String title, String message) {
+    Timer (
+      const Duration(milliseconds: 2000), ( () => Get.snackbar(title, message) )
+    );
   }
 
   @override
@@ -42,7 +54,7 @@ class ObjectController extends BaseController {
     return _list.value[index]?.name ?? "Nil";
   }
 
-  Future<void> updateModels() async {
+  Future<void> fetchModels() async {
     try {
       _isLoading(true);
       _list.value = <CustomModel>[];
@@ -50,7 +62,7 @@ class ObjectController extends BaseController {
       debugPrint("ObjectController _list ${_list.value.length} ${_list.value}");
     } catch (exception) {
       debugPrint("ObjectController update models exception $exception");
-
+      onShowAlert("Error!", exception.toString());
     } finally {
       _isLoading(false);
     }
@@ -71,27 +83,36 @@ class ObjectController extends BaseController {
     return _controller ?? TextEditingController();
   }
 
-  Future<void> add() async {
-    final model = CustomModel (
-      id: null,
-      name: _controller?.text.toString(),
-      //icon:  const Icon(Icons.android)
-    );
-    _getStorageManager.addModel(model);
-    Get.back();
-    updateModels();
+  Future<void> addModel() async {
+    try {
+      _isLoading(true);
+      final model = CustomModel (
+        id: _random(0, _list.length),
+        name: _controller?.text.toString(),
+        icon:  null,//const Icon(Icons.android)
+      );
+      _getStorageManager.addModel(model);
+    } catch (exception) {
+      debugPrint("ObjectController add model exception $exception");
+      onShowAlert("Error!", exception.toString());
+    } finally {
+      Get.back();
+      fetchModels();
+      _isLoading(false);
+    }
   }
 
   Future<void> updateName(int index) async {
     _list.value[index]?.name = _controller?.text.toString();
-    _getStorageManager.updateModel( _list?.value[index]) ;
+    //_getStorageManager.updateModel( _list?.value[index]) ;
+    _getStorageManager.updateModels( _list?.value) ;
     Get.back();
-    updateModels();
+    fetchModels();
   }
 
-  Future<void> delete(int index) async {
+  Future<void> deleteModel(int index) async {
     _getStorageManager.deleteModel( _list?.value[index] );
-    updateModels();
+    fetchModels();
   }
 
   Future<void> deleteAll() async {

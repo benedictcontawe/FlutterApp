@@ -31,7 +31,7 @@ class ObjectPage extends BaseView<ObjectController> {
                 CustomDialog.addDialog (
                   controller.getController(), 
                   () {
-                    controller.add();
+                    controller.addModel();
                   },
                 );
               },

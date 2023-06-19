@@ -14,7 +14,7 @@ class SwipeRefreshListWidget extends BaseWidget<ObjectController> {
     return RefreshIndicator (
       triggerMode: RefreshIndicatorTriggerMode.onEdge,
       onRefresh: () {
-        return controller.updateModels();
+        return controller.fetchModels();
       },
       child: const ListWidget(),
     );
