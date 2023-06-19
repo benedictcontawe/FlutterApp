@@ -100,7 +100,7 @@ class GetStorageManager {
   }
 
   void removeModels() {
-    //TODO: Code Under Construction
+    _box.remove("OBJECT");
   }
   //#endregion
   void remove(String key) {
