@@ -21,8 +21,15 @@ class PrimitiveController extends BaseController {
   final HiveManager _hiveManager;
 
   @override
-  Future<void> onInit() async { debugPrint("PrimitiveController onInit");
+  Future<void> onInit() async {
     super.onInit();
+    debugPrint("PrimitiveController onInit");
+    updatePrimitives();
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
     updatePrimitives();
   }
 

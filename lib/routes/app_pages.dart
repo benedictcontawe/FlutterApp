@@ -13,7 +13,7 @@ abstract class AppPages {
   static final pages = [
     GetPage(
       name: Routes.SPLASH,
-      page: () => SplashPage(),
+      page: () => const SplashPage(),
       binding: SplashBinding(),
       transition: Transition.fade,
       transitionDuration: const Duration(milliseconds: 3000),
