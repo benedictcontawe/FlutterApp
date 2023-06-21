@@ -69,7 +69,7 @@ class MainController extends BaseController {
   }
 
   Future<void> add() async {
-    final _model = CustomModel(
+    final _model = CustomModel (
       name: _controller?.text.toString(),
       //icon:  const Icon(Icons.android)
     );
@@ -79,7 +79,7 @@ class MainController extends BaseController {
   }
 
   Future<void> updateName(int index) async {
-    final _model = CustomModel(
+    final _model = CustomModel (
       id: _list.value[index].id,
       name: _controller?.text.toString(),
       //icon:  const Icon(Icons.android)

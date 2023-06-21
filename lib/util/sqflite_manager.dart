@@ -33,7 +33,7 @@ class SqfliteManager {
   Future<void> _onCreate(Database db, int version) async { 
     debugPrint("SqfliteManager _onCreate");
     await db.execute(
-      "CREATE TABLE ${Constants.TABLE_NAME} (Id INTEGER PRIMARY KEY autoincrement, Name String NOT NULL)",
+      "CREATE TABLE ${Constants.TABLE_NAME} (${Constants.COLUMN_ID} INTEGER PRIMARY KEY autoincrement, ${Constants.COLUMN_NAME} String NOT NULL)",
     );
   }
 
@@ -47,7 +47,7 @@ class SqfliteManager {
       }
     );
     */
-    return await _database?.rawInsert('INSERT INTO ${tableName} (Id, Name) VALUES(?, ?)', [value.id, value.name] );
+    return await _database?.rawInsert('INSERT INTO ${tableName} (${Constants.COLUMN_ID}, ${Constants.COLUMN_NAME}) VALUES(?, ?)', [value.id, value.name] );
   }
 
   Future<int?> queryRowCount(String tableName,) async {
@@ -78,7 +78,7 @@ class SqfliteManager {
   Future<void> onUpdate(String tableName, CustomModel value,) async { 
     debugPrint("SqfliteManager onUpdate $tableName $value");
     await _database?.rawUpdate (
-      'UPDATE $tableName SET Name = ? WHERE Id = ?',
+      'UPDATE $tableName SET ${Constants.COLUMN_NAME} = ? WHERE ${Constants.COLUMN_ID} = ?',
       [value.name, value.id,],
     );
   }
@@ -103,7 +103,7 @@ class SqfliteManager {
     );
     */
     await _database?.rawDelete (
-      'DELETE FROM $tableName WHERE Id = ? AND Name = ?',
+      'DELETE FROM $tableName WHERE ${Constants.COLUMN_ID} = ? AND ${Constants.COLUMN_NAME} = ?',
       [value.id, value.name,],
     );
   }

@@ -7,6 +7,8 @@ class Constants {
   static const DATABASE_NAME = "app.db";
   static const DATABASE_VERSION = 1;
   static const TABLE_NAME = "table_name";
+  static const COLUMN_ID = "Id";
+  static const COLUMN_NAME = "Name";
   Color kBackgroundColor = HexColor('FFFFFF');
   Color kSolidButtonColor = HexColor('F38E36');
   Color kPrimaryTextColor = HexColor('000000');

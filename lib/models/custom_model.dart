@@ -1,3 +1,5 @@
+import 'package:dart_sqflite/util/constants.dart';
+
 class CustomModel {
 
   CustomModel ( {
@@ -7,9 +9,7 @@ class CustomModel {
   } );
 
   final int? id;
-
   final String? name;
-
   //final Icon? icon;
 
   factory CustomModel.toHolder(/*HiveModel model*/) => CustomModel (
@@ -19,15 +19,18 @@ class CustomModel {
   );
 
   factory CustomModel.fromJson(Map<String, dynamic> json) {
-    return CustomModel(
-      id: json['Id'], name: json['Name'],
+    return CustomModel (
+      id: json[Constants.COLUMN_ID], 
+      name: json[Constants.COLUMN_NAME],
+      //icon: json['icon'],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
-      'name': name
+      Constants.COLUMN_ID: id,
+      Constants.COLUMN_NAME: name,
+       //"icon" : icon
     };
   }
 
