@@ -6,16 +6,24 @@ class ButtonWidget extends StatelessWidget {
     super.key, 
     required this.text,
     required this.onPressed, 
+    //this.highlightElevation,
     this.textColor, 
     this.fillColor, 
-    this.splashColor
+    this.splashColor,
+    //this.fontSize,
+    //this.fontWeight,
+    //this.style,
   } );
   
   final String text;
   final GestureTapCallback onPressed;
+  //final double? highlightElevation;
   final Color? textColor;
   final Color? fillColor;
   final Color? splashColor;
+  //final double? fontSize;
+  //final FontWeight? fontWeight;
+  //final TextStyle? style;
 
   @override
   Widget build(BuildContext context) {

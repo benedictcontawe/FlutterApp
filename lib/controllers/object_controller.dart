@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:math';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_storage/controllers/base_controller.dart';
@@ -16,6 +18,9 @@ class ObjectController extends BaseController {
   final RxBool _isLoading = true.obs;
   final RxList<CustomModel> _list = new List<CustomModel>.empty().obs;
   TextEditingController? _controller;
+  PlatformFile? file = null;
+  final RxString liveFileName = "".obs, liveFileSize = "".obs, liveFileExtension = "".obs;
+  Rx<Uint8List> liveFileBytes = Uint8List.fromList([0]).obs;
 
   @override
   void onInit() {
@@ -44,6 +49,10 @@ class ObjectController extends BaseController {
 
   bool isLoading() {
     return _isLoading.value;
+  }
+
+  RxBool observeLoading() {
+    return _isLoading;
   }
 
   int getLength() {
@@ -96,16 +105,51 @@ class ObjectController extends BaseController {
         icon:  null,//TODO Use Picture for displaying const Icon(Icons.android)
       );
       _getStorageManager.addModel(model);
+      //TODO: Store Image, and Data to Firebase Database and Storage
     } catch (exception) {
       debugPrint("ObjectController add model exception $exception");
       onShowAlert("Error!", exception.toString());
     } finally {
       Get.back();
       fetchModels();
+      liveFileName("");
+      liveFileSize("");
+      liveFileExtension("");
+      liveFileBytes(Uint8List.fromList([0]));
       _isLoading(false);
     }
   }
+  //#region For Picking and displaying Image Files Methods
+  Future<void> onPickFiles() async {
+    const type = FileType.custom;
+    final extensions = ['jpg', 'png', 'webp'];
+    final result = await pickFiles(type, extensions);
+    openFile(result?.files?.single);
+  }
 
+  Future<FilePickerResult?> pickFiles(FileType type, List<String>? extensions) async {
+    return await FilePicker.platform.pickFiles(type: type, allowedExtensions: extensions);
+  }
+
+  Future<void> openFile(PlatformFile? file) async {
+    debugPrint("MainController openFile(PlatformFile name ${file?.name})");
+    debugPrint("MainController openFile(PlatformFile size ${file?.size})");
+    debugPrint("MainController openFile(PlatformFile extension ${file?.extension})");
+    debugPrint("MainController openFile(PlatformFile bytes ${file?.bytes})");
+    _isLoading(true);
+    this.file = file;
+    final kb = file!.size / 1024;
+    final mb = kb / 1024;
+    final fileSize = mb >= 1 ? '${mb.toStringAsFixed(2)} MB' : '${kb.toStringAsFixed(2)} KB';
+    liveFileName(file?.name?.split('.').first);
+    liveFileSize(fileSize);
+    liveFileExtension(file?.extension);
+    if (file?.extension?.toLowerCase()?.contains("jpg") == true || file?.extension?.toLowerCase()?.contains("png") == true || file?.extension?.toLowerCase()?.contains("webp") == true) {
+      liveFileBytes(file?.bytes);
+    }
+    _isLoading(false);
+  }
+  //#endregion
   Future<void> updateName(int index) async {
     _list.value[index]?.name = _controller?.text.toString();
     //_getStorageManager.updateModel( _list?.value[index]) ;

@@ -29,7 +29,12 @@ class ObjectPage extends BaseView<ObjectController> {
               onPressed: () {
                 controller.resetController();
                 CustomDialog.addDialog (
-                  controller.getController(), 
+                  controller.getController(),
+                  controller.observeLoading(),
+                  controller.liveFileName, controller.liveFileExtension, controller.liveFileSize, controller.liveFileBytes,
+                  () {
+                    controller.onPickFiles();
+                  },
                   () {
                     controller.addModel();
                   },
