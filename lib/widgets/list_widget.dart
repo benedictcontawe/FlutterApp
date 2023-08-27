@@ -32,6 +32,9 @@ class ListWidget extends BaseWidget<ObjectController> {
                           controller.setController(index);
                           CustomDialog.editDialog(
                             controller.getController(),
+                            () { //TODO: Funtion for editing or changing image to update
+                              controller.onShowAlert("On Going", "Under Construction");
+                            },
                             () {
                               controller.updateName(index);
                             },

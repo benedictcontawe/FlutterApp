@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_storage/util/hex_color.dart';
 import 'package:getx_storage/widgets/button_widget.dart';
 
 class CustomDialog {
@@ -83,7 +82,7 @@ class CustomDialog {
     );
   }
 
-  static editDialog(TextEditingController? controller, GestureTapCallback onPressed) {
+  static editDialog(TextEditingController? controller, GestureTapCallback onPressedMedia, GestureTapCallback onPressed) {
     Get.dialog(
       AlertDialog (
         actions: [
@@ -92,17 +91,35 @@ class CustomDialog {
             onPressed: onPressed 
           )
         ],
-        content: TextField (
-          controller: controller,
-          decoration: const InputDecoration (
-            hintText: 'Update Name',
-            labelText: 'Name',
-          ),
-          enabled: true,
-          //maxLength: 10,
-          maxLines: 1,
-          obscureText: false,
-          keyboardType: TextInputType.text,
+        content: Column(
+          children: [
+            TextField (
+              controller: controller,
+              decoration: const InputDecoration (
+                hintText: 'Update Name',
+                labelText: 'Name',
+              ),
+              enabled: true,
+              //maxLength: 10,
+              maxLines: 1,
+              obscureText: false,
+              keyboardType: TextInputType.text,
+            ),
+            ButtonWidget (
+                text: "Edit Media", 
+                textColor: Colors.purple, 
+                fillColor: Colors.white,
+                onPressed: onPressedMedia
+            ),
+            const SizedBox (
+              height: 100,
+              width: 100,
+              child: Icon (
+                CupertinoIcons.photo_camera_solid,
+                color: Colors.blue,
+              ),
+            ),
+          ],
         ),
         title: const Text("Update"),
       ),

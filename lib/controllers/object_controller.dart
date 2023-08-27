@@ -72,6 +72,7 @@ class ObjectController extends BaseController {
       _isLoading(true);
       _list.value = <CustomModel>[];
       _list.value = await _getStorageManager.getModels() ?? <CustomModel>[];
+      //TODO: Fetch from Firebase then save to get storage then display
       debugPrint("ObjectController _list ${_list.value.length} ${_list.value}");
     } catch (exception) {
       debugPrint("ObjectController update models exception $exception");
@@ -151,6 +152,7 @@ class ObjectController extends BaseController {
   }
   //#endregion
   Future<void> updateName(int index) async {
+    //TODO: will need also to edit image
     _list.value[index]?.name = _controller?.text.toString();
     //_getStorageManager.updateModel( _list?.value[index]) ;
     _getStorageManager.updateModels( _list?.value) ;
