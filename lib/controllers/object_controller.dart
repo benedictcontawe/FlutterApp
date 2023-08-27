@@ -5,16 +5,22 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_storage/controllers/base_controller.dart';
+import 'package:getx_storage/firebase/firebase_storage_service.dart';
+import 'package:getx_storage/firebase/firestore_service.dart';
 import 'package:getx_storage/models/custom_model.dart';
 import 'package:getx_storage/util/get_storage_manager_.dart';
 
 class ObjectController extends BaseController {
   
-  ObjectController(GetStorageManager this._getStorageManager) {
-
+  ObjectController(GetStorageManager this._getStorageManager, FirestoreService this._service, FirebaseStorageService this._storage) {
+    debugPrint("DashboardController Constructor");
   }
 
   final GetStorageManager _getStorageManager;
+  //#region Firabase Instances
+  final FirestoreService _service;
+  final FirebaseStorageService _storage;
+  //#endregion
   final RxBool _isLoading = true.obs;
   final RxList<CustomModel> _list = new List<CustomModel>.empty().obs;
   TextEditingController? _controller;
@@ -34,12 +40,6 @@ class ObjectController extends BaseController {
       newId = min + Random().nextInt(max - min);
     }
     return newId;
-  }
-
-  void onShowAlert(String title, String message) {
-    Timer (
-      const Duration(milliseconds: 2000), ( () => Get.snackbar(title, message) )
-    );
   }
 
   @override
@@ -104,8 +104,8 @@ class ObjectController extends BaseController {
         name: _controller?.text.toString(),
         icon:  null,//TODO Use Picture for displaying const Icon(Icons.android)
       );
-      _getStorageManager.addModel(model);
       //TODO: Store Image, and Data to Firebase Database and Storage
+      _getStorageManager.addModel(model);
     } catch (exception) {
       debugPrint("ObjectController add model exception $exception");
       onShowAlert("Error!", exception.toString());
@@ -165,8 +165,13 @@ class ObjectController extends BaseController {
   }
 
   Future<void> deleteAll() async {
-    _list.value = <CustomModel>[];
-    _getStorageManager.removeModels();
+    try {
+      _list.value = <CustomModel>[];
+      _getStorageManager.removeModels();
+    } catch (exception) {
+      debugPrint("ObjectController Delete All exception $exception");
+      onShowAlert("Error!", exception.toString());
+    }
   }
 
   @override

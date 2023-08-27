@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_storage/controllers/base_controller.dart';
+import 'package:getx_storage/firebase/firestore_service.dart';
 import 'package:getx_storage/util/get_storage_manager_.dart';
 
 class PrimitiveController extends BaseController {
 
-  PrimitiveController(GetStorageManager this._getStorageManager) {
+  PrimitiveController(GetStorageManager this._getStorageManager, FirestoreService this._service,) {
     
   }
   
   final GetStorageManager _getStorageManager;
+  final FirestoreService _service;
   final TextEditingController _stringController = TextEditingController();
   final TextEditingController _integerController = TextEditingController();
   final TextEditingController _doubleController = TextEditingController();
@@ -53,9 +55,15 @@ class PrimitiveController extends BaseController {
     return _doubleController;
   }
 
-  Future<void> updateBoolean() async {
-    _getStorageManager.setBoolean('BOOLEAN', _liveChecked.value);
-    _liveBoolean(_getStorageManager.getBoolean('BOOLEAN').toString());
+  Future<void> updateBoolean() async {  
+    try {
+      //TODO: Save from Firebase first before Get Storage
+      _getStorageManager.setBoolean('BOOLEAN', _liveChecked.value);
+    } catch (exception) {
+      onShowAlert("Error", "Invalid input for Boolean $exception");
+    } finally {
+      _liveBoolean(_getStorageManager.getBoolean('BOOLEAN').toString());
+    }
   }
 
   String getBoolean() {
@@ -63,8 +71,14 @@ class PrimitiveController extends BaseController {
   }
 
   Future<void> updateString() async {
-    _getStorageManager.setString('STRING', _stringController.text.toString());
-    _liveString(_getStorageManager.getString('STRING'));
+     try {
+      //TODO: Save from Firebase first before Get Storage
+      _getStorageManager.setString('STRING', _stringController.text.toString());
+    } catch (exception) {
+      onShowAlert("Error", "Invalid input for String $exception");
+    } finally {
+      _liveString(_getStorageManager.getString('STRING'));
+    }
   }
 
   String getString() {
@@ -72,8 +86,14 @@ class PrimitiveController extends BaseController {
   }
 
   Future<void> updateInteger() async {
-    _getStorageManager.setInteger('INTEGER', int.parse(_integerController.text.toString()));
-    _liveInteger(_getStorageManager.getInteger('INTEGER'));
+    try {
+      //TODO: Save from Firebase first before Get Storage
+      _getStorageManager.setInteger('INTEGER', int.parse(_integerController.text.toString()));
+    } catch (exception) {
+      onShowAlert("Error", "Invalid input for Integer $exception");
+    } finally {
+      _liveInteger(_getStorageManager.getInteger('INTEGER'));
+    }
   }
 
   int getInteger() {
@@ -81,8 +101,14 @@ class PrimitiveController extends BaseController {
   }
 
   Future<void> updateDouble() async {
-    _getStorageManager.setDouble('DOUBLE', double.parse(_doubleController.text.toString()));
-    _liveDoubleValue(_getStorageManager.getDouble('DOUBLE'));
+    try {
+      //TODO: Save from Firebase first before Get Storage
+      _getStorageManager.setDouble('DOUBLE', double.parse(_doubleController.text.toString()));
+    } catch (exception) {
+      onShowAlert("Error", "Invalid input for Double $exception");
+    } finally {
+      _liveDoubleValue(_getStorageManager.getDouble('DOUBLE'));
+    }
   }
 
   double getDouble() {

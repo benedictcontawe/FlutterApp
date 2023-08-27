@@ -69,7 +69,7 @@ class DefaultFirebaseOptions {
     databaseURL: '',
     storageBucket: '',
     iosClientId: '',
-    iosBundleId: '',
+    iosBundleId: 'com.sample.getx_storage',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -80,6 +80,6 @@ class DefaultFirebaseOptions {
     databaseURL: '',
     storageBucket: '',
     iosClientId: '',
-    iosBundleId: '',
+    iosBundleId: 'com.sample.getx_storage',
   );
 }

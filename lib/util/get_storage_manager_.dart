@@ -43,7 +43,6 @@ class GetStorageManager {
   }
   //#endregion
   //#region Object Methods
-
   Future addModel(CustomModel newModel) async {
     debugPrint("GetStorageManager addModel ${newModel}");
     final List<CustomModel>? models = getModels();
