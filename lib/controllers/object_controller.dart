@@ -31,7 +31,7 @@ class ObjectController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    fetchModels();
+    fetchModels(); 
   }
 
   int _generateId(int min, int max) {
@@ -79,6 +79,10 @@ class ObjectController extends BaseController {
       _list.value = await _getStorageManager.getModels() ?? <CustomModel>[];
       //TODO: Fetch from Firebase then save to get storage then display
       debugPrint("ObjectController _list ${_list.value.length} ${_list.value}");
+      final snapshot = await _service.getObjects();
+      for (final item in snapshot) {
+        debugPrint("ObjectController snapshot ${item.id} ${item.name} ${item.icon}");
+      }
     } catch (exception) {
       debugPrint("ObjectController update models exception $exception");
       onShowAlert("Error!", exception.toString());

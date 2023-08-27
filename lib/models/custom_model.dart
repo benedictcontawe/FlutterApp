@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class CustomModel {
 
   CustomModel ( {
@@ -15,6 +17,15 @@ class CustomModel {
       id : json["id"],
       name : json["name"].toString(),
       icon : json["icon"].toString(),
+    );
+  }
+
+  factory CustomModel.fromSnapshot(DocumentSnapshot snapshot) {
+    final data = snapshot.data() as Map<String,dynamic>;
+    return CustomModel (
+      //id : snapshot.id.toString(),
+      name : data ['name'],
+      icon : data ['image_url'],
     );
   }
 
