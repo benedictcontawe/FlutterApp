@@ -21,5 +21,4 @@ class FirestoreService extends GetxService {
         .toList();
   }
 
-
 }
