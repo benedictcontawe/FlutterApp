@@ -16,21 +16,36 @@ class ListWidget extends BaseWidget<ObjectController> {
       return ListView.builder (
         itemCount: controller.getLength(),
         itemBuilder: (BuildContext context, int index) {
-          return Card(
-            child: Column(
+          return Card (
+            child: Column (
               children: [
                 ListTile(
                   leading: const Icon(Icons.android),
+                  /* //TODO: Replace leading when it ready
+                  leading: Image.network (
+                    controller.getImageUrl(index),
+                    fit: BoxFit.cover,
+                    alignment: Alignment.center,
+                    errorBuilder: ( (context, error, stackTrace) {
+                      debugPrint("ListWidget errorBuilder ${error.toString()} ${stackTrace.toString()}");
+                      return const Icon (
+                        Icons.broken_image,
+                        color: Colors.red,
+                        size: 30.0,
+                      );
+                    } ),
+                  ),
+                  */
                   dense: true,
                   title: Text("${controller.getName(index)}", maxLines: 1, overflow: TextOverflow.ellipsis,),
-                  trailing: Column(
+                  trailing: Column (
                     children: [
                     Flexible(
                       child: ButtonWidget (
                         text: "Edit", 
                         onPressed: () {
                           controller.setController(index);
-                          CustomDialog.editDialog(
+                          CustomDialog.editDialog (
                             controller.getController(),
                             () { //TODO: Funtion for editing or changing image to update
                               controller.onShowAlert("On Going", "Under Construction");

@@ -63,6 +63,11 @@ class ObjectController extends BaseController {
     return _list.value[index].icon ?? "Nil";
   }
   */
+  String getImageUrl(int index) {
+    //TODO: Fetch in Firebase then get the image url for this
+    return "" ?? "";
+  }
+  
   String getName(int index) {
     return _list.value[index]?.name ?? "Nil";
   }

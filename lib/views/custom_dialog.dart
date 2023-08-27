@@ -39,7 +39,6 @@ class CustomDialog {
             }
           }),
           Obx(() {
-            //debugPrint("liveFileBytes ${liveFileBytes.value}");
             if (liveLoading.value) {
               return const Center(child: CircularProgressIndicator());
             } else if (liveFileExtension.value.toLowerCase().contains("jpg") || liveFileExtension.value.toLowerCase().contains("png") || liveFileExtension.value.toLowerCase().contains("webp")/*liveFileBytes.value == Uint8List.fromList([0])*/) {
@@ -68,11 +67,17 @@ class CustomDialog {
               );
             }
           },),
-          Obx(() => Text (
-            "${liveFileName.value}.${liveFileExtension} ${liveFileSize.value}",
-            style:  const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            overflow: TextOverflow.ellipsis,
-          ),)
+          Obx(() {
+            if (liveFileExtension.value.toLowerCase().contains("jpg") || liveFileExtension.value.toLowerCase().contains("png") || liveFileExtension.value.toLowerCase().contains("webp")) {
+              return  Text (
+                "${liveFileName.value}.${liveFileExtension} ${liveFileSize.value}",
+                style:  const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                overflow: TextOverflow.ellipsis,
+              );
+            } else {
+              return const SizedBox ();
+            }
+          },),
         ],
       ),
       onConfirm: onConfirm,
@@ -82,7 +87,11 @@ class CustomDialog {
     );
   }
 
-  static editDialog(TextEditingController? controller, GestureTapCallback onPressedMedia, GestureTapCallback onPressed) {
+  static editDialog(
+    TextEditingController? controller,
+    //RxBool liveLoading, RxString liveFileName, RxString liveFileExtension, RxString liveFileSize, Rx<Uint8List> liveFileBytes,
+    GestureTapCallback onPressedMedia, GestureTapCallback onPressed
+  ) {
     Get.dialog(
       AlertDialog (
         actions: [
