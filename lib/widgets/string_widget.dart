@@ -33,7 +33,7 @@ class StringWidget extends BaseWidget<PrimitiveController> {
             child: ButtonWidget (
               text: "Update", 
               onPressed: () {
-                  controller.updateString();
+                  controller.postString();
               },
             ),
           ),

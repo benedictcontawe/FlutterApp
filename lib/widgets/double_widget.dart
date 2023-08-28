@@ -33,7 +33,7 @@ class DoubleWidget extends BaseWidget<PrimitiveController> {
             child: ButtonWidget (
               text: "Update", 
               onPressed: () {
-                  controller.updateDouble();
+                  controller.postDouble();
               },
             ),
           ),

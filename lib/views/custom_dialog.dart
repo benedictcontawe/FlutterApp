@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_storage/util/constants.dart';
 import 'package:getx_storage/widgets/button_widget.dart';
 
 class CustomDialog {
@@ -87,12 +88,12 @@ class CustomDialog {
     );
   }
 
-  static editDialog(
+  static editDialog (
     TextEditingController? controller,
     //RxBool liveLoading, RxString liveFileName, RxString liveFileExtension, RxString liveFileSize, Rx<Uint8List> liveFileBytes,
     GestureTapCallback onPressedMedia, GestureTapCallback onPressed
   ) {
-    Get.dialog(
+    Get.dialog (
       AlertDialog (
         actions: [
           ButtonWidget (
@@ -100,7 +101,7 @@ class CustomDialog {
             onPressed: onPressed 
           )
         ],
-        content: Column(
+        content: Column (
           children: [
             TextField (
               controller: controller,
@@ -133,6 +134,20 @@ class CustomDialog {
         title: const Text("Update"),
       ),
       barrierDismissible: true,
+    );
+  }
+
+  static loadingDialog () {
+    Get.dialog (
+      AlertDialog (
+        backgroundColor: Constants.transparentColor,
+        elevation: 0.00,
+        content: const Center (
+          child: CircularProgressIndicator()
+        ),
+        surfaceTintColor: Constants.transparentColor,
+      ),
+      barrierDismissible: false,
     );
   }
 }

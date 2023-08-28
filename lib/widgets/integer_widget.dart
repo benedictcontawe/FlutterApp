@@ -33,7 +33,7 @@ class IntegerWidget extends BaseWidget<PrimitiveController> {
             child: ButtonWidget (
               text: "Update", 
               onPressed: () {
-                  controller.updateInteger();
+                  controller.postInteger();
               },
             ),
           ),

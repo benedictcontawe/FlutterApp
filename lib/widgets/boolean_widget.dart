@@ -34,7 +34,7 @@ class BooleanWidget extends BaseWidget<PrimitiveController> {
             ButtonWidget (
               text: "Update", 
               onPressed: () {
-                controller.updateBoolean();
+                controller.postBoolean();
               },
             ),
             Obx( () {
