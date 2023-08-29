@@ -5,33 +5,33 @@ class CustomModel {
   CustomModel ( {
     this.id,
     this.name,
-    this.image,
+    this.image_url,
   } );
 
-  final int? id;
+  final String? id;
   String? name;
-  final String? image;
+  final String? image_url;
 
   factory CustomModel.fromJson(Map<String, dynamic> json) {
     return CustomModel (
       id : json["id"],
       name : json["name"].toString(),
-      image : json["icon"].toString(),
+      image_url : json["icon"].toString(),
     );
   }
 
   factory CustomModel.fromSnapshot(DocumentSnapshot snapshot) {
     final data = snapshot.data() as Map<String,dynamic>;
     return CustomModel (
-      //id : snapshot.id.toString(),
+      id : snapshot.id.toString(),
       name : data ['name'],
-      image : data ['image_url'],
+      image_url : data ['image_url'],
     );
   }
 
   Map<String, dynamic> toMap() => {
     "name": name,
-    "image_url": image
+    "image_url": image_url
   };
 
   Map<String, dynamic> toJson() {
@@ -45,12 +45,12 @@ class CustomModel {
     return {
       "id" : id,
       "name" : name,
-      "icon" : image,
+      "image_url" : image_url,
     };
   }
 
   @override
   String toString() {
-    return "CustomModel id $id name $name icon $image" ?? super.toString();
+    return "CustomModel id $id name $name icon $image_url" ?? super.toString();
   }
 }

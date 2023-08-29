@@ -20,8 +20,6 @@ class ListWidget extends BaseWidget<ObjectController> {
             child: Column (
               children: [
                 ListTile(
-                  // leading: const Icon(Icons.android),
-                  //TODO: Replace leading when it ready
                   leading: Image.network (
                     controller.getImageUrl(index),
                     fit: BoxFit.cover,

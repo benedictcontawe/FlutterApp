@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -69,7 +70,7 @@ class ObjectController extends BaseController {
   */
   String getImageUrl(int index) {
     //TODO: Fetch in Firebase then get the image url for this
-    return "{$liveFileName}" ?? "Null";
+    return _list.value[index]?.image_url ?? "Null";
   }
 
   String getName(int index) {
@@ -86,7 +87,7 @@ class ObjectController extends BaseController {
       final snapshot = await _service.getObjects();
       for (final item in snapshot) {
         debugPrint(
-            "ObjectController snapshot ${item.id} ${item.name} ${item.image}");
+            "ObjectController snapshot ${item.id} ${item.name} ${item.image_url}");
       }
     } catch (exception) {
       debugPrint("ObjectController update models exception $exception");
@@ -114,17 +115,20 @@ class ObjectController extends BaseController {
   Future<void> addModel() async {
     try {
       _isLoading(true);
+      TaskSnapshot? taskSnapshot = await _storage.uploadPlatformFiles(file);
+
+      if (taskSnapshot != null && taskSnapshot!.state == TaskState.success){
       final model = CustomModel(
-        id: _generateId(0, _list.length + 1),
+        // id: _generateId(0, _list.length + 1),
         name: _controller?.text.toString(),
-        image: liveFileName.value, //TODO Use Picture for displaying const Icon(Icons.android)
+        image_url: await taskSnapshot.ref.getDownloadURL(), //TODO Use Picture for displaying const Icon(Icons.android)
       );
-      //TODO: Store Image, and Data to Firebase Database and Storage
-
       // This will show the lists
-      _getStorageManager.addModel(model);
       await _service.createObject(model.toMap());
-
+      _getStorageManager.addModel(model);
+      } else {
+        onShowAlert("Error", "on Upload Media Content Failed");
+      }
     } catch (exception) {
       debugPrint("ObjectController add model exception $exception");
       onShowAlert("Error!", exception.toString());

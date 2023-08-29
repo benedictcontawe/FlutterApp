@@ -11,8 +11,8 @@ class FirebaseStorageService extends GetxService {
   Reference? videosRef;
 
   FirebaseStorageService() {
-    imagesRef = storageRef.child('images');
-    videosRef = storageRef.child('videos');
+    imagesRef = storageRef.child('images/');
+    videosRef = storageRef.child('videos/');
   }
 
   Future<TaskSnapshot?> uploadPlatformFiles(PlatformFile? file) async {
@@ -26,6 +26,12 @@ class FirebaseStorageService extends GetxService {
       TaskSnapshot? taskSnapshot = await storageRef.child(file!.name)?.putData(file!.bytes!); 
     }
     */
-    return await storageRef.child(file!.name)?.putData(file!.bytes!);
+    if(isImage = true) {
+      return await storageRef.child("images/${file!.name}").putData(file.bytes!);
+      // return await storageRef.child(file!.name).putData(file!.bytes!);
+    } else {
+      return await storageRef.child("videos/${file!.name}").putData(file.bytes!);
+    }
+    
   }
 }
