@@ -20,8 +20,8 @@ class ListWidget extends BaseWidget<ObjectController> {
             child: Column (
               children: [
                 ListTile(
-                  leading: const Icon(Icons.android),
-                  /* //TODO: Replace leading when it ready
+                  // leading: const Icon(Icons.android),
+                  //TODO: Replace leading when it ready
                   leading: Image.network (
                     controller.getImageUrl(index),
                     fit: BoxFit.cover,
@@ -35,7 +35,7 @@ class ListWidget extends BaseWidget<ObjectController> {
                       );
                     } ),
                   ),
-                  */
+                  
                   dense: true,
                   title: Text("${controller.getName(index)}", maxLines: 1, overflow: TextOverflow.ellipsis,),
                   trailing: Column (

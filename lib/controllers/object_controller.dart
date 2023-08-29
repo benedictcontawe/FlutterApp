@@ -4,6 +4,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:getx_storage/controllers/base_controller.dart';
 import 'package:getx_storage/firebase/firebase_storage_service.dart';
 import 'package:getx_storage/firebase/firestore_service.dart';
@@ -11,8 +12,8 @@ import 'package:getx_storage/models/custom_model.dart';
 import 'package:getx_storage/util/get_storage_manager_.dart';
 
 class ObjectController extends BaseController {
-  
-  ObjectController(GetStorageManager this._getStorageManager, FirestoreService this._service, FirebaseStorageService this._storage) {
+  ObjectController(GetStorageManager this._getStorageManager,
+      FirestoreService this._service, FirebaseStorageService this._storage) {
     debugPrint("DashboardController Constructor");
   }
 
@@ -25,18 +26,20 @@ class ObjectController extends BaseController {
   final RxList<CustomModel> _list = new List<CustomModel>.empty().obs;
   TextEditingController? _controller;
   PlatformFile? file = null;
-  final RxString liveFileName = "".obs, liveFileSize = "".obs, liveFileExtension = "".obs;
+  final RxString liveFileName = "".obs,
+      liveFileSize = "".obs,
+      liveFileExtension = "".obs;
   Rx<Uint8List> liveFileBytes = Uint8List.fromList([0]).obs;
 
   @override
   void onInit() {
     super.onInit();
-    fetchModels(); 
+    fetchModels();
   }
 
   int _generateId(int min, int max) {
     int newId = min + Random().nextInt(max - min);
-    while(_list.where((oldModel) => oldModel.id == newId ).isEmpty == false) {
+    while (_list.where((oldModel) => oldModel.id == newId).isEmpty == false) {
       newId = min + Random().nextInt(max - min);
     }
     return newId;
@@ -58,6 +61,7 @@ class ObjectController extends BaseController {
   int getLength() {
     return _list.value.length ?? 0;
   }
+
   /*
   String getIcon(int index) {
     return _list.value[index].icon ?? "Nil";
@@ -65,9 +69,9 @@ class ObjectController extends BaseController {
   */
   String getImageUrl(int index) {
     //TODO: Fetch in Firebase then get the image url for this
-    return "" ?? "";
+    return "{$liveFileName}" ?? "Null";
   }
-  
+
   String getName(int index) {
     return _list.value[index]?.name ?? "Nil";
   }
@@ -81,7 +85,8 @@ class ObjectController extends BaseController {
       debugPrint("ObjectController _list ${_list.value.length} ${_list.value}");
       final snapshot = await _service.getObjects();
       for (final item in snapshot) {
-        debugPrint("ObjectController snapshot ${item.id} ${item.name} ${item.icon}");
+        debugPrint(
+            "ObjectController snapshot ${item.id} ${item.name} ${item.image}");
       }
     } catch (exception) {
       debugPrint("ObjectController update models exception $exception");
@@ -109,13 +114,17 @@ class ObjectController extends BaseController {
   Future<void> addModel() async {
     try {
       _isLoading(true);
-      final model = CustomModel (
+      final model = CustomModel(
         id: _generateId(0, _list.length + 1),
         name: _controller?.text.toString(),
-        icon:  null,//TODO Use Picture for displaying const Icon(Icons.android)
+        image: liveFileName.value, //TODO Use Picture for displaying const Icon(Icons.android)
       );
       //TODO: Store Image, and Data to Firebase Database and Storage
+
+      // This will show the lists
       _getStorageManager.addModel(model);
+      await _service.createObject(model.toMap());
+
     } catch (exception) {
       debugPrint("ObjectController add model exception $exception");
       onShowAlert("Error!", exception.toString());
@@ -129,6 +138,7 @@ class ObjectController extends BaseController {
       _isLoading(false);
     }
   }
+
   //#region For Picking and displaying Image Files Methods
   Future<void> onPickFiles() async {
     const type = FileType.custom;
@@ -137,41 +147,48 @@ class ObjectController extends BaseController {
     openFile(result?.files?.single);
   }
 
-  Future<FilePickerResult?> pickFiles(FileType type, List<String>? extensions) async {
-    return await FilePicker.platform.pickFiles(type: type, allowedExtensions: extensions);
+  Future<FilePickerResult?> pickFiles(
+      FileType type, List<String>? extensions) async {
+    return await FilePicker.platform
+        .pickFiles(type: type, allowedExtensions: extensions);
   }
 
   Future<void> openFile(PlatformFile? file) async {
     debugPrint("MainController openFile(PlatformFile name ${file?.name})");
     debugPrint("MainController openFile(PlatformFile size ${file?.size})");
-    debugPrint("MainController openFile(PlatformFile extension ${file?.extension})");
+    debugPrint(
+        "MainController openFile(PlatformFile extension ${file?.extension})");
     debugPrint("MainController openFile(PlatformFile bytes ${file?.bytes})");
     _isLoading(true);
     this.file = file;
     final kb = file!.size / 1024;
     final mb = kb / 1024;
-    final fileSize = mb >= 1 ? '${mb.toStringAsFixed(2)} MB' : '${kb.toStringAsFixed(2)} KB';
+    final fileSize =
+        mb >= 1 ? '${mb.toStringAsFixed(2)} MB' : '${kb.toStringAsFixed(2)} KB';
     liveFileName(file?.name?.split('.').first);
     liveFileSize(fileSize);
     liveFileExtension(file?.extension);
-    if (file?.extension?.toLowerCase()?.contains("jpg") == true || file?.extension?.toLowerCase()?.contains("png") == true || file?.extension?.toLowerCase()?.contains("webp") == true) {
+    if (file?.extension?.toLowerCase()?.contains("jpg") == true ||
+        file?.extension?.toLowerCase()?.contains("png") == true ||
+        file?.extension?.toLowerCase()?.contains("webp") == true) {
       liveFileBytes(file?.bytes);
     }
     _isLoading(false);
   }
+
   //#endregion
   Future<void> updateName(int index) async {
     //TODO: will need also to edit image
     _list.value[index]?.name = _controller?.text.toString();
     //_getStorageManager.updateModel( _list?.value[index]) ;
-    _getStorageManager.updateModels( _list?.value) ;
+    _getStorageManager.updateModels(_list?.value);
     Get.back();
     fetchModels();
   }
 
   Future<void> deleteModel(int index) async {
     //_list?.removeAt(index);
-    _getStorageManager.deleteModel( _list?.value[index] );
+    _getStorageManager.deleteModel(_list?.value[index]);
     fetchModels();
   }
 
