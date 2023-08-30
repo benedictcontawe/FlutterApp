@@ -68,14 +68,20 @@ class ObjectController extends BaseController {
       _isLoading(true);
       debugPrint("ObjectController _list ${_list.value.length} ${_list.value}");
       final snapshot = await _service.getObjects();
-      for (final item in snapshot) {
-        debugPrint("ObjectController snapshot ${item.id} ${item.name} ${item.icon}");
-        final model = _list.firstWhereOrNull( (oldItem) => oldItem.id == item.id);
-        if(model != null && model.isNotSameContent(item)) {
-          _updateName(item);
-          _updateIcon(item);
+      _list.forEach((oldModel) {
+        if (snapshot.where((newModel) => oldModel.id == newModel.id).isEmpty) {
+          debugPrint("ObjectController oldModel ${oldModel.id} isEmpty");
+          _deleteModel(oldModel.id);
+        }
+      } );
+      for (final newModel in snapshot) {
+        debugPrint("ObjectController snapshot ${newModel.id} ${newModel.name} ${newModel.icon}");
+        final model = _list.firstWhereOrNull( (oldModel) => oldModel.id == newModel.id);
+        if(model != null && model.isNotSameContent(newModel)) {
+          _updateName(newModel);
+          _updateIcon(newModel);
         } else if (model == null) {
-          _addModel(item);
+          _addModel(newModel);
         }
       }
     } catch (exception) {
@@ -240,6 +246,18 @@ class ObjectController extends BaseController {
     //_list?.removeAt(index);
     _getStorageManager.deleteModel(_list?.value[index]);
     fetchModels();
+  }
+
+  Future<void> _deleteModel(String? id) async {
+    debugPrint("ObjectController _deleteModel");
+    try {
+      if(id != null) {
+        _list.removeWhere((oldModel) => oldModel.id == id);
+      }
+    } catch (exception) {
+      debugPrint("ObjectController Invalid remove id $exception");
+      onShowAlert("Error", "Invalid remove id $exception");
+    }
   }
 
   Future<void> deleteAll() async {

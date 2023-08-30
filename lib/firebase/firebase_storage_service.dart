@@ -17,21 +17,14 @@ class FirebaseStorageService extends GetxService {
 
   Future<TaskSnapshot?> uploadPlatformFiles(PlatformFile? file) async {
     debugPrint("uploadPlatformFiles ${file?.name} ${file?.size}");
-    if (file?.name == null || file?.bytes == null) {
+    if (file != null && file?.name == null || file?.bytes == null) {
       throw Exception("File is Null");
     }
-    bool isImage = file?.extension?.toLowerCase()?.contains("jpg") == true || file?.extension?.toLowerCase()?.contains("png") == true || file?.extension?.toLowerCase()?.contains("webp") == true;
-    /*
-    if (file?.bytes != null) {
-      TaskSnapshot? taskSnapshot = await storageRef.child(file!.name)?.putData(file!.bytes!); 
-    }
-    */
+    bool isImage = file?.extension?.toLowerCase()?.contains("jpg") == true || file?.extension?.toLowerCase()?.contains("png") == true || file?.extension?.toLowerCase()?.contains("webp") == true;    
     if(isImage = true) {
-      return await storageRef.child("images/${file!.name}").putData(file.bytes!);
-      // return await storageRef.child(file!.name).putData(file!.bytes!);
+      return await imagesRef?.child(file!.name).putData(file.bytes!);
     } else {
-      return await storageRef.child("videos/${file!.name}").putData(file.bytes!);
+      return await videosRef?.child(file!.name).putData(file.bytes!);
     }
-    
   }
 }

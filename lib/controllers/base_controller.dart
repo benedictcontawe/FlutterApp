@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:html' as html;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,6 +20,10 @@ class BaseController extends GetxController {
   @override
   void onReady() {
     super.onReady();
+  }
+
+  void onRefresh() {
+    html.window.location.reload();
   }
 
   @override

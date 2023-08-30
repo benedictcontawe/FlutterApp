@@ -48,40 +48,40 @@ class PrimitiveController extends BaseController {
       _primitives.clear();
       CustomDialog.loadingDialog();
       final snapshot = await _service.getPrimitive();
-      for (final item in snapshot) {
-        _primitives.add( item );
-        switch(item.type) { 
+      for (final newModel in snapshot) {
+        _primitives.add( newModel );
+        switch(newModel.type) { 
           case Constants.BOOLEAN: {
-            debugPrint("PrimitiveController snapshot BOOLEAN ${item.id} ${item.data}");
-            if (item?.data != _liveBoolean.value) {
-              _postBoolean(item);
+            debugPrint("PrimitiveController snapshot BOOLEAN ${newModel.id} ${newModel.data}");
+            if (newModel?.data != _liveBoolean.value) {
+              _postBoolean(newModel);
             }
           }
           break; 
           case Constants.STRING: { 
-            debugPrint("PrimitiveController snapshot STRING ${item.id} ${item.data}");
-            if (item?.data != _liveString.value) {
-              _postString(item);
+            debugPrint("PrimitiveController snapshot STRING ${newModel.id} ${newModel.data}");
+            if (newModel?.data != _liveString.value) {
+              _postString(newModel);
             }
           } 
           break; 
           case Constants.INTEGER: { 
-            debugPrint("PrimitiveController snapshot INTEGER ${item.id} ${item.data}");
-            if (item?.data != _liveInteger.value) {
-              _postInteger(item);
+            debugPrint("PrimitiveController snapshot INTEGER ${newModel.id} ${newModel.data}");
+            if (newModel?.data != _liveInteger.value) {
+              _postInteger(newModel);
             }
           } 
           break;
           case Constants.DOUBLE: { 
-            debugPrint("PrimitiveController snapshot DOUBLE ${item.id} ${item.data}");
-             if (item?.data != _liveDouble.value) {
-              _postDouble(item);
+            debugPrint("PrimitiveController snapshot DOUBLE ${newModel.id} ${newModel.data}");
+             if (newModel?.data != _liveDouble.value) {
+              _postDouble(newModel);
             }
           } 
           break; 
           default: { 
-            debugPrint("PrimitiveController Unknown ID ${item.id} Data ${item.data}");
-            onShowAlert('Error', "Unknown ID ${item.id} Data ${item.data}");
+            debugPrint("PrimitiveController Unknown ID ${newModel.id} Data ${newModel.data}");
+            onShowAlert('Error', "Unknown ID ${newModel.id} Data ${newModel.data}");
           }
           break; 
         } 
@@ -120,7 +120,7 @@ class PrimitiveController extends BaseController {
   void postBoolean() {
     debugPrint("PrimitiveController postBoolean()");
     try {
-      final model = _primitives.where( (oldItem) => oldItem.type == Constants.BOOLEAN).firstOrNull;
+      final model = _primitives.where( (oldModel) => oldModel.type == Constants.BOOLEAN).firstOrNull;
       _service.updatePrimitive (
         PrimitiveModel (
           id : model?.id,
@@ -162,7 +162,7 @@ class PrimitiveController extends BaseController {
   void postString() {
     debugPrint("PrimitiveController postString()");
     try {
-      final model = _primitives.where( (oldItem) => oldItem.type == Constants.STRING).firstOrNull;
+      final model = _primitives.where( (oldModel) => oldModel.type == Constants.STRING).firstOrNull;
       _service.updatePrimitive (
         PrimitiveModel (
           id : model?.id,
@@ -204,7 +204,7 @@ class PrimitiveController extends BaseController {
   void postInteger() {
     debugPrint("PrimitiveController postInteger()");
     try {
-      final model = _primitives.where( (oldItem) => oldItem.type == Constants.INTEGER).firstOrNull;
+      final model = _primitives.where( (oldModel) => oldModel.type == Constants.INTEGER).firstOrNull;
       _service.updatePrimitive (
         PrimitiveModel (
           id : model?.id,
@@ -248,7 +248,7 @@ class PrimitiveController extends BaseController {
   void postDouble() {
     debugPrint("PrimitiveController postDouble()");
     try {
-      final model = _primitives.where( (oldItem) => oldItem.type == Constants.DOUBLE).firstOrNull;
+      final model = _primitives.where( (oldModel) => oldModel.type == Constants.DOUBLE).firstOrNull;
       _service.updatePrimitive (
         PrimitiveModel (
           id : model?.id,

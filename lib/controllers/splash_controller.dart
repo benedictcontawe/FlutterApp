@@ -24,7 +24,7 @@ class SplashController extends BaseController {
   void _startTimer() {
     debugPrint("SplashController startTimer");
     _timer = Timer (
-      Duration( milliseconds: 5000 ), 
+      const Duration( milliseconds: 4000 ), 
       (() => _launchLogin())
     );
   }
