@@ -1,22 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:getx_storage/util/constants.dart';
 
 class CustomModel {
 
   CustomModel ( {
     this.id,
     this.name,
-    this.image_url,
+    this.icon,
   } );
 
   final String? id;
   String? name;
-  final String? image_url;
+  String? icon;
 
   factory CustomModel.fromJson(Map<String, dynamic> json) {
     return CustomModel (
-      id : json["id"],
-      name : json["name"].toString(),
-      image_url : json["icon"].toString(),
+      id : json[Constants.ID],
+      name : json[Constants.NAME].toString(),
+      icon : json[Constants.ICON].toString(),
     );
   }
 
@@ -24,33 +25,53 @@ class CustomModel {
     final data = snapshot.data() as Map<String,dynamic>;
     return CustomModel (
       id : snapshot.id.toString(),
-      name : data ['name'],
-      image_url : data ['image_url'],
+      name : data [Constants.NAME],
+      icon : data [Constants.IMAGE],
     );
   }
 
   Map<String, dynamic> toMap() => {
-    "name": name,
-    "image_url": image_url
+    Constants.NAME: name,
+    Constants.IMAGE: icon
   };
 
   Map<String, dynamic> toJson() {
     /*
     final data = <String, dynamic>{};
-    data['id'] = id;
-    data['name'] = name;
-    data['icon'] = icon;
+    data[Constants.ID] = id;
+    data[Constants.NAME] = name;
+    data[Constants.ICON] = icon;
     return data;
     */
     return {
-      "id" : id,
-      "name" : name,
-      "image_url" : image_url,
+      Constants.ID : id,
+      Constants.NAME : name,
+      Constants.ICON : icon,
     };
+  }
+
+  bool isSameName(CustomModel newModel) {
+    if (id != newModel.id) throw Exception("Custom Model id are not the same");
+    return id == newModel.id && name == newModel.name;
+  }
+
+  bool isSameIcon(CustomModel newModel) {
+    if (id != newModel.id) throw Exception("Custom Model id are not the same");
+    return id == newModel.id && icon == newModel.icon;
+  }
+
+  bool isSameContent(CustomModel newModel) {
+    if (id != newModel.id) throw Exception("Custom Model id are not the same");
+    return isSameName(newModel) || isSameIcon(newModel);
+  }
+
+  bool isNotSameContent(CustomModel newModel) {
+    if (id != newModel.id) throw Exception("Custom Model id are not the same");
+    return !isSameContent(newModel);
   }
 
   @override
   String toString() {
-    return "CustomModel id $id name $name icon $image_url" ?? super.toString();
+    return "CustomModel id $id name $name icon $icon" ?? super.toString();
   }
 }

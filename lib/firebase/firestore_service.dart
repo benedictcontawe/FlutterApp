@@ -22,6 +22,14 @@ class FirestoreService extends GetxService {
         .toList();
   }
 
+  Future<void> updateObject(CustomModel? model) async {
+    if (model != null) {
+      await dbFirestore.collection("object").doc(model.id).update(model.toMap());
+    } else {
+      throw Exception("CustomModel is Null");
+    }
+  }
+
   Future<List<PrimitiveModel>> getPrimitive() async {
     final response = await dbFirestore.collection("primitive").get();
     return response.docs.map( (doc) {

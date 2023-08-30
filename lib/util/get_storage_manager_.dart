@@ -50,7 +50,7 @@ class GetStorageManager {
       throw Exception("Id is in Used by other Models");
     } else {
       models?.add( newModel );
-      updateModels( models );
+      replaceModels( models );
     }
   }
 
@@ -62,10 +62,10 @@ class GetStorageManager {
     ).map( 
       (oldModel) => oldModel.name = newModel?.name
     );
-    updateModels( models );
+    replaceModels( models );
   }
 
-  Future updateModels(List<CustomModel>? models) async {
+  Future replaceModels(List<CustomModel>? models) async {
     debugPrint("GetStorageManager updateModels ${models?.length} ${models?.toList()}");
     var modelsAsMap = models?.map(
       ( custom ) => custom.toJson()
@@ -82,7 +82,7 @@ class GetStorageManager {
     models?.removeWhere ( 
       (filterModel) => filterModel.id == model?.id 
     );
-    updateModels( models );
+    replaceModels( models );
   }
 
   List<CustomModel>? getModels() {

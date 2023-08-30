@@ -1,11 +1,9 @@
 import 'dart:async';
-import 'dart:math';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:getx_storage/controllers/base_controller.dart';
 import 'package:getx_storage/firebase/firebase_storage_service.dart';
 import 'package:getx_storage/firebase/firestore_service.dart';
@@ -13,8 +11,8 @@ import 'package:getx_storage/models/custom_model.dart';
 import 'package:getx_storage/util/get_storage_manager_.dart';
 
 class ObjectController extends BaseController {
-  ObjectController(GetStorageManager this._getStorageManager,
-      FirestoreService this._service, FirebaseStorageService this._storage) {
+
+  ObjectController(GetStorageManager this._getStorageManager, FirestoreService this._service, FirebaseStorageService this._storage) {
     debugPrint("DashboardController Constructor");
   }
 
@@ -26,29 +24,22 @@ class ObjectController extends BaseController {
   final RxBool _isLoading = true.obs;
   final RxList<CustomModel> _list = new List<CustomModel>.empty().obs;
   TextEditingController? _controller;
-  PlatformFile? file = null;
-  final RxString liveFileName = "".obs,
-      liveFileSize = "".obs,
-      liveFileExtension = "".obs;
-  Rx<Uint8List> liveFileBytes = Uint8List.fromList([0]).obs;
+  PlatformFile? file;
+  final RxString liveFileName = "".obs, liveFileSize = "".obs, liveFileExtension = "".obs;
+  final Rx<Uint8List> liveFileBytes = Uint8List.fromList([0]).obs;
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
-    fetchModels();
-  }
-
-  int _generateId(int min, int max) {
-    int newId = min + Random().nextInt(max - min);
-    while (_list.where((oldModel) => oldModel.id == newId).isEmpty == false) {
-      newId = min + Random().nextInt(max - min);
-    }
-    return newId;
+    debugPrint("ObjectController onInit()");
+    _list(await _getStorageManager.getModels() ?? <CustomModel>[]); //_list.value = await _getStorageManager.getModels() ?? <CustomModel>[];
   }
 
   @override
   void onReady() {
     super.onReady();
+    debugPrint("ObjectController onReady()");
+    fetchModels();
   }
 
   bool isLoading() {
@@ -62,15 +53,9 @@ class ObjectController extends BaseController {
   int getLength() {
     return _list.value.length ?? 0;
   }
-
-  /*
+  
   String getIcon(int index) {
     return _list.value[index].icon ?? "Nil";
-  }
-  */
-  String getImageUrl(int index) {
-    //TODO: Fetch in Firebase then get the image url for this
-    return _list.value[index]?.image_url ?? "Null";
   }
 
   String getName(int index) {
@@ -78,21 +63,26 @@ class ObjectController extends BaseController {
   }
 
   Future<void> fetchModels() async {
+    debugPrint("ObjectController fetchModels()");
     try {
       _isLoading(true);
-      _list.value = <CustomModel>[];
-      _list.value = await _getStorageManager.getModels() ?? <CustomModel>[];
-      //TODO: Fetch from Firebase then save to get storage then display
       debugPrint("ObjectController _list ${_list.value.length} ${_list.value}");
       final snapshot = await _service.getObjects();
       for (final item in snapshot) {
-        debugPrint(
-            "ObjectController snapshot ${item.id} ${item.name} ${item.image_url}");
+        debugPrint("ObjectController snapshot ${item.id} ${item.name} ${item.icon}");
+        final model = _list.firstWhereOrNull( (oldItem) => oldItem.id == item.id);
+        if(model != null && model.isNotSameContent(item)) {
+          _updateName(item);
+          _updateIcon(item);
+        } else if (model == null) {
+          _addModel(item);
+        }
       }
     } catch (exception) {
-      debugPrint("ObjectController update models exception $exception");
+      debugPrint("ObjectController fetch models exception $exception");
       onShowAlert("Error!", exception.toString());
     } finally {
+      _getStorageManager.replaceModels(_list.value);
       _isLoading(false);
     }
   }
@@ -100,6 +90,13 @@ class ObjectController extends BaseController {
   Future<void> resetController() async {
     _controller = null;
     _controller = new TextEditingController();
+  }
+
+  Future<void> resetFile() async {
+    liveFileName("");
+    liveFileSize("");
+    liveFileExtension("");
+    liveFileBytes(Uint8List.fromList([0]));
   }
 
   Future<void> setController(int index) async {
@@ -116,33 +113,35 @@ class ObjectController extends BaseController {
     try {
       _isLoading(true);
       TaskSnapshot? taskSnapshot = await _storage.uploadPlatformFiles(file);
-
-      if (taskSnapshot != null && taskSnapshot!.state == TaskState.success){
-      final model = CustomModel(
-        // id: _generateId(0, _list.length + 1),
-        name: _controller?.text.toString(),
-        image_url: await taskSnapshot.ref.getDownloadURL(), //TODO Use Picture for displaying const Icon(Icons.android)
-      );
-      // This will show the lists
-      await _service.createObject(model.toMap());
-      _getStorageManager.addModel(model);
+      if (taskSnapshot != null && taskSnapshot!.state == TaskState.success) {
+        final model = CustomModel (
+          name: _controller?.text.toString(),
+          icon: await taskSnapshot.ref.getDownloadURL(),
+        );
+        await _service.createObject(model.toMap());
       } else {
         onShowAlert("Error", "on Upload Media Content Failed");
       }
     } catch (exception) {
-      debugPrint("ObjectController add model exception $exception");
-      onShowAlert("Error!", exception.toString());
+      debugPrint("ObjectController Invalid add for Custom Model $exception");
+      onShowAlert("Error", "Invalid add for Custom Model $exception");
     } finally {
       Get.back();
-      fetchModels();
-      liveFileName("");
-      liveFileSize("");
-      liveFileExtension("");
-      liveFileBytes(Uint8List.fromList([0]));
+      resetFile();
       _isLoading(false);
+      fetchModels();
     }
   }
 
+  Future<void> _addModel(CustomModel newModel) async {
+    debugPrint("ObjectController _addModel($newModel)");
+    try {
+      _list.add(newModel);
+    } catch (exception) {
+      debugPrint("ObjectController Invalid add for Custom Model $exception");
+      onShowAlert("Error", "Invalid add for Custom Model $exception");
+    }
+  }
   //#region For Picking and displaying Image Files Methods
   Future<void> onPickFiles() async {
     const type = FileType.custom;
@@ -179,24 +178,73 @@ class ObjectController extends BaseController {
     }
     _isLoading(false);
   }
-
   //#endregion
-  Future<void> updateName(int index) async {
-    //TODO: will need also to edit image
-    _list.value[index]?.name = _controller?.text.toString();
-    //_getStorageManager.updateModel( _list?.value[index]) ;
-    _getStorageManager.updateModels(_list?.value);
-    Get.back();
-    fetchModels();
+  Future<void> updateModel(int index) async {
+    debugPrint("ObjectController updateModel($index)");
+    //TODO: Funtion for editing or changing image finish the code for CustomDialog.editDialog
+    //TODO: Update first the Firebase then use fetchModels method
+    try {
+      _isLoading(true);
+      TaskSnapshot? taskSnapshot = await _storage.uploadPlatformFiles(file);
+      if (taskSnapshot != null && taskSnapshot!.state == TaskState.success) {
+        final model = CustomModel (
+          name: _controller?.text.toString(),
+          icon: await taskSnapshot.ref.getDownloadURL(),
+        );
+        await _service.updateObject(model);
+      } else {
+        onShowAlert("Error", "on Upload Media Content Failed");
+      }
+    } catch (exception) {
+      debugPrint("ObjectController Invalid update for Custom Model $exception");
+      onShowAlert("Error", "Invalid update for Custom Model $exception");
+    } finally {
+      Get.back();
+      resetFile();
+      _isLoading(false);
+      fetchModels();
+    }    
+  }
+
+  Future<void> _updateName(CustomModel newModel) async {
+    debugPrint("ObjectController _updateName($newModel)");
+    try {
+      _list.where (
+        (filterModel) => filterModel.isSameName(newModel)
+      ).map (
+        (oldModel) => oldModel.name = newModel.name
+      );
+    } catch (exception) {
+      debugPrint("ObjectController Invalid update name for Custom Model $exception");
+      onShowAlert("Error", "Invalid update name for Custom Model $exception");
+    }
+  }
+
+  Future<void> _updateIcon(CustomModel newModel) async {
+    debugPrint("ObjectController _updateIcon($newModel)");
+    try {
+      _list.where (
+        (filterModel) => filterModel.isSameIcon(newModel)
+      ).map (
+        (oldModel) => oldModel.icon = newModel.icon
+      );
+    } catch (exception) {
+      debugPrint("ObjectController Invalid update icon for Custom Model $exception");
+      onShowAlert("Error", "Invalid update name for Custom Model $exception");
+    }
   }
 
   Future<void> deleteModel(int index) async {
+    debugPrint("ObjectController deleteModel");
+    //TODO: Sync with Firebase and Get Storage
     //_list?.removeAt(index);
     _getStorageManager.deleteModel(_list?.value[index]);
     fetchModels();
   }
 
   Future<void> deleteAll() async {
+    debugPrint("ObjectController deleteAll");
+    //TODO: Sync with Firebase and Get Storage
     try {
       _list.value = <CustomModel>[];
       _getStorageManager.removeModels();

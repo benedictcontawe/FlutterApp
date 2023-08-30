@@ -12,6 +12,10 @@ class Constants {
   static const STRING = "string";
   static const INTEGER = "integer";
   static const DOUBLE = "double";
+  static const ID = "id";
+  static const NAME = "name";
+  static const ICON = "icon";
+  static const IMAGE = "image_url";
   static Color kBackgroundColor = HexColor('FFFFFF');
   static Color transparentColor = HexColor('00ffffff').withOpacity(0.00) ?? Colors.transparent;
   static Color kSolidButtonColor = HexColor('F38E36');
