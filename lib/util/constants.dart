@@ -8,6 +8,7 @@ class Constants {
   static final API_KEY = Environment.apiKey;
   static const TIMEOUT = 3000;
   static const BLANK = " ";
+  static const NIL = "Nil";
   static const BOOLEAN = "boolean";
   static const STRING = "string";
   static const INTEGER = "integer";

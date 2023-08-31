@@ -66,7 +66,7 @@ class GetStorageManager {
   }
 
   Future replaceModels(List<CustomModel>? models) async {
-    debugPrint("GetStorageManager updateModels ${models?.length} ${models?.toList()}");
+    debugPrint("GetStorageManager replaceModels ${models?.length} ${models?.toList()}");
     var modelsAsMap = models?.map(
       ( custom ) => custom.toJson()
     ).toList();

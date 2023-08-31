@@ -50,23 +50,27 @@ class CustomModel {
     };
   }
 
-  bool isSameName(CustomModel newModel) {
-    if (id != newModel.id) throw Exception("Custom Model id are not the same");
+  bool _isSameName(CustomModel newModel) {
     return id == newModel.id && name == newModel.name;
   }
 
-  bool isSameIcon(CustomModel newModel) {
-    if (id != newModel.id) throw Exception("Custom Model id are not the same");
+  bool isNotSameName(CustomModel newModel) {
+    return id == newModel.id && name != newModel.name;
+  }
+
+  bool _isSameIcon(CustomModel newModel) {
     return id == newModel.id && icon == newModel.icon;
   }
 
+  bool isNotSameIcon(CustomModel newModel) {
+    return id == newModel.id && icon != newModel.icon;
+  }
+
   bool isSameContent(CustomModel newModel) {
-    if (id != newModel.id) throw Exception("Custom Model id are not the same");
-    return isSameName(newModel) || isSameIcon(newModel);
+    return _isSameName(newModel) && _isSameIcon(newModel);
   }
 
   bool isNotSameContent(CustomModel newModel) {
-    if (id != newModel.id) throw Exception("Custom Model id are not the same");
     return !isSameContent(newModel);
   }
 

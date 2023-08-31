@@ -6,6 +6,13 @@ import 'package:getx_storage/util/constants.dart';
 import 'package:getx_storage/widgets/button_widget.dart';
 
 class CustomDialog {
+
+  static bool _isImageExtension(String fileExtension) { /*liveFileBytes.value == Uint8List.fromList([0])*/
+    return fileExtension.toLowerCase().contains("jpg") 
+    || fileExtension.toLowerCase().contains("png") 
+    || fileExtension.toLowerCase().contains("webp");
+  }
+
   static addDialog ( 
     TextEditingController? controller,
     RxBool liveLoading, RxString liveFileName, RxString liveFileExtension, RxString liveFileSize, Rx<Uint8List> liveFileBytes,
@@ -13,7 +20,7 @@ class CustomDialog {
   ) {
     Get.defaultDialog (
       barrierDismissible: true,
-      content: Column(
+      content: Column (
         children: [
           TextField (
             controller: controller,
@@ -42,7 +49,7 @@ class CustomDialog {
           Obx(() {
             if (liveLoading.value) {
               return const Center(child: CircularProgressIndicator());
-            } else if (liveFileExtension.value.toLowerCase().contains("jpg") || liveFileExtension.value.toLowerCase().contains("png") || liveFileExtension.value.toLowerCase().contains("webp")/*liveFileBytes.value == Uint8List.fromList([0])*/) {
+            } else if (_isImageExtension(liveFileExtension.value)) {
               return SizedBox (
                 height: 100,
                 width: 100,
@@ -69,7 +76,7 @@ class CustomDialog {
             }
           },),
           Obx(() {
-            if (liveFileExtension.value.toLowerCase().contains("jpg") || liveFileExtension.value.toLowerCase().contains("png") || liveFileExtension.value.toLowerCase().contains("webp")) {
+            if (_isImageExtension(liveFileExtension.value)) {
               return  Text (
                 "${liveFileName.value}.${liveFileExtension} ${liveFileSize.value}",
                 style:  const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -90,7 +97,8 @@ class CustomDialog {
 
   static editDialog (
     TextEditingController? controller,
-    //RxBool liveLoading, RxString liveFileName, RxString liveFileExtension, RxString liveFileSize, Rx<Uint8List> liveFileBytes,
+    RxBool liveLoading, RxString liveFileName, RxString liveFileExtension, RxString liveFileSize, Rx<Uint8List> liveFileBytes,
+    String icon,
     GestureTapCallback onPressedMedia, GestureTapCallback onPressed
   ) {
     Get.dialog (
@@ -121,14 +129,49 @@ class CustomDialog {
                 fillColor: Colors.white,
                 onPressed: onPressedMedia
             ),
-            const SizedBox (
-              height: 100,
-              width: 100,
-              child: Icon (
-                CupertinoIcons.photo_camera_solid,
-                color: Colors.blue,
-              ),
-            ),
+             Obx(() {
+              if (liveLoading.value) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (_isImageExtension(liveFileExtension.value)) {
+                return SizedBox (
+                  height: 100,
+                  width: 100,
+                  child: Column (
+                    children: [
+                      Image.memory (
+                        liveFileBytes.value,
+                        fit: BoxFit.scaleDown,
+                        height: 100,
+                        width: 100,
+                      ),
+                    ],
+                  )
+                );
+              } else if (icon != Constants.NIL) {
+                return Image.network (
+                    icon,
+                    fit: BoxFit.cover,
+                    alignment: Alignment.center,
+                    errorBuilder: ( (context, error, stackTrace) {
+                      debugPrint("Custom Dialog editDialog errorBuilder ${error.toString()} ${stackTrace.toString()}");
+                      return const Icon (
+                        Icons.broken_image,
+                        color: Colors.red,
+                        size: 30.0,
+                      );
+                    } ),
+                  );
+              } else {
+                return const SizedBox (
+                  height: 100,
+                  width: 100,
+                  child: Icon (
+                    CupertinoIcons.photo_camera_solid,
+                    color: Colors.blue,
+                  ),
+                );
+              }
+            },),
           ],
         ),
         title: const Text("Update"),

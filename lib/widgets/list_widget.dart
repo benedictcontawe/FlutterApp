@@ -33,7 +33,6 @@ class ListWidget extends BaseWidget<ObjectController> {
                       );
                     } ),
                   ),
-                  
                   dense: true,
                   title: Text("${controller.getName(index)}", maxLines: 1, overflow: TextOverflow.ellipsis,),
                   trailing: Column (
@@ -42,10 +41,15 @@ class ListWidget extends BaseWidget<ObjectController> {
                       child: ButtonWidget (
                         text: "Edit", 
                         onPressed: () {
+                          controller.resetFile();
                           controller.setController(index);
                           CustomDialog.editDialog (
                             controller.getController(),
+                            controller.observeLoading(),
+                            controller.liveFileName, controller.liveFileExtension, controller.liveFileSize, controller.liveFileBytes,
+                            controller.getIcon(index),
                             () {
+                              //controller.onPickFiles();
                               controller.onShowAlert("On Going", "Under Construction");
                             },
                             () {
