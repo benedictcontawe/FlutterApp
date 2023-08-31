@@ -264,10 +264,26 @@ class ObjectController extends BaseController {
 
   Future<void> deleteModel(int index) async {
     debugPrint("ObjectController deleteModel($index)");
-    //TODO: Sync with Firebase and Get Storage
-    //_list?.removeAt(index);
-    _getStorageManager.deleteModel(_list?.value[index]);
-    fetchModels();
+    // Done deleting single object connected to firestore;
+    try {
+      _isLoading(true);
+      final model = CustomModel(
+        id: _getId(index),
+        name: _controller?.text.toString(),
+        icon: getIcon(index)
+      );
+      await _service.deleteObject(model);
+    } catch(exception) {
+      onShowAlert("Error", "Error deleting model $exception");
+    } finally {
+      Get.back();
+      resetFile();
+      _isLoading(false);
+      fetchModels();
+    }
+    
+    await _service.deleteObject(_list.value[index]);
+    await fetchModels();
   }
 
   Future<void> _deleteModel(String? id) async {
@@ -285,13 +301,26 @@ class ObjectController extends BaseController {
   Future<void> deleteAll() async {
     debugPrint("ObjectController deleteAll");
     //TODO: Sync with Firebase and Get Storage
+    // _list.value = <CustomModel>[];
+    // _getStorageManager.removeModels();
     try {
-      _list.value = <CustomModel>[];
-      _getStorageManager.removeModels();
-    } catch (exception) {
-      debugPrint("ObjectController Delete All exception $exception");
-      onShowAlert("Error!", exception.toString());
+      _isLoading(true);
+
+      for (final model in _list) {
+        await _service.deleteAllObject(model);
+      }
+
+      _list.clear();
+
+      onShowAlert("Success", "All models deleted successfully!");
+    } catch(exception) {
+      onShowAlert("Error", "Error deleting all object!");
+    } finally {
+      resetFile();
+      _isLoading(false);
+      fetchModels();
     }
+    
   }
 
   @override

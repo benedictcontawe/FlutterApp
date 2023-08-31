@@ -30,6 +30,24 @@ class FirestoreService extends GetxService {
     }
   }
 
+  Future<void> deleteObject(CustomModel? model) async {
+    // Delete object;
+    if(model != null) {
+      await dbFirestore.collection("object").doc(model.id).delete();
+    } else {
+      throw Exception("Error deleting model");
+    }
+  }
+
+  Future<void> deleteAllObject(CustomModel? model) async {
+    // Delete all object;
+    if(model != null) {
+      await dbFirestore.collection("object").doc(model.id).delete();
+    } else {
+      throw Exception("Error deleting all models");
+    }
+  }
+
   Future<List<PrimitiveModel>> getPrimitive() async {
     final response = await dbFirestore.collection("primitive").get();
     return response.docs.map( (doc) {
