@@ -274,7 +274,7 @@ class ObjectController extends BaseController {
       );
       await _service.deleteObject(model);
     } catch(exception) {
-      //
+      onShowAlert("Error", "Error deleting model $exception");
     } finally {
       Get.back();
       resetFile();
@@ -307,8 +307,6 @@ class ObjectController extends BaseController {
       for (final model in _list) {
         await _service.deleteAllObject(model);
       }
-
-      _list.clear();
 
       onShowAlert("Success", "All models deleted successfully!");
     } catch(exception) {
