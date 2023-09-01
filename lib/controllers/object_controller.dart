@@ -264,17 +264,17 @@ class ObjectController extends BaseController {
 
   Future<void> deleteModel(int index) async {
     debugPrint("ObjectController deleteModel($index)");
-    // Done deleting single object connected to firestore;
+    
     try {
       _isLoading(true);
       final model = CustomModel(
         id: _getId(index),
-        name: _controller?.text.toString(),
+        name: getName(index),
         icon: getIcon(index)
       );
       await _service.deleteObject(model);
     } catch(exception) {
-      onShowAlert("Error", "Error deleting model $exception");
+      //
     } finally {
       Get.back();
       resetFile();
@@ -300,9 +300,7 @@ class ObjectController extends BaseController {
 
   Future<void> deleteAll() async {
     debugPrint("ObjectController deleteAll");
-    //TODO: Sync with Firebase and Get Storage
-    // _list.value = <CustomModel>[];
-    // _getStorageManager.removeModels();
+
     try {
       _isLoading(true);
 
