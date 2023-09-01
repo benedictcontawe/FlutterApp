@@ -49,8 +49,7 @@ class ListWidget extends BaseWidget<ObjectController> {
                             controller.liveFileName, controller.liveFileExtension, controller.liveFileSize, controller.liveFileBytes,
                             controller.getIcon(index),
                             () {
-                              //controller.onPickFiles();
-                              controller.onShowAlert("On Going", "Under Construction");
+                              controller.onPickFiles();
                             },
                             () {
                               controller.updateModel(index);
