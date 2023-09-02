@@ -197,8 +197,6 @@ class ObjectController extends BaseController {
   //#endregion
   Future<void> updateModel(int index) async {
     debugPrint("ObjectController updateModel($index)");
-    //TODO: Funtion for editing or changing IMAGE, updating of Name is DONE!
-    //TODO: Sync Image to Firebase and Get Storage
     try {
       _isLoading(true);
       if (file == null/*&& getIcon(index) != Constants.NIL*/) {
@@ -217,9 +215,11 @@ class ObjectController extends BaseController {
             icon: await taskSnapshot.ref.getDownloadURL(),
           );
           await _service.updateObject(model);
+        } else {
+          throw Exception("on Upload Media Content Failed");
         }
       } else {
-        onShowAlert("Error", "on Upload Media Content Failed");
+        throw Exception("on Upload Media Content Failed");
       }
     } catch (exception) {
       debugPrint("ObjectController Invalid update for Custom Model $exception");
@@ -264,10 +264,9 @@ class ObjectController extends BaseController {
 
   Future<void> deleteModel(int index) async {
     debugPrint("ObjectController deleteModel($index)");
-    
     try {
       _isLoading(true);
-      final model = CustomModel(
+      final model = CustomModel (
         id: _getId(index),
         name: getName(index),
         icon: getIcon(index)
@@ -276,7 +275,6 @@ class ObjectController extends BaseController {
     } catch(exception) {
       onShowAlert("Error", "Error deleting model $exception");
     } finally {
-      Get.back();
       resetFile();
       _isLoading(false);
       fetchModels();
@@ -300,14 +298,11 @@ class ObjectController extends BaseController {
 
   Future<void> deleteAll() async {
     debugPrint("ObjectController deleteAll");
-
     try {
       _isLoading(true);
-
       for (final model in _list) {
-        await _service.deleteAllObject(model);
+        await _service.deleteObject(model);
       }
-
       onShowAlert("Success", "All models deleted successfully!");
     } catch(exception) {
       onShowAlert("Error", "Error deleting all object!");
@@ -322,5 +317,6 @@ class ObjectController extends BaseController {
   @override
   void onClose() {
     super.onClose();
+    debugPrint("ObjectController onClose");
   }
 }
