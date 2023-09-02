@@ -27,4 +27,9 @@ class FirebaseStorageService extends GetxService {
       return await videosRef?.child(file!.name).putData(file.bytes!);
     }
   }
+
+  Future<void> deleteFile(String? icon) async {
+    //TODO: when deleting or editing image need to delete the uploaded file
+    //imagesRef?.delete();
+  }
 }
