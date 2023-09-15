@@ -215,6 +215,7 @@ class ObjectController extends BaseController {
             icon: await taskSnapshot.ref.getDownloadURL(),
           );
           await _service.updateObject(model);
+          await _storage.deleteFile(getIcon(index));
         } else {
           throw Exception("on Upload Media Content Failed");
         }
@@ -272,6 +273,7 @@ class ObjectController extends BaseController {
         icon: getIcon(index)
       );
       await _service.deleteObject(model);
+      await _storage.deleteFile(model.icon);
     } catch(exception) {
       onShowAlert("Error", "Error deleting model $exception");
     } finally {
@@ -302,6 +304,7 @@ class ObjectController extends BaseController {
       _isLoading(true);
       for (final model in _list) {
         await _service.deleteObject(model);
+        await _storage.deleteFile(model.icon);
       }
       onShowAlert("Success", "All models deleted successfully!");
     } catch(exception) {
