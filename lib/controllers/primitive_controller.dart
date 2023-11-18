@@ -223,7 +223,11 @@ class PrimitiveController extends BaseController {
     debugPrint("PrimitiveController _postInteger($model)");
     try {
       _service.updatePrimitive(model);
-      _saveInteger(int.parse(model?.data));
+      if (model?.data is int) {
+        _saveInteger(model?.data);
+      } else {
+        _saveInteger(int.parse(model?.data));
+      }
     } catch (exception) {
       debugPrint("Error Invalid post for Integer $exception");
       onShowAlert("Error", "Invalid post for Integer $exception");
@@ -235,6 +239,7 @@ class PrimitiveController extends BaseController {
     try {
       _getStorageManager.setInteger(Constants.INTEGER, value);
     } catch (exception) {
+      debugPrint("Invalid save for Integer $exception");
       onShowAlert("Error", "Invalid save for Integer $exception");
     } finally {
       _liveInteger(_getStorageManager.getInteger(Constants.INTEGER));

@@ -67,6 +67,10 @@ class ObjectController extends BaseController {
     return _list.value[index]?.name ?? Constants.NIL;
   }
 
+  String getFile(int index) {
+    return _list.value[index].file ?? Constants.NIL;
+  }
+
   Future<void> fetchModels() async {
     debugPrint("ObjectController fetchModels()");
     try {
@@ -85,6 +89,7 @@ class ObjectController extends BaseController {
         if(model != null && model.isNotSameContent(newModel)) {
           _updateName(newModel);
           _updateIcon(newModel);
+          _updateFile(newModel);
         } else if (model == null) {
           _addModel(newModel);
         }
@@ -131,10 +136,11 @@ class ObjectController extends BaseController {
     try {
       _isLoading(true);
       TaskSnapshot? taskSnapshot = await _storage.uploadPlatformFiles(file);
-      if (taskSnapshot != null && taskSnapshot!.state == TaskState.success) {
+      if (taskSnapshot != null && taskSnapshot.state == TaskState.success) {
         final model = CustomModel (
           name: _controller?.text.toString(),
           icon: await taskSnapshot.ref.getDownloadURL(),
+          file: file?.name
         );
         await _service.createObject(model.toMap());
       } else {
@@ -204,6 +210,7 @@ class ObjectController extends BaseController {
           id: _getId(index),
           name: _controller?.text.toString(),
           icon: getIcon(index),
+          file: getFile(index)
         );
         await _service.updateObject(model);
       } else if (file != null) {
@@ -213,9 +220,10 @@ class ObjectController extends BaseController {
             id: _getId(index),
             name: _controller?.text.toString(),
             icon: await taskSnapshot.ref.getDownloadURL(),
+            file: file?.name
           );
           await _service.updateObject(model);
-          await _storage.deleteFile(getIcon(index));
+          await _storage.deleteImage(getFile(index));
         } else {
           throw Exception("on Upload Media Content Failed");
         }
@@ -259,7 +267,21 @@ class ObjectController extends BaseController {
       );
     } catch (exception) {
       debugPrint("ObjectController Invalid update icon for Custom Model $exception");
-      onShowAlert("Error", "Invalid update name for Custom Model $exception");
+      onShowAlert("Error", "Invalid update icon for Custom Model $exception");
+    }
+  }
+
+   Future<void> _updateFile(CustomModel newModel) async {
+    debugPrint("ObjectController _updateFile(${newModel.id} ${newModel.file})");
+    try {
+      _list.where (
+        (filterModel) => filterModel.isNotSameFile(newModel)
+      ).forEach (
+        (oldModel) => oldModel.file = newModel.file
+      );
+    } catch (exception) {
+      debugPrint("ObjectController Invalid update file for Custom Model $exception");
+      onShowAlert("Error", "Invalid update file for Custom Model $exception");
     }
   }
 
@@ -270,20 +292,19 @@ class ObjectController extends BaseController {
       final model = CustomModel (
         id: _getId(index),
         name: getName(index),
-        icon: getIcon(index)
+        icon: getIcon(index),
+        file: getFile(index)
       );
       await _service.deleteObject(model);
-      await _storage.deleteFile(model.icon);
+      await _storage.deleteImage(getFile(index));
     } catch(exception) {
       onShowAlert("Error", "Error deleting model $exception");
+      debugPrint("Error deleting model $exception");
     } finally {
       resetFile();
       _isLoading(false);
       fetchModels();
     }
-    
-    await _service.deleteObject(_list.value[index]);
-    await fetchModels();
   }
 
   Future<void> _deleteModel(String? id) async {
@@ -304,8 +325,8 @@ class ObjectController extends BaseController {
       _isLoading(true);
       for (final model in _list) {
         await _service.deleteObject(model);
-        await _storage.deleteFile(model.icon);
       }
+      await _storage.deleteImages();
       onShowAlert("Success", "All models deleted successfully!");
     } catch(exception) {
       onShowAlert("Error", "Error deleting all object!");
@@ -314,7 +335,6 @@ class ObjectController extends BaseController {
       _isLoading(false);
       fetchModels();
     }
-    
   }
 
   @override

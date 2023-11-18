@@ -16,7 +16,8 @@ class Constants {
   static const ID = "id";
   static const NAME = "name";
   static const ICON = "icon";
-  static const IMAGE = "image_url";
+  static const IMAGE_URL = "image_url";
+  static const IMAGE_NAME = "image_name";
   static Color kBackgroundColor = HexColor('FFFFFF');
   static Color transparentColor = HexColor('00ffffff').withOpacity(0.00) ?? Colors.transparent;
   static Color kSolidButtonColor = HexColor('F38E36');

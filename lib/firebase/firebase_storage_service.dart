@@ -5,6 +5,7 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_disposable.dart';
 
 class FirebaseStorageService extends GetxService {
 
+  // Get a reference to the Firebase Storage instance
   final storageRef = FirebaseStorage.instance.ref();
 
   Reference? imagesRef;
@@ -28,8 +29,19 @@ class FirebaseStorageService extends GetxService {
     }
   }
 
-  Future<void> deleteFile(String? icon) async {
-    //TODO: when deleting or editing image need to delete the uploaded file
-    //imagesRef?.delete();
+  Future<void> deleteImage(String? icon) async {
+    debugPrint("deleteImage $icon");
+    if (icon == null) {
+      throw Exception("Image is Null");
+    }
+    await imagesRef?.child(icon!).delete();
+  }
+
+  Future<void> deleteImages() async {
+    debugPrint("deleteImages");
+    final ListResult? result = await imagesRef?.listAll();
+    for (final Reference? ref in result!.items) {
+      await ref?.delete();
+    }
   }
 }

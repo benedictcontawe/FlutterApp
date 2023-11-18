@@ -37,7 +37,7 @@ class ListWidget extends BaseWidget<ObjectController> {
                   title: Text("${controller.getName(index)}", maxLines: 1, overflow: TextOverflow.ellipsis,),
                   trailing: Column (
                     children: [
-                    Flexible(
+                    Flexible (
                       child: ButtonWidget (
                         text: "Edit", 
                         onPressed: () {

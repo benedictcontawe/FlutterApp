@@ -31,7 +31,6 @@ class FirestoreService extends GetxService {
   }
 
   Future<void> deleteObject(CustomModel? model) async {
-    // Delete object;
     if(model != null) {
       await dbFirestore.collection("object").doc(model.id).delete();
     } else {
