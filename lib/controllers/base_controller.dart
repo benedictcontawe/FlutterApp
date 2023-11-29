@@ -1,5 +1,6 @@
 import 'dart:async';
-import 'dart:html' as html;
+//import 'dart:html' as html;
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +24,21 @@ class BaseController extends GetxController {
   }
 
   void onRefresh() {
-    html.window.location.reload();
+    /*
+    if (_isWeb()) {
+      html.window.location.reload();
+    }
+    */
+  }
+
+  bool isWeb() {
+    debugPrint("BaseController isWeb");
+    return Platform.isAndroid || Platform.isIOS ? false : true;
+  }
+
+  bool isMobile() {
+    debugPrint("BaseController isMobile");
+    return Platform.isAndroid || Platform.isIOS ? true : false;
   }
 
   @override

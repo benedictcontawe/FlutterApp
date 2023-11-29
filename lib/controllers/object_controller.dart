@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
@@ -200,10 +201,27 @@ class ObjectController extends BaseController {
     liveFileName(file?.name?.split('.').first);
     liveFileSize(fileSize);
     liveFileExtension(file?.extension);
-    if (file?.extension?.toLowerCase()?.contains("jpg") == true ||
-        file?.extension?.toLowerCase()?.contains("png") == true ||
-        file?.extension?.toLowerCase()?.contains("webp") == true) {
+    final bool _isImage = file?.extension?.toLowerCase()?.contains("jpg") == true 
+    || file?.extension?.toLowerCase()?.contains("png") == true
+    || file?.extension?.toLowerCase()?.contains("webp") == true;
+    if (_isImage && file?.bytes != null) {
       liveFileBytes(file?.bytes);
+    } else if (_isImage && file?.path != null) {
+      debugPrint("MainController openFile(PlatformFile path ${file?.path})");
+      final File _mobileFile = File(file.path!);
+      List<int> _bytes = await _mobileFile.readAsBytes();
+      Uint8List _uint8List = Uint8List.fromList(_bytes);
+      this.file = new PlatformFile(
+        path: file.path,
+        name: file.name,
+        size: file.size,
+        bytes: _uint8List,
+        readStream: file.readStream,
+        identifier: file.identifier
+      );
+      liveFileBytes(_uint8List);
+    } else {
+      throw Exception("File is Null");
     }
     _isLoading(false);
   }
