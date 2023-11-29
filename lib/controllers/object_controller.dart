@@ -77,22 +77,29 @@ class ObjectController extends BaseController {
       _isLoading(true);
       debugPrint("ObjectController _list ${_list.value.length} ${_list.value}");
       final snapshot = await _service.getObjects();
-      _list.forEach((oldModel) {
-        if (snapshot.where((newModel) => oldModel.id == newModel.id).isEmpty) {
-          debugPrint("ObjectController oldModel ${oldModel.id} isEmpty");
-          _deleteModel(oldModel.id);
+      if (snapshot.isNotEmpty) {
+        final List<CustomModel> _copyList = new List.from(_list);
+        for (final oldModel in _list) {
+          if (snapshot.where((newModel) => oldModel.id == newModel.id).isEmpty && oldModel.id != null) {
+            debugPrint("ObjectController oldModel ${oldModel.id} isEmpty and oldModel.id != null");
+            await _copyList.remove(oldModel);
+            //_list.removeWhere((oldCopiedModel) => oldCopiedModel.id == oldModel.id);
+          }
         }
-      } );
-      for (final newModel in snapshot) {
-        debugPrint("ObjectController snapshot $newModel");
-        final model = _list.firstWhereOrNull( (oldModel) => oldModel.id == newModel.id);
-        if(model != null && model.isNotSameContent(newModel)) {
-          _updateName(newModel);
-          _updateIcon(newModel);
-          _updateFile(newModel);
-        } else if (model == null) {
-          _addModel(newModel);
+        _list.assignAll(_copyList);
+        for (final newModel in snapshot) {
+          debugPrint("ObjectController snapshot $newModel");
+          final model = _list.firstWhereOrNull( (oldModel) => oldModel.id == newModel.id);
+          if(model != null && model.isNotSameContent(newModel)) {
+            _updateName(newModel);
+            _updateIcon(newModel);
+            _updateFile(newModel);
+          } else if (model == null) {
+            _addModel(newModel);
+          }
         }
+      } else if (snapshot.isEmpty) {
+        _list.clear();
       }
     } catch (exception) {
       debugPrint("ObjectController fetch models exception $exception");
