@@ -1,8 +1,9 @@
 import 'dart:async';
-import 'package:dart_http/controllers/base_controller.dart';
-import 'package:dart_http/routes/app_pages.dart';
-import 'package:flutter/foundation.dart';
+
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:list_view/controllers/base_controller.dart';
+import 'package:list_view/routes/app_pages.dart';
 
 class SplashController extends BaseController {
 

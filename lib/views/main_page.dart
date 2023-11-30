@@ -1,10 +1,11 @@
-import 'package:dart_http/controllers/main_controller.dart';
-import 'package:dart_http/views/base_view.dart';
-import 'package:dart_http/widgets/main_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:list_view/controllers/main_controller.dart';
+import 'package:list_view/views/base_view.dart';
+import 'package:list_view/widgets/main_widget.dart';
 
 class MainPage extends BaseView<MainController> {
-  const MainPage({Key? key}) : super(key: key);
+  
+  const MainPage( { Key? key } ) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

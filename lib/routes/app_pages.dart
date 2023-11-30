@@ -1,15 +1,15 @@
-import 'package:dart_http/bindings/splash_binding.dart';
-import 'package:dart_http/bindings/main_binding.dart';
-import 'package:dart_http/views/main_page.dart';
-import 'package:dart_http/views/splash_page.dart';
 import 'package:get/get.dart';
+import 'package:list_view/bindings/main_binding.dart';
+import 'package:list_view/bindings/splash_binding.dart';
+import 'package:list_view/views/main_page.dart';
+import 'package:list_view/views/splash_page.dart';
 part 'routes.dart';
 
 abstract class AppPages {
   static final pages = [
     GetPage(
       name: Routes.SPLASH,
-      page: () => SplashPage(),
+      page: () => const SplashPage(),
       binding: SplashBinding(),
       transition: Transition.fade,
       transitionDuration: const Duration(milliseconds: 3000),

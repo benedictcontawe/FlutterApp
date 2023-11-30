@@ -1,6 +1,6 @@
-import 'package:dart_http/controllers/splash_controller.dart';
-import 'package:dart_http/widgets/base_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:list_view/controllers/splash_controller.dart';
+import 'package:list_view/widgets/base_widget.dart';
 
 class SplashWidget extends BaseWidget<SplashController> {
   
@@ -11,18 +11,12 @@ class SplashWidget extends BaseWidget<SplashController> {
     return Center(
       child: Container(
       color: Colors.white,
-      child: Align(alignment: Alignment.center,
-      child: Column(
+      child: const Align(alignment: Alignment.center,
+      child: Column (
       mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(
-            'assets/flutter.webp',
-            fit: BoxFit.cover,
-            height: 100,
-            width: 100,
-            alignment: Alignment.center,
-          ),
-          const Text(
+          FlutterLogo(),
+          Text(
             'Flutter App', 
             style: TextStyle(
               fontSize: 20, 

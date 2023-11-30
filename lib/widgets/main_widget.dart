@@ -1,6 +1,8 @@
-import 'package:dart_http/controllers/main_controller.dart';
-import 'package:dart_http/widgets/base_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:list_view/controllers/main_controller.dart';
+import 'package:list_view/widgets/base_widget.dart';
+import 'package:list_view/widgets/swipe_refresh_list_widget.dart';
 
 class MainWidget extends BaseWidget<MainController> {
   
@@ -8,25 +10,12 @@ class MainWidget extends BaseWidget<MainController> {
 
   @override
   Widget build(BuildContext context) {      
-    return Column (
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        //const Center(child: CircularProgressIndicator()),
-        
-        const Text("Pick Files"),
-        ElevatedButton(
-          onPressed: () async {
-            controller.onPickFile();
-          }, 
-          child: const Text("Pick File")
-        ),
-        ElevatedButton(
-          onPressed: () async {
-            controller.onPickFiles();
-          },  
-          child: const Text("Pick Multiple")
-        ),
-      ],
-    );
+    return Obx ( () {
+        if (controller.isLoading()) {
+          return const Center(child: CircularProgressIndicator());
+        } else {
+          return const SwipeRefreshListWidget();
+        }
+    }, );
   }
 }
