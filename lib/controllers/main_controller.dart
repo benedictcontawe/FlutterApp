@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dart_http/controllers/base_controller.dart';
 import 'package:dart_http/views/files_page.dart';
 import 'package:file_picker/file_picker.dart';
@@ -20,34 +18,47 @@ class MainController extends BaseController {
     super.onInit();
   }
 
-  Future<void> onPickFiles(bool allowMultiple) async {
+  Future<void> onPickFile() async {
     const type = FileType.custom; //FileType.media
     final extensions = ['pdf', 'mp4', 'jpg', 'png'];
-    final result = await pickFiles(allowMultiple, type, extensions);
-    if (allowMultiple == false && result != null) {
+    final result = await _pickFile(type, extensions);
+    if (result != null) {
       openFile(result.files.first);
-    } else if (allowMultiple == true && result != null) {
-      openFiles(result.files);
+    } else {
+      onShowAlert("Error","Result File is null!");
     }
   }
 
-  Future<FilePickerResult?> pickFiles(bool allowMultiple, FileType type, List<String>? extensions) async {
-    if (allowMultiple == false) {
-      return await FilePicker.platform.pickFiles(allowMultiple: allowMultiple, type: type, allowedExtensions: extensions);
+  Future<void> onPickFiles() async {
+    const type = FileType.custom; //FileType.media
+    final extensions = ['pdf', 'mp4', 'jpg', 'png'];
+    final result = await _pickFiles(type, extensions);
+    if (result != null) {
+      openFiles(result.files);
     } else {
-      return await FilePicker.platform.pickFiles(allowMultiple: allowMultiple, type: type, allowedExtensions: extensions);
+      onShowAlert("Error","Result Files is null!");
     }
+  }
+
+   Future<FilePickerResult?> _pickFile(FileType type, List<String>? extensions) async {
+    return await FilePicker.platform.pickFiles(allowMultiple: false, type: type, allowedExtensions: extensions);
+  }
+
+  Future<FilePickerResult?> _pickFiles(FileType type, List<String>? extensions) async {
+    return await FilePicker.platform.pickFiles(allowMultiple: true, type: type, allowedExtensions: extensions);
   }
 
   void openFile(PlatformFile file) {
     debugPrint("MainController openFile(PlatformFile name ${file.name})");
     debugPrint("MainController openFile(PlatformFile size ${file.size})");
     debugPrint("MainController openFile(PlatformFile extension ${file.extension})");
-    if (Platform.isAndroid || Platform.isIOS) {
+    if (file?.bytes != null) {
+      debugPrint("MainController openFile(PlatformFile bytes ${file.bytes})");
+      onShowAlert("Error","Open File for ${file.name} Not supported!");
+    }  else if (file?.path != null) {
       debugPrint("MainController openFile(PlatformFile path ${file.path})");
+      OpenFile.open(file.path);
     }
-    debugPrint("MainController openFile(PlatformFile bytes ${file.bytes})");
-    OpenFile.open(file.path);
   }
 
   void openFiles(List<PlatformFile> files) {

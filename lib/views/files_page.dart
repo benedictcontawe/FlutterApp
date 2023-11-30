@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:open_file/open_file.dart';
 
 class FilesPage extends StatefulWidget {
+
   final List<PlatformFile> files;
   final ValueChanged<PlatformFile> onOpenedFile;
 
@@ -53,7 +54,7 @@ class _FilesPageState extends State<FilesPage> {
 
     return InkWell (
       onTap: () {
-        OpenFile.open(file.path);
+        widget.onOpenedFile(file);
       },
       child: Container (
         padding: const EdgeInsets.all(8),
