@@ -14,32 +14,25 @@ class HeaderCellWidget extends BaseWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx ( () {
-      if (isExpand.isTrue) {
-        return AspectRatioWidget (
-          aspectRatio: 1/0.13, 
-          child: ListTile (
-            leading: const Icon ( 
+    return AspectRatioWidget (
+      aspectRatio: 1/0.13, 
+      child: ListTile (
+        leading: Obx ( () {
+          if (isExpand.isTrue) {
+            return const Icon ( 
               Icons.arrow_drop_up, 
               color: Colors.red, 
-            ),
-            title: Center( child: Text("HeaderCellWidget $text"),),
-            onTap: onTap,
-          ),
-        );
-      } else {
-        return AspectRatioWidget (
-          aspectRatio: 1/0.13, 
-          child: ListTile (
-            leading: const Icon ( 
+            );
+          } else {
+            return const Icon ( 
               Icons.arrow_drop_down, 
               color: Colors.red, 
-            ),
-            title: Center( child: Text("HeaderCellWidget $text"),),
-            onTap: onTap,
-          ),
-        );
-      }      
-    } );
+            );
+          }
+        } ),
+        title: Center( child: Text("HeaderCellWidget $text"),),
+        onTap: onTap,
+      ),
+    );
   }
 }
