@@ -1,7 +1,6 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.navigation_drawer_tab_bar">
-   <application
-        android:label="navigation_drawer_tab_bar"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application
+        android:label="navigation_drawer"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

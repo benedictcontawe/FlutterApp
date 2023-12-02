@@ -1,6 +1,6 @@
 {
-    "name": "x",
-    "short_name": "x",
+    "name": "navigation_drawer",
+    "short_name": "navigation_drawer",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

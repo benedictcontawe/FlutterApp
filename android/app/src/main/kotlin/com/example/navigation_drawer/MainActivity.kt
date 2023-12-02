@@ -1,4 +1,4 @@
-package com.example.navigation_drawer_tab_bar
+package com.example.navigation_drawer
 
 import io.flutter.embedding.android.FlutterActivity
 
