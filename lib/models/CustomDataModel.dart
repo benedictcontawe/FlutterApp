@@ -6,17 +6,16 @@ class CustomDataModel {
   final int id;
   final String name;
 
-  
-  const CustomDataModel({
+  const CustomDataModel( {
     required this.id,
     required this.name,
-  });
+  } );
 
-  CustomDataModel copyWith({
+  CustomDataModel copyWith( {
     int? id,
     String? name,
-  }) {
-    return CustomDataModel(id: id ?? this.id, name: name ?? this.name);
+  } ) {
+    return CustomDataModel(id : id ?? this.id, name : name ?? this.name);
   }
 
   Map<String, dynamic> toMap() {
@@ -27,10 +26,10 @@ class CustomDataModel {
   }
 
   factory CustomDataModel.fromMap(Map<String, dynamic> map) {
-    return CustomDataModel(
+    return CustomDataModel (
       id: map['id'], 
       name: map['name']
-      );
+    );
   }
 
   //factory CustomDataModel.fromJson(String source) => CustomDataModel.fromMap(json.decode(source));
