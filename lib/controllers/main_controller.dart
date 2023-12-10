@@ -23,7 +23,6 @@ class MainController extends BaseController {
     try {
       _list.value = <DrawerModel>[];
       _list.clear();
-      _list.add(new DrawerModel(isDrawerHeader: true,));
       _list.add(new DrawerModel(text: "A",isHeader: true, isExpand: true.obs));
       _list.add(new DrawerModel(text: "B",isHeader: false, isExpand: true.obs));
       _list.add(new DrawerModel(text: "C",isHeader: false, isExpand: true.obs));
@@ -73,10 +72,6 @@ class MainController extends BaseController {
     return _list.value[index]?.text ?? "Nil";
   }
 
-  bool isDrawerHeader(final int index) {
-    return _list.value[index]?.isDrawerHeader ?? false;
-  }
-
   bool isHeader(final int index) {
     return _list.value[index]?.isHeader ?? false;
   }
@@ -87,28 +82,30 @@ class MainController extends BaseController {
 
   Future<void> setExpand(final int position) async {
     debugPrint("MainController setExpand $position");
+    _list.value[position]?.isExpand!(true);
     for (int index = position; index < getLength(); index++) {
         if (_list.value[index]!.isHeader! && index != position) {
             break;
         } else if (!_list.value[index]!.isHeader!) {
           _list.value[index]?.isExpand!(true);
-        } else if (!_list.value[index]!.isDrawerHeader!) {
-            _list.value[index]?.isExpand!(true);
         }
     }
   }
 
   Future<void> setCompress(final int position) async {
     debugPrint("MainController setCompress $position");
+    _list.value[position]?.isExpand!(false);
     for (int index = position; index < getLength(); index++) {
-        if (_list.value[index]!.isHeader! && index != position) {
+        if (_list.value[index]?.isHeader == true && index != position) {
             break;
         } else if (!_list.value[index]!.isHeader!) {
           _list.value[index]?.isExpand!(false);
-        } else if (!_list.value[index]!.isDrawerHeader!) {
-            _list.value[index]?.isExpand!(false);
         }
     }
+  }
+
+  Future<void> onTap(final String title, final int position) async {
+    onShowAlert(title, " ${_list.value[position]?.text}");
   }
 
   @override

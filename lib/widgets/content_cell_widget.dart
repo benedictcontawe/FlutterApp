@@ -5,10 +5,13 @@ import 'package:navigation_drawer/widgets/base_widgets.dart';
 
 class ContentCellWidget extends BaseWidget {
 
-  const ContentCellWidget(this.text, this.isExpand, { super.key } );
+  const ContentCellWidget (
+    this.text, this.isExpand, this.onTap, { super.key } 
+  );
 
   final String? text;
   final RxBool isExpand;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +22,7 @@ class ContentCellWidget extends BaseWidget {
           child: ListTile (
             leading: const Icon( Icons.star, color: Colors.red, ),
             title: Center( child: Text("ContentCellWidget $text"),),
+            onTap: onTap,
           ),
         );
       } else {

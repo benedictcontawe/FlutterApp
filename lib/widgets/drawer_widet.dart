@@ -12,35 +12,43 @@ class DrawerWidget extends BaseWidget<MainController> {
   @override
   Widget build(BuildContext context) {
     return Drawer (
-      child: ListView.builder (
-        itemCount: controller.getLength(),
-        itemBuilder: (BuildContext context, int index) {
-          if (controller.isDrawerHeader(index)) {
-            return const DrawerHeader (
-              decoration: BoxDecoration(color: Colors.red),
-              child: Center( child: Text("Flutter Drawer Header",) ,),
-            );
-          } else if(controller.isHeader(index)) {
-            return HeaderCellWidget (
-              controller.getText(index), 
-              controller.isExpand(index),
-              () {
-                if(controller.isExpand(index).isTrue) {
-                  controller.setCompress(index);
-                } else {
-                  controller.setExpand(index);
-                }
+      child: Column (        
+        children: [
+          const DrawerHeader (
+            decoration: BoxDecoration(color: Colors.red),
+            child: Center( child: Text("Flutter Drawer Header",) ,),
+          ),
+          Expanded (
+            child: ListView.builder (
+            itemCount: controller.getLength(),
+            itemBuilder: (BuildContext context, int index) {
+              if (controller.isHeader(index)) {
+                return HeaderCellWidget (
+                  controller.getText(index), 
+                  controller.isExpand(index),
+                  () {
+                    if (controller.isExpand(index).isTrue) {
+                      controller.setCompress(index);
+                    } else {
+                      controller.setExpand(index);
+                    }
+                  }
+                );
+              } else if (!controller.isHeader(index)) {
+                return ContentCellWidget (
+                  controller.getText(index), 
+                  controller.isExpand(index),
+                  () {
+                    controller.onTap("ContentCellWidget", index);
+                  }
+                );
+              } else {
+                return const SizedBox();
               }
-            );
-          } else if (!controller.isDrawerHeader(index) && !controller.isHeader(index)) {
-            return ContentCellWidget (
-              controller.getText(index), 
-              controller.isExpand(index)
-            );
-          } else {
-            return const SizedBox();
-          }
-      } ),
+          } )
+          ),
+        ],
+      ),
     );
   }
 }
