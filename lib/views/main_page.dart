@@ -13,9 +13,9 @@ class MainPage extends BaseView {
   @override
   Widget build(BuildContext context) {
     return Scaffold (
-      appBar: AppBarWidget(MediaQuery.of(context).size.height),
+      appBar: AppBarWidget(height: MediaQuery.of(context).size.height,),
       drawer: const DrawerWidget(),
-      body: const MainWidget(title: "Hello"),
+      body: const MainWidget(),
     );
   }
 }

@@ -10,12 +10,14 @@ class MainController extends BaseController {
   }
 
   final RxList<DrawerModel?> _list = new List<DrawerModel>.empty().obs;
+  final RxString _title = "".obs;
 
 
   @override
   void onInit() {
     super.onInit();
     debugPrint("MainController onInit");
+    _title("Navigation Bar");
     fetchDrawerModels();
   }
 
@@ -64,7 +66,7 @@ class MainController extends BaseController {
     debugPrint("MainController onReady");
   }
 
-   int getLength() {
+  int getLength() {
     return _list.value.length ?? 0;
   }
 
@@ -106,7 +108,10 @@ class MainController extends BaseController {
 
   Future<void> onTap(final String title, final int position) async {
     onShowAlert(title, " ${_list.value[position]?.text}");
+    _title("Navigation Bar ${title} ${_list.value[position]?.text}");
   }
+
+  RxString getTitle() => _title;
 
   @override
   void onClose() {

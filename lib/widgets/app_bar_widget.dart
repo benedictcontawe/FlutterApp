@@ -3,7 +3,7 @@ import 'package:navigation_drawer/widgets/base_widgets.dart';
 
 class AppBarWidget extends BaseWidget implements PreferredSizeWidget {
 
-  const AppBarWidget(this.height,  { Key? key } ) : super(key: key);
+  const AppBarWidget( { Key? key, this.height, } ) : super(key: key);
 
   final double? height;
 
