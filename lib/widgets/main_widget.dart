@@ -1,5 +1,5 @@
-import 'package:dart_http/controllers/main_controller.dart';
-import 'package:dart_http/widgets/base_widgets.dart';
+import 'package:dart_file_picker/controllers/main_controller.dart';
+import 'package:dart_file_picker/widgets/base_widgets.dart';
 import 'package:flutter/material.dart';
 
 class MainWidget extends BaseWidget<MainController> {

@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.sample" "\0"
-            VALUE "FileDescription", "dart_http" "\0"
+            VALUE "FileDescription", "dart_file_picker" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "dart_http" "\0"
+            VALUE "InternalName", "dart_file_picker" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2022 com.sample. All rights reserved." "\0"
-            VALUE "OriginalFilename", "dart_http.exe" "\0"
-            VALUE "ProductName", "dart_http" "\0"
+            VALUE "OriginalFilename", "dart_file_picker.exe" "\0"
+            VALUE "ProductName", "dart_file_picker" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

@@ -1,6 +1,6 @@
 {
-    "name": "dart_http",
-    "short_name": "dart_http",
+    "name": "dart_file_picker",
+    "short_name": "dart_file_picker",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

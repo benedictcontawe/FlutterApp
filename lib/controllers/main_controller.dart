@@ -1,5 +1,5 @@
-import 'package:dart_http/controllers/base_controller.dart';
-import 'package:dart_http/views/files_page.dart';
+import 'package:dart_file_picker/controllers/base_controller.dart';
+import 'package:dart_file_picker/views/files_page.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,7 +11,7 @@ class MainController extends BaseController {
     debugPrint("MainController Constructor");
   }
 
-  final RxBool _isLoading = true.obs;
+  //final RxBool _isLoading = true.obs;
 
   @override
   void onInit() {

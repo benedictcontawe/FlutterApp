@@ -1,5 +1,5 @@
-import 'package:dart_http/bindings/splash_binding.dart';
-import 'package:dart_http/util/environment.dart';
+import 'package:dart_file_picker/bindings/splash_binding.dart';
+import 'package:dart_file_picker/util/environment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/route_manager.dart';

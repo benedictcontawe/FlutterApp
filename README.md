@@ -1,4 +1,4 @@
-# dart_http
+# dart_file_picker
 
 A new Flutter project.
 
