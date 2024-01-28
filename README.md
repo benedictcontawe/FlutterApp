@@ -110,4 +110,7 @@ samples, guidance on mobile development, and a full API reference.
 - [Flutter on Raspberry Pi — Fall 2022](https://bruce-abernethy.medium.com/flutter-on-raspberry-pi-fall-2022-ac0766839b92)
 
 - [Explore Table In Flutter](https://medium.flutterdevs.com/explore-table-in-flutter-28726b28b5d6)
+
+- [Flutter camera preview (full screen)](https://gist.github.com/CoderJava/1d807f633c400d0f59fdeaa86de29744)
+
 <!-- - [xxx](xxx) -->
