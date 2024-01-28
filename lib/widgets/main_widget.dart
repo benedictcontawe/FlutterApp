@@ -10,9 +10,9 @@ class MainWidget extends BaseWidget<MainController> {
   Widget build(BuildContext context) {      
     return Column (
       crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         //const Center(child: CircularProgressIndicator()),
-        
         const Text("Pick Files"),
         ElevatedButton(
           onPressed: () async {
