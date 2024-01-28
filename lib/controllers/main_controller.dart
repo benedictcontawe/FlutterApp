@@ -1,9 +1,9 @@
-import 'package:dart_file_picker/controllers/base_controller.dart';
-import 'package:dart_file_picker/views/files_page.dart';
-import 'package:file_picker/file_picker.dart';
+import 'package:camera/camera.dart';
+import 'package:dart_camera/controllers/base_controller.dart';
+import 'package:dart_camera/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:get/get.dart';
-import 'package:open_file/open_file.dart';
 
 class MainController extends BaseController {
 
@@ -11,67 +11,99 @@ class MainController extends BaseController {
     debugPrint("MainController Constructor");
   }
 
-  //final RxBool _isLoading = true.obs;
+  CameraController? cameraController;
+  List<CameraDescription>? _cameraList;
+  CameraDescription? _firstCamera, _secondCamera;
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
+    debugPrint("MainController onInit");
+    _initializeCamera();
   }
 
-  Future<void> onPickFile() async {
-    const type = FileType.custom; //FileType.media
-    final extensions = ['pdf', 'mp4', 'jpg', 'png'];
-    final result = await _pickFile(type, extensions);
-    if (result != null) {
-      openFile(result.files.first);
-    } else {
-      onShowAlert("Error","Result File is null!");
+  Future<void> _initializeCamera() async {
+    debugPrint("MainController _initializeCamera");
+    try { //TODO: Web Camera not supported yet! library that will be use is camera_web
+      _cameraList = await availableCameras();
+      _firstCamera = _cameraList?.first;
+      _secondCamera = _cameraList?[1];
+      cameraController = new CameraController(_secondCamera!!, ResolutionPreset.veryHigh);
+      debugPrint("MainController _cameraList ${_cameraList?.length}");
+    } on CameraException catch (code, description) {
+      debugPrint("MainController _initializeCamera CameraException $code $description");
+      onShowAlert("CameraException", "$description");
     }
   }
 
-  Future<void> onPickFiles() async {
-    const type = FileType.custom; //FileType.media
-    final extensions = ['pdf', 'mp4', 'jpg', 'png'];
-    final result = await _pickFiles(type, extensions);
-    if (result != null) {
-      openFiles(result.files);
-    } else {
-      onShowAlert("Error","Result Files is null!");
+  double getScale(Size mediaSize) {
+    return 1 / (cameraController!.value.aspectRatio * mediaSize.aspectRatio);
+  }
+
+  void launchCamera() {
+    Get.toNamed(Routes.CAMERA);
+  }
+
+  void launchVideo() {
+    Get.toNamed(Routes.VIDEO);
+  }
+
+  Future<void> getCameraFuture() {
+    return cameraController!.initialize();
+  }
+
+  void playShutter() {
+    //TODO: Still not supported will need to use these library either just_audio: ^0.9.36 or audioplayers: ^5.2.1
+  }
+
+  Future<void> playVibrate() async {
+    if (await Vibrate.canVibrate) {
+      //Vibrate.vibrate();
+      Vibrate.feedback(FeedbackType.heavy);
+      /*
+      final Iterable<Duration> pauses = [
+          const Duration(milliseconds: 100),
+          const Duration(milliseconds: 500),
+      ];
+      Vibrate.vibrateWithPauses(pauses);
+      */
+    }    
+  }
+
+  Future<void> takePicture() async {
+    debugPrint("MainController takePicture");
+    try {
+      // Ensure that the camera is initialized.
+      //await _initializeControllerFuture;
+
+      // Attempt to take a picture and then get the location
+      // where the image file is saved.
+      final XFile? image = await cameraController?.takePicture();
+      //Image.file(File(image.path))
+      debugPrint("MainController takePicture ${image?.path}");
+    } on CameraException catch (code, description) {
+      debugPrint("MainController takePicture CameraException $code $description");
+      onShowAlert("CameraException", "$description");
     }
   }
 
-   Future<FilePickerResult?> _pickFile(FileType type, List<String>? extensions) async {
-    return await FilePicker.platform.pickFiles(allowMultiple: false, type: type, allowedExtensions: extensions);
+  void toggleRecording() {
+    //TODO: Still on Going
+    onShowAlert("Recording", "currently under construction");
   }
 
-  Future<FilePickerResult?> _pickFiles(FileType type, List<String>? extensions) async {
-    return await FilePicker.platform.pickFiles(allowMultiple: true, type: type, allowedExtensions: extensions);
-  }
-
-  void openFile(PlatformFile file) {
-    debugPrint("MainController openFile(PlatformFile name ${file.name})");
-    debugPrint("MainController openFile(PlatformFile size ${file.size})");
-    debugPrint("MainController openFile(PlatformFile extension ${file.extension})");
-    if (file?.bytes != null) {
-      debugPrint("MainController openFile(PlatformFile bytes ${file.bytes})");
-      onShowAlert("Error","Open File for ${file.name} Not supported!");
-    }  else if (file?.path != null) {
-      debugPrint("MainController openFile(PlatformFile path ${file.path})");
-      OpenFile.open(file.path);
+  void flipCamera() {
+    if (cameraController?.description == _firstCamera) {
+      cameraController?.setDescription(_secondCamera!!);
+    } else if (cameraController?.description == _secondCamera) {
+      cameraController?.setDescription(_firstCamera!!);
     }
-  }
-
-  void openFiles(List<PlatformFile> files) {
-    Get.to (
-      FilesPage (
-        files: files,
-        onOpenedFile: openFile,
-      )
-    );
   }
 
   @override
   void onClose() {
     super.onClose();
+    debugPrint("MainController onClose");
+    cameraController?.dispose();
   }
 }

@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:dart_file_picker/controllers/base_controller.dart';
-import 'package:dart_file_picker/routes/app_pages.dart';
+import 'package:dart_camera/controllers/base_controller.dart';
+import 'package:dart_camera/routes/app_pages.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +23,7 @@ class SplashController extends BaseController {
 
   void _startTimer() {
     debugPrint("SplashController startTimer");
-    _timer = Timer(Duration(milliseconds: 10000), (() => _launchLogin()));
+    _timer = Timer(const Duration(milliseconds: 3000), (() => _launchLogin()));
   }
 
   void _launchLogin() {

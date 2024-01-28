@@ -1,5 +1,5 @@
-import 'package:dart_file_picker/controllers/main_controller.dart';
-import 'package:dart_file_picker/widgets/base_widgets.dart';
+import 'package:dart_camera/controllers/main_controller.dart';
+import 'package:dart_camera/widgets/base_widgets.dart';
 import 'package:flutter/material.dart';
 
 class MainWidget extends BaseWidget<MainController> {
@@ -12,19 +12,17 @@ class MainWidget extends BaseWidget<MainController> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        //const Center(child: CircularProgressIndicator()),
-        const Text("Pick Files"),
-        ElevatedButton(
+        ElevatedButton (
           onPressed: () async {
-            controller.onPickFile();
+            controller.launchCamera();
           }, 
-          child: const Text("Pick File")
+          child: const Text("Camera")
         ),
-        ElevatedButton(
+        ElevatedButton (
           onPressed: () async {
-            controller.onPickFiles();
+            controller.launchVideo();
           },  
-          child: const Text("Pick Multiple")
+          child: const Text("Video")
         ),
       ],
     );

@@ -1,6 +1,6 @@
 {
-    "name": "dart_file_picker",
-    "short_name": "dart_file_picker",
+    "name": "dart_camera",
+    "short_name": "dart_camera",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

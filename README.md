@@ -1,4 +1,4 @@
-# dart_file_picker
+# dart_camera
 
 A new Flutter project.
 

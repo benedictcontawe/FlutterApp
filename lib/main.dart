@@ -1,21 +1,22 @@
-import 'package:dart_file_picker/bindings/splash_binding.dart';
-import 'package:dart_file_picker/util/environment.dart';
+import 'package:dart_camera/bindings/splash_binding.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/route_manager.dart';
 import 'routes/app_pages.dart';
 
 Future<void> main() async {
-  await dotenv.load(fileName : Environment.mode);
-
-  runApp(GetMaterialApp(
+  //#region Camera Initialized
+  WidgetsFlutterBinding.ensureInitialized();
+  //#endregion
+  debugPaintSizeEnabled = false;
+  runApp ( GetMaterialApp (
     debugShowCheckedModeBanner: true,
     initialBinding: SplashBinding(),
     initialRoute: Routes.SPLASH,
-    theme: ThemeData(
+    theme: ThemeData (
       visualDensity: VisualDensity.adaptivePlatformDensity,
     ),
     defaultTransition: Transition.fade,
     getPages: AppPages.pages,
-  ));
+  ) );
 }

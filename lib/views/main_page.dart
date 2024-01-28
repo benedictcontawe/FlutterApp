@@ -1,6 +1,7 @@
-import 'package:dart_file_picker/controllers/main_controller.dart';
-import 'package:dart_file_picker/views/base_view.dart';
-import 'package:dart_file_picker/widgets/main_widget.dart';
+import 'package:dart_camera/controllers/main_controller.dart';
+import 'package:dart_camera/utils/constants.dart';
+import 'package:dart_camera/views/base_view.dart';
+import 'package:dart_camera/widgets/main_widget.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends BaseView<MainController> {
@@ -15,8 +16,8 @@ class MainPage extends BaseView<MainController> {
     return Scaffold (
       appBar: AppBar (
         elevation: 0,
-        title: const Text (
-          "Flutter App",
+        title: const Text(
+          Constants.APP_NAME,
           style: TextStyle (
             fontFamily: "avenir",
             fontSize: 32,
@@ -25,7 +26,8 @@ class MainPage extends BaseView<MainController> {
         ),
       ),
       body: const Center (
-        child: MainWidget()),
+        child: MainWidget(),
+      ),
     );
   }
 }
