@@ -113,4 +113,5 @@ samples, guidance on mobile development, and a full API reference.
 
 - [Flutter camera preview (full screen)](https://gist.github.com/CoderJava/1d807f633c400d0f59fdeaa86de29744)
 
+- [Take a picture using the camera](https://docs.flutter.dev/cookbook/plugins/picture-using-camera)
 <!-- - [xxx](xxx) -->
