@@ -11,9 +11,10 @@ class MainController extends BaseController {
     debugPrint("MainController Constructor");
   }
 
-  CameraController? cameraController;
-  List<CameraDescription>? _cameraList;
-  CameraDescription? _firstCamera, _secondCamera;
+  late final CameraController? cameraController;
+  late final List<CameraDescription>? _cameraList;
+  late final CameraDescription? _firstCamera, _secondCamera;
+  final RxBool _isRecording = false.obs;
 
   @override
   Future<void> onInit() async {
@@ -73,11 +74,6 @@ class MainController extends BaseController {
   Future<void> takePicture() async {
     debugPrint("MainController takePicture");
     try {
-      // Ensure that the camera is initialized.
-      //await _initializeControllerFuture;
-
-      // Attempt to take a picture and then get the location
-      // where the image file is saved.
       final XFile? image = await cameraController?.takePicture();
       //Image.file(File(image.path))
       debugPrint("MainController takePicture ${image?.path}");
@@ -87,9 +83,20 @@ class MainController extends BaseController {
     }
   }
 
-  void toggleRecording() {
-    //TODO: Still on Going
+  RxBool observeRecording() {
+    return _isRecording;
+  }
+
+  void toggleRecording() { //TODO: Still on Going
     onShowAlert("Recording", "currently under construction");
+    if (_isRecording.isTrue) {
+      //cameraController?.pauseVideoRecording();
+      //cameraController?.stopVideoRecording();
+      _isRecording(false);
+    } else if (_isRecording.isFalse) {
+      //cameraController?.startVideoRecording();
+      _isRecording(true);
+    }
   }
 
   void flipCamera() {

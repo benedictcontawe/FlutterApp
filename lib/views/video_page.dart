@@ -1,4 +1,3 @@
-import 'package:camera/camera.dart';
 import 'package:dart_camera/controllers/main_controller.dart';
 import 'package:dart_camera/utils/media_size_clipper.dart';
 import 'package:dart_camera/views/base_view.dart';
@@ -6,6 +5,7 @@ import 'package:dart_camera/widgets/camera_preview_widget.dart';
 import 'package:dart_camera/widgets/floating_action_button_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class VideoPage extends BaseView<MainController> {
   
@@ -30,7 +30,9 @@ class VideoPage extends BaseView<MainController> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButtonWidget (
-        centerBottomIcon: const Icon(CupertinoIcons.video_camera), 
+        isCenterBottomIconPressed: controller.observeRecording(),
+        centerBottomIcon: const Icon(CupertinoIcons.video_camera),
+        centerBottomIconPressed: const Icon(CupertinoIcons.video_camera_solid),
         bottomTrailIcon: const Icon(CupertinoIcons.arrow_2_circlepath), 
         onPressedCenterBottomIcon: () { controller.toggleRecording(); }, 
         onPressedBottomTrailIcon: () { controller.flipCamera(); },
