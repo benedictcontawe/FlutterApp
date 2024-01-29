@@ -87,14 +87,14 @@ class MainController extends BaseController {
     return _isRecording;
   }
 
-  void toggleRecording() { //TODO: Still on Going
-    onShowAlert("Recording", "currently under construction");
+  Future<void> toggleRecording() async {
     if (_isRecording.isTrue) {
       //cameraController?.pauseVideoRecording();
-      //cameraController?.stopVideoRecording();
+      final XFile? video = await cameraController?.stopVideoRecording();
+      debugPrint("MainController toggleRecording ${video?.path}");
       _isRecording(false);
     } else if (_isRecording.isFalse) {
-      //cameraController?.startVideoRecording();
+      cameraController?.startVideoRecording();
       _isRecording(true);
     }
   }
