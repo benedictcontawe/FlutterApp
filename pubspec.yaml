@@ -40,7 +40,7 @@ dependencies:
   #dio: ^4.0.6
   file_picker: ^6.1.1
   flutter_dotenv: ^5.1.0
-  firebase_core: ^2.24.0
+  firebase_core: ^2.25.2
   firebase_storage: ^11.5.3
   get: ^4.6.6
   get_storage:
