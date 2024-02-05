@@ -114,4 +114,6 @@ samples, guidance on mobile development, and a full API reference.
 - [Flutter camera preview (full screen)](https://gist.github.com/CoderJava/1d807f633c400d0f59fdeaa86de29744)
 
 - [Take a picture using the camera](https://docs.flutter.dev/cookbook/plugins/picture-using-camera)
+
+- [Use Firebase to host your Flutter app on the web](https://medium.com/flutter/must-try-use-firebase-to-host-your-flutter-app-on-the-web-852ee533a469)
 <!-- - [xxx](xxx) -->
