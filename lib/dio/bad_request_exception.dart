@@ -1,7 +1,6 @@
-
 import 'package:dio/dio.dart';
 
-class BadRequestException extends DioError {
+class BadRequestException extends DioException {
 
   BadRequestException(RequestOptions requestOptions) : super(requestOptions: requestOptions);
 
