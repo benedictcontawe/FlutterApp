@@ -1,10 +1,14 @@
+import 'package:getx_storage/bindings/login_binding.dart';
 import 'package:getx_storage/bindings/object_binding.dart';
 import 'package:getx_storage/bindings/primitive_bindings.dart';
+import 'package:getx_storage/bindings/register_binding.dart';
 import 'package:getx_storage/bindings/splash_binding.dart';
 import 'package:getx_storage/bindings/main_binding.dart';
+import 'package:getx_storage/views/login_page.dart';
 import 'package:getx_storage/views/main_page.dart';
 import 'package:getx_storage/views/object_page.dart';
 import 'package:getx_storage/views/primitive_page.dart';
+import 'package:getx_storage/views/register_page.dart';
 import 'package:getx_storage/views/splash_page.dart';
 import 'package:get/get.dart';
 part 'routes.dart';
@@ -17,6 +21,20 @@ abstract class AppPages {
       binding: SplashBinding(),
       transition: Transition.fade,
       transitionDuration: const Duration(milliseconds: 3000),
+    ),
+    GetPage (
+      name: Routes.REGISTER,
+      page: () => const RegisterPage(),
+      binding: RegisterBinding(),
+      transition: Transition.noTransition,
+      transitionDuration: const Duration(milliseconds: 250),
+    ),
+    GetPage (
+      name: Routes.LOGIN,
+      page: () => const LoginPage(),
+      binding: LoginBinding(),
+      transition: Transition.noTransition,
+      transitionDuration: const Duration(milliseconds: 250),
     ),
     GetPage (
       name: Routes.MAIN,
