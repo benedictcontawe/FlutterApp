@@ -50,7 +50,8 @@ class LoginController extends BaseController {
       (exception) {
         debugPrint('LoginController checkCredential exception ${exception.toString()}}');
         onShowAlert("Error!", "Login failed Please Try Again");
-      }
+      },
+      () {},
     );
   }
 

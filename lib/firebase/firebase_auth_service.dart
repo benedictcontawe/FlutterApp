@@ -50,6 +50,7 @@ class FirebaseAuthService extends GetxService {
     final Function(UserCredential) onProcess,
     final Function() onSuccess,
     final Function(Exception) onException,
+    final Function() onFinally,
   ) async {
     try {
       final UserCredential credential = await FirebaseAuth.instance.signInWithEmailAndPassword (
@@ -60,6 +61,8 @@ class FirebaseAuthService extends GetxService {
       onSuccess();
     } catch (exception) {
       onException(throw Exception("FirebaseAuthService checkCredential exception ${exception.toString()}}"));
+    } finally {
+      onFinally();
     }
   }
 }
