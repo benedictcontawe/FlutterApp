@@ -66,6 +66,16 @@ class FirebaseAuthService extends GetxService {
     );
   }
 
+  Future<void> signInWithPhoneNumber(String phoneNumber, ) async {
+    //const appVerifier = _auth.RecaptchaVerifier("recaptcha-container");
+    _auth.signInWithPhoneNumber(phoneNumber/*, appVerifier*/).then((confirmationResult) => {
+      // SMS sent. Prompt user to type the code from the message, then sign the
+      // user in with confirmationResult.confirm(code).
+    })
+    .catchError((error) => { // Error; SMS not sent
+    });
+  }
+
   Future<void> checkCredential(
     final String email, 
     final String password,
