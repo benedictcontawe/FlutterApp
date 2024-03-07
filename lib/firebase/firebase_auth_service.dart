@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 class FirebaseAuthService extends GetxService {
 
-  final auth = FirebaseAuth.instance;
+  final _auth = FirebaseAuth.instance;
 
   Future<void> registerCredential (
     final String email, 
@@ -15,7 +15,7 @@ class FirebaseAuthService extends GetxService {
     final Function(Exception) onException,
   ) async {
     try {
-      final UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword (
+      final UserCredential userCredential = await _auth.createUserWithEmailAndPassword (
         email: email, password: password,
       );
       onCreate(userCredential);
@@ -29,7 +29,7 @@ class FirebaseAuthService extends GetxService {
     }
   }
 
-   Future<void> sendEmailVerification(
+   Future<void> sendEmailVerification (
     final Function() onSuccess,
     final Function(FirebaseAuthException) onFirebaseAuthException,
     final Function(Exception) onException,
@@ -44,6 +44,28 @@ class FirebaseAuthService extends GetxService {
     }
   }
 
+  Future<void> verifyPhoneNumber(String phoneNumber) async {
+    _auth.verifyPhoneNumber (
+      phoneNumber: phoneNumber,
+      timeout: const Duration(minutes: 2),
+      verificationCompleted: (credential) async {
+        await (await _auth.currentUser)?.updatePhoneNumber(credential);
+      },
+      verificationFailed: ((firebaseAuthException) {
+        
+      }), 
+      codeSent: (verificationId, [forceResendingToken]) async {
+        final String code = "";
+        //Get the SMS code from the user
+        final PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: verificationId, smsCode: code);
+        await (await _auth.currentUser)?.updatePhoneNumber(credential);
+      },
+      codeAutoRetrievalTimeout: ((verificationId) {
+        
+      }),
+    );
+  }
+
   Future<void> checkCredential(
     final String email, 
     final String password,
@@ -53,7 +75,7 @@ class FirebaseAuthService extends GetxService {
     final Function() onFinally,
   ) async {
     try {
-      final UserCredential credential = await FirebaseAuth.instance.signInWithEmailAndPassword (
+      final UserCredential credential = await _auth.signInWithEmailAndPassword (
         email: email, 
         password: password
       );
@@ -64,5 +86,9 @@ class FirebaseAuthService extends GetxService {
     } finally {
       onFinally();
     }
+  }
+
+  Future signOut() async {
+    await _auth.signOut();
   }
 }
