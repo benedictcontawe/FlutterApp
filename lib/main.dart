@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:getx_storage/bindings/splash_binding.dart';
+import 'package:getx_storage/firebase/firebase_auth_service.dart';
 import 'package:getx_storage/firebase/firebase_options.dart';
 import 'package:getx_storage/firebase/firebase_storage_service.dart';
 import 'package:getx_storage/firebase/firestore_service.dart';
@@ -24,6 +25,7 @@ Future<void> main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   Get.put(FirestoreService());
   Get.put(FirebaseStorageService());
+  Get.put(FirebaseAuthService());
   //#endregion
   runApp ( 
     GetMaterialApp (

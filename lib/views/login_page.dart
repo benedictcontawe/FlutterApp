@@ -58,7 +58,7 @@ class LoginPage extends BaseView<LoginController> {
               const SizedBox(height: 20),
               ElevatedButton (
                 onPressed: () {
-                  controller.checkCredential();
+                  controller.onCheckCredential();
                 },
                 child: const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 40, vertical: 12),
