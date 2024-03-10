@@ -116,4 +116,8 @@ samples, guidance on mobile development, and a full API reference.
 - [Take a picture using the camera](https://docs.flutter.dev/cookbook/plugins/picture-using-camera)
 
 - [Use Firebase to host your Flutter app on the web](https://medium.com/flutter/must-try-use-firebase-to-host-your-flutter-app-on-the-web-852ee533a469)
+
+- [Flutter: ListTile examples (updated)](https://www.kindacode.com/article/flutter-listtile/)
+
+- [https://medium.com/flutter-community/table-in-flutter-beyond-the-basics-8d31b022b451](https://medium.com/flutter-community/table-in-flutter-beyond-the-basics-8d31b022b451)
 <!-- - [xxx](xxx) -->
