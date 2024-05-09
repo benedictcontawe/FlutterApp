@@ -119,5 +119,7 @@ samples, guidance on mobile development, and a full API reference.
 
 - [Flutter: ListTile examples (updated)](https://www.kindacode.com/article/flutter-listtile/)
 
-- [https://medium.com/flutter-community/table-in-flutter-beyond-the-basics-8d31b022b451](https://medium.com/flutter-community/table-in-flutter-beyond-the-basics-8d31b022b451)
+- [Table in Flutter: Beyond The Basics](https://medium.com/flutter-community/table-in-flutter-beyond-the-basics-8d31b022b451)
+
+- [How to open a sidebar using GetX in Flutter](https://stackoverflow.com/questions/67648765/how-to-open-a-sidebar-using-getx-in-flutter)
 <!-- - [xxx](xxx) -->
