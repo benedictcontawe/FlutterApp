@@ -119,6 +119,8 @@ samples, guidance on mobile development, and a full API reference.
 
 - [Flutter: ListTile examples (updated)](https://www.kindacode.com/article/flutter-listtile/)
 
+- [Say Goodbye to Future.wait([]) in Dart]([https://www.kindacode.com/article/flutter-listtile/](https://yongjhih.medium.com/say-goodbye-to-future-wait-65e9fe4c0341))
+
 - [Table in Flutter: Beyond The Basics](https://medium.com/flutter-community/table-in-flutter-beyond-the-basics-8d31b022b451)
 
 - [How to open a sidebar using GetX in Flutter](https://stackoverflow.com/questions/67648765/how-to-open-a-sidebar-using-getx-in-flutter)
