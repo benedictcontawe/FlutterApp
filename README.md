@@ -126,4 +126,6 @@ samples, guidance on mobile development, and a full API reference.
 - [How to open a sidebar using GetX in Flutter](https://stackoverflow.com/questions/67648765/how-to-open-a-sidebar-using-getx-in-flutter)
 
 - [What is getconnect(GETX) in flutter](https://medium.com/@info.vikaasyadav/what-is-getconnect-getx-in-flutter-d2e51ed56807)
+
+- [How to add both TapDetector and HasTappable mixin to the game class in Flame Flutter?](https://stackoverflow.com/questions/70839207/how-to-add-both-tapdetector-and-hastappable-mixin-to-the-game-class-in-flame-flu)
 <!-- - [xxx](xxx) -->
