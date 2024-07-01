@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_storage/controllers/base_controller.dart';
@@ -52,6 +53,32 @@ class LoginController extends BaseController {
       },
       () {},
     );
+  }
+
+  Future<void> checkGoogleCredentials() async  {
+    /*
+    isLoading(true);
+    debugPrint("LoginController checkGoogleTechLeadCredentials");
+    final UserCredential? googleCredential = await _auth.signInWithGoogle();
+    final UserModel? user = await _service.getUserModel(_auth.getUser()?.uid);
+    if (googleCredential != null && user != null) {
+      debugPrint("LoginController checkGoogleTechLeadCredentials success!");
+      Get.offAndToNamed(Routes.DASHBOARDLEADER);
+    } else if (googleCredential != null && user == null) {
+      debugPrint("LoginController checkGoogleTechLeadCredentials creatting success!");
+      final User? user = _auth.getUser();
+      _service.createUserModel(TechLeaderModel(
+        uid: user?.uid,
+        name: user?.displayName,
+        email: user?.email,
+      ).toMap());
+      Get.offAndToNamed(Routes.DASHBOARDLEADER);
+    } else {
+      debugPrint("LoginController checkGoogleTechLeadCredentials error!");
+      onShowAlert("Error!", "Invalid Google User, Please Login as a Google User");
+      isLoading(false);
+    }
+    */
   }
 
   void launchRegister() {
