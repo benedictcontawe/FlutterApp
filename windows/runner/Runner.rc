@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.sample" "\0"
-            VALUE "FileDescription", "getx_storage" "\0"
+            VALUE "FileDescription", "chips" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "getx_storage" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2022 com.sample. All rights reserved." "\0"
-            VALUE "OriginalFilename", "getx_storage.exe" "\0"
-            VALUE "ProductName", "getx_storage" "\0"
+            VALUE "InternalName", "chips" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2024 com.sample. All rights reserved." "\0"
+            VALUE "OriginalFilename", "chips.exe" "\0"
+            VALUE "ProductName", "chips" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

@@ -1,6 +1,6 @@
 {
-    "name": "getx_storage",
-    "short_name": "getx_storage",
+    "name": "chips",
+    "short_name": "chips",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
