@@ -128,4 +128,6 @@ samples, guidance on mobile development, and a full API reference.
 - [What is getconnect(GETX) in flutter](https://medium.com/@info.vikaasyadav/what-is-getconnect-getx-in-flutter-d2e51ed56807)
 
 - [How to add both TapDetector and HasTappable mixin to the game class in Flame Flutter?](https://stackoverflow.com/questions/70839207/how-to-add-both-tapdetector-and-hastappable-mixin-to-the-game-class-in-flame-flu)
+
+ - [Chip Widget: Material Design with Flutter](https://medium.com/flutter-community/chip-widget-material-design-with-flutter-4a834553c9ab)
 <!-- - [xxx](xxx) -->
