@@ -44,36 +44,34 @@ class FirebaseAuthService extends GetxService {
     }
   }
 
-  Future<void> verifyPhoneNumber(String phoneNumber) async {
+  Future<void> verifyPhoneNumber(
+    String phoneNumber,
+    Duration timeout,
+    final Function(PhoneAuthCredential) onVerificationCompleted,
+    final Function(String, [int?]) onCodeSent,
+    final Function(String, ) onCodeAutoRetrievalTimeout,
+    final Function(Exception) onException,
+  ) async {
     _auth.verifyPhoneNumber (
       phoneNumber: phoneNumber,
-      timeout: const Duration(minutes: 2),
-      verificationCompleted: (credential) async {
-        await (await _auth.currentUser)?.updatePhoneNumber(credential);
-      },
-      verificationFailed: ((firebaseAuthException) {
-        
-      }), 
-      codeSent: (verificationId, [forceResendingToken]) async {
-        final String code = "";
-        //Get the SMS code from the user
-        final PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: verificationId, smsCode: code);
-        await (await _auth.currentUser)?.updatePhoneNumber(credential);
-      },
-      codeAutoRetrievalTimeout: ((verificationId) {
-        
-      }),
+      timeout: timeout,
+      verificationCompleted: (credential) async => onVerificationCompleted(credential),
+      verificationFailed: ((firebaseAuthException) => onException(throw Exception("FirebaseAuthService verifyPhoneNumber verificationFailed ${firebaseAuthException.code} ${firebaseAuthException.message}"))), 
+      codeSent: (verificationId, [forceResendingToken]) async => onCodeSent(verificationId, forceResendingToken),
+      codeAutoRetrievalTimeout: ((verificationId) => onException(throw Exception("FirebaseAuthService verifyPhoneNumber codeAutoRetrievalTimeout $verificationId"))),
     );
   }
 
-  Future<void> signInWithPhoneNumber(String phoneNumber, ) async {
-    //const appVerifier = _auth.RecaptchaVerifier("recaptcha-container");
-    _auth.signInWithPhoneNumber(phoneNumber/*, appVerifier*/).then((confirmationResult) => {
-      // SMS sent. Prompt user to type the code from the message, then sign the
-      // user in with confirmationResult.confirm(code).
-    })
-    .catchError((error) => { // Error; SMS not sent
-    });
+  Future<void> signInWithPhoneNumber(String verificationId, String code, final Function() onSuccess, final Function(Object) onException,) async {
+    PhoneAuthCredential credential = PhoneAuthProvider.credential (verificationId: verificationId, smsCode: code,);
+    _auth.signInWithCredential(credential);
+    try {
+      _auth.signInWithCredential(credential);
+      await (_auth.currentUser)?.updatePhoneNumber(credential);
+      onSuccess();
+    } catch(exception) {
+      onException(exception);
+    }
   }
 
   Future<void> checkCredential(

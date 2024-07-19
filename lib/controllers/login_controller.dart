@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:getx_storage/controllers/base_controller.dart';
 import 'package:getx_storage/firebase/firebase_auth_service.dart';
 import 'package:getx_storage/routes/app_pages.dart';
+import 'package:getx_storage/util/constants.dart';
 
 class LoginController extends BaseController {
 
@@ -14,14 +15,17 @@ class LoginController extends BaseController {
   //#region Firabase Instances
   final FirebaseAuthService _auth;
   //#endregion
-  TextEditingController? emailController, passwordController;
+  TextEditingController? emailController, passwordController, phoneController, codeController;
   final RxBool _isPasswordHidden = true.obs;
+  String? _verificationId;
 
   @override
   void onInit() {
     super.onInit();
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
+    emailController = new TextEditingController();
+    passwordController = new TextEditingController();
+    phoneController = new TextEditingController();
+    codeController = new TextEditingController();
   }
 
   void onTogglePasswordVisibility() {
@@ -79,6 +83,56 @@ class LoginController extends BaseController {
       isLoading(false);
     }
     */
+  }
+
+  bool _isValidPhoneNumber(String? phoneNumber) {
+    final RegExp regex = RegExp(r'^\+?[1-9]\d{1,14}$');
+    if(phoneNumber != null && regex.hasMatch(phoneNumber)) return true;
+    else return false;
+  }
+
+  Future<void> onCheckPhoneCredential() async {
+    debugPrint("LoginController onCheckPhoneCredential ${phoneController?.text}");
+    if(_isValidPhoneNumber(phoneController?.text)) {
+      _auth.verifyPhoneNumber (
+        phoneController?.text ?? "",
+        const Duration(minutes: 1),
+        (phoneAuthCredential) async {
+          debugPrint("LoginController onVerificationCompleted $phoneAuthCredential");
+        },
+        (verificationId, [resendToken]) {
+          debugPrint("LoginController onCodeSent $verificationId $resendToken");
+          _verificationId = verificationId;
+          //_isPhoneReadOnly(true);
+          //_isCodeReadOnly(false);
+        },
+        (verificationId, ) {
+          debugPrint("LoginController onCodeAutoRetrievalTimeout $verificationId");
+          _verificationId = verificationId;
+        },
+        (exception) {
+          debugPrint('LoginController checkCredential exception ${exception.toString()}}');
+          onShowAlert("Error!", "Login failed Please Try Again");
+        }
+      );
+    } else {
+      onShowAlert("Error!", "Phone Invalid!");
+    }
+  }
+
+  Future<void> onCheckCode() async {
+    debugPrint("LoginController onCheckCode");
+    _auth.signInWithPhoneNumber (
+      _verificationId ?? Constants.BLANK, 
+      codeController?.text ?? Constants.BLANK, 
+      () {
+        //Get.offAndToNamed(Routes.DASHBOARD)
+      },
+      (exception) {
+        debugPrint('LoginController onCheckCode exception ${exception.toString()}}');
+        onShowAlert("Error!", "Login failed Please Try Again");
+      }
+    );
   }
 
   void launchRegister() {
