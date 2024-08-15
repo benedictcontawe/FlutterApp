@@ -366,5 +366,6 @@ class ObjectController extends BaseController {
   void onClose() {
     super.onClose();
     debugPrint("ObjectController onClose");
+    _controller?.dispose();
   }
 }

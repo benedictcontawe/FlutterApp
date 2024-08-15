@@ -83,5 +83,7 @@ class RegisterController extends BaseController {
   @override
   void onClose() {
     super.onClose();
+    emailController?.dispose();
+    passwordController?.dispose();
   }
 }

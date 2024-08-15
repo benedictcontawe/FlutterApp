@@ -142,5 +142,9 @@ class LoginController extends BaseController {
   @override
   void onClose() {
     super.onClose();
+    emailController?.dispose();
+    passwordController?.dispose();
+    phoneController?.dispose();
+    codeController?.dispose();
   }
 }
