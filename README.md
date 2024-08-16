@@ -17,6 +17,8 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Reference
 
+- [Trigger FCM using Node JS Server | How to send push notifications using Node JS and Firebase?](https://www.youtube.com/watch?v=J8j_jzWPRtw)
+
 - [GetX for your Flutter applications - Part 1](https://techblog.geekyants.com/getx-for-your-flutter-applications-part-1)
 
 - [Flutter: How to fit the web view size to screen?](https://stackoverflow.com/questions/62113082/flutter-how-to-fit-the-web-view-size-to-screen)
