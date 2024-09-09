@@ -44,9 +44,9 @@ dependencies:
   firebase_core: ^2.25.4
   firebase_storage: ^11.6.5
   get: ^4.6.6
-  get_storage:
+  get_storage: ^2.1.1
   google_fonts: ^6.1.0
-  path_provider:
+  path_provider: ^2.1.4
   universal_html: ^2.2.4
   
 
